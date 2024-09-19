@@ -45,6 +45,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxSpeed = 5;
         moveSpeed = 0;
         col = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
@@ -58,41 +59,33 @@ public class PlayerScript : MonoBehaviour
 
     public void Move()
     {
-        Vector3 displacement;
-        float maxAcc = 10f;
-        float decelerationFactor = 1f;
-        float acceleration = 10f;
-        while(moveSpeed < 10)
+        if(Input.GetKey(KeyCode.D))
         {
-            if(Input.GetKey(KeyCode.D))
-            {
-                moveSpeed++;
+            if(moveSpeed < maxSpeed){
+                moveSpeed += .08f;
             }
         }
-        displacement = playerBody.transform.right * moveSpeed;
+        else{
+            if(moveSpeed>0){
+                moveSpeed -= .045f;
+            }
+            if(moveSpeed>-.01 && moveSpeed < .01) moveSpeed = 0;
+        }
+        if(Input.GetKey(KeyCode.A))
+        {
+            if(moveSpeed > -maxSpeed){
+                moveSpeed -= .08f;
+            }
+        }
+        else{
+            if(moveSpeed<0){
+                moveSpeed += .045f;
+            }
+            if(moveSpeed>-.01 && moveSpeed < .01) moveSpeed = 0;
+        }
+        rb.transform.Translate(playerBody.transform.right*moveSpeed*Time.deltaTime);
 
-        float len = displacement.magnitude;
-        if (len > 0)
-        {
-            rb.velocity += displacement / len * Time.deltaTime * maxAcc;
 
-            // Clamp velocity to the maximum speed.
-            if (rb.velocity.magnitude > maxSpeed)
-            {
-                rb.velocity = rb.velocity.normalized * moveSpeed;
-            }
-        }
-        else
-        {
-            // If no buttons are pressed, decelerate.
-            len = rb.velocity.magnitude;
-            float decel = acceleration * decelerationFactor * Time.deltaTime;
-            if (len < decel) rb.velocity = Vector3.zero;
-            else
-            {
-                rb.velocity -= rb.velocity.normalized * decel;
-            }
-        }
     }
 
     public void Jump()
