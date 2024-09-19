@@ -7,8 +7,6 @@ public class PlayerScript : MonoBehaviour
 
     public Transform playerBody;
 
-    Rigidbody rb;
-
     [SerializeField]
     private float moveSpeed { get; set; }
     [SerializeField]
