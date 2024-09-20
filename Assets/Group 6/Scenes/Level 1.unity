@@ -1378,6 +1378,7 @@ GameObject:
   - component: {fileID: 1881685719}
   - component: {fileID: 1881685718}
   - component: {fileID: 1881685722}
+  - component: {fileID: 1881685723}
   m_Layer: 0
   m_Name: Luggage_Cart
   m_TagString: Untagged
@@ -1498,6 +1499,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &1881685723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881685717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b10493549384ced8b14cc8b44bd9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 15
 --- !u!1 &1906570172
 GameObject:
   m_ObjectHideFlags: 0

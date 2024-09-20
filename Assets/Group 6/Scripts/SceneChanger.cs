@@ -10,4 +10,9 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void LoadLevel1()
+    {
+        SceneManager.LoadScene(2);
+    }
 }

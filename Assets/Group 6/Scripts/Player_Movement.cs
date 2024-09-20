@@ -19,6 +19,8 @@ public class Player_Movement : MonoBehaviour
 
     private float mouseSensitivity = 1;
 
+    private float speedUp = 1.5f;
+
     private void Start()
     {
         jumpVelocity = Mathf.Sqrt(-2 * gravityValue * jumpHeight);
@@ -46,6 +48,11 @@ public class Player_Movement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         playerVelocity.x = 0;
         playerVelocity.z = 0;
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            playerSpeed = 5f * speedUp;
+        } else {
+            playerSpeed = 5f;
+        }
         playerVelocity += (gameObject.transform.right * Input.GetAxis("Horizontal") + gameObject.transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
         controller.Move(playerVelocity * Time.deltaTime);
 

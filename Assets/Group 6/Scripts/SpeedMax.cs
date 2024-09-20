@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpeedMax : MonoBehaviour
 {
-    public float maxSpeed = 3f;
+    public float maxSpeed = 15f;
     // Start is called before the first frame update
     void Start()
     {
