@@ -67,10 +67,11 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         CheckIfGrounded();
+        CheckWall();
         Move();
         Jump();
+        DoubleJump();
     }
-
     public void Move()
     {
         if(Input.GetKey(KeyCode.D))
@@ -109,8 +110,8 @@ public class PlayerScript : MonoBehaviour
     public void Jump()
     {
         if(!isGrounded){
-            if(jumpForce > -8){
-                jumpForce += -.04f*gravityForce;
+            if(jumpForce > -15){
+                jumpForce += -.05f*gravityForce;
             }
         }
 
@@ -118,9 +119,10 @@ public class PlayerScript : MonoBehaviour
             jumpForce = 0;
         }
 
-        if(Input.GetKey(KeyCode.W)&&isGrounded)
+        if(Input.GetKeyDown(KeyCode.W)&&isGrounded)
         {
-            jumpForce += 3f*gravityForce;
+            jumpForce = 2.6f*gravityForce;
+            canDoubleJump = true;
         }
         
         if(jumpForce>-.01 && jumpForce < .01) jumpForce = 0;
@@ -130,7 +132,10 @@ public class PlayerScript : MonoBehaviour
 
     public void DoubleJump()
     {
-
+        if(canDoubleJump&&Input.GetKeyDown(KeyCode.W)&&!isGrounded){
+            jumpForce = 2f*gravityForce;
+            canDoubleJump = false;
+        }
     }
 
     public void Dash()
@@ -148,11 +153,11 @@ public class PlayerScript : MonoBehaviour
         RaycastHit hit; //get a hit variable to store the hit information
        
         spherePos = transform.position;
-        if (Physics.SphereCast(spherePos, .2f,  -transform.right, out hit, .05f)){
+        if (Physics.Raycast(spherePos, -transform.right, out hit, .2f)){
             isWallRight = false;
             isWallLeft = true;
         }
-        else if(Physics.SphereCast(spherePos, .2f,  transform.right, out hit, .05f)){
+        else if(Physics.Raycast(spherePos, transform.right, out hit, .2f)){
             isWallLeft = false;
             isWallRight= true;
         }
