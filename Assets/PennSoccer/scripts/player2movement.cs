@@ -7,7 +7,6 @@ public class player2movement : MonoBehaviour
     public float speed = 5.0f;
     public float jumpForce = 5.0f;
     private float horizontalInput;
-    private float forwardInput;
     private Rigidbody player2Rb;
     public bool isGrounded = true;
 
@@ -20,11 +19,8 @@ public class player2movement : MonoBehaviour
     {
         // Horizontal movement using wasd
         horizontalInput = Input.GetAxis("Horizontal2");
-        forwardInput = Input.GetAxis("Vertical2");
-
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-        transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
-
+        player2Rb.velocity = new Vector3(Time.deltaTime * speed * horizontalInput*1000, player2Rb.velocity.y, player2Rb.velocity.z);
+        
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             player2Rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
