@@ -34,7 +34,7 @@ public class PlayerScript : MonoBehaviour
     private CharacterController cha;
     [SerializeField]
     private float wallJumpForce { get; set; }
-    private bool isOnWall { get; }
+    private bool isOnWall { get; set; }
     private bool isWallJumping;
     private bool isAlive { get; set; }
     private bool isActive { get; set; }
@@ -74,6 +74,7 @@ public class PlayerScript : MonoBehaviour
         Jump();
         DoubleJump();
         CheckDash();
+        WallJump();
     }
     public void Move()
     {
@@ -122,12 +123,12 @@ public class PlayerScript : MonoBehaviour
             jumpForce = 0;
         }
 
-        if(Input.GetKeyDown(KeyCode.W)&&isGrounded)
+        if(Input.GetKeyDown(KeyCode.W)&&isGrounded&&!isOnWall)
         {
             jumpForce = 2.6f*gravityForce;
             canDoubleJump = true;
         }
-        
+
         if(jumpForce>-.01 && jumpForce < .01) jumpForce = 0;
 
         rb.transform.Translate(playerBody.transform.up*jumpForce*Time.deltaTime);
@@ -139,6 +140,31 @@ public class PlayerScript : MonoBehaviour
             jumpForce = 2f*gravityForce;
             canDoubleJump = false;
         }
+    }
+
+    public void WallJump()
+    {
+        if(Input.GetKeyDown(KeyCode.W)&&isOnWall)
+        {
+            wallJumpForce = 20f*gravityForce;
+            Vector3 jumpDirection;
+            if (isWallRight)
+            {
+                moveSpeed = -3f;
+                jumpDirection = new Vector3(-0.2f, 5f, 0); 
+                Debug.Log("Wall Jump Triggered - Right Wall");
+            }
+            else if (isWallLeft)
+            {
+                moveSpeed = 3f;
+                jumpDirection = new Vector3(0.2f, 5f, 0);
+                Debug.Log("Wall Jump Triggered - Left Wall");
+            } else {
+                jumpDirection = Vector3.up;
+            }
+            isWallJumping = true;
+            rb.transform.Translate(jumpDirection * wallJumpForce * Time.deltaTime);
+            }
     }
 
     public void CheckDash()
@@ -161,6 +187,7 @@ public class PlayerScript : MonoBehaviour
         dashSpeed = 30f;
         canDash = false;
         isDashing = true;
+        Debug.Log("Dash Triggered");
 
         dashDuration = 0.15f;
         float dashCounter = 0f;
@@ -183,6 +210,7 @@ public class PlayerScript : MonoBehaviour
         dashSpeed = 20f;
         canDash = false;
         isDashing = true;
+        Debug.Log("Air Dash Triggered");
 
         dashDuration = 0.1f;
         float dashCounter = 0f;
@@ -217,7 +245,8 @@ public class PlayerScript : MonoBehaviour
             isWallRight = false;
             isWallLeft = false;
         }
-        
+
+        isOnWall = isWallLeft || isWallRight; 
     }
     private void CheckIfGrounded()
     {
