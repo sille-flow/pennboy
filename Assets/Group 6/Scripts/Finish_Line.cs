@@ -23,7 +23,7 @@ public class Finish_Line : MonoBehaviour
         if(col.tag == "Luggage_Cart") {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            SceneManager.LoadScene(3);
+            level.win();
         }
     }
 }

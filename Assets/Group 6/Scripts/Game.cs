@@ -15,7 +15,8 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -26,11 +27,11 @@ public class Game : MonoBehaviour
         }
     }
 
-    void reduceBudget(int damage) {
+    public void reduceBudget(int damage) {
         budget -= damage;
     }
 
-    void win() {
+    public void win() {
         SceneManager.LoadScene(winScene);
     }
 }
