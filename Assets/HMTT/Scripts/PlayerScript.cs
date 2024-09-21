@@ -144,6 +144,8 @@ public class PlayerScript : MonoBehaviour
 
     public void WallJump()
     {
+        isWallJumping = false;
+
         if(Input.GetKeyDown(KeyCode.W)&&isOnWall)
         {
             wallJumpForce = 20f*gravityForce;
@@ -234,6 +236,14 @@ public class PlayerScript : MonoBehaviour
 
         yield return new WaitForSeconds(dashCD);
         canDash = true;
+    }
+
+    public void FastFall() //In progress
+    {
+        gravityForce = 5f;
+        if (Input.GetKey(KeyCode.S) && !isGrounded) {
+            gravityForce = 10f;
+        }
     }
 
     private void CheckWall()
