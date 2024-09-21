@@ -6,9 +6,12 @@ using UnityEngine;
 public class TowerMain : MonoBehaviour
 {
 
-    [SerializeField] private float cooldown = 1f;
-    [SerializeField] private int damage = 10;
-    private bool attackReady = true;
+    
+    [SerializeField] protected float cooldown = 1f;
+    [SerializeField] protected int damage = 10;
+    [SerializeField] protected float range = 7.5f;
+    protected List<Vector3> enemiesInRange;
+    protected float remainingCooldown = cooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -16,20 +19,20 @@ public class TowerMain : MonoBehaviour
 
     }
 
+    //private void onCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("ooga booga");
+    //}
+
     // Update is called once per frame
     void Update()
     {
-        if (!attackReady) { return; }
+        if (remainingCooldown < cooldown) { return; }
+        remainingCooldown -= cooldown;
+
+        
+
         // TODO: get target enemy
         // TODO: get damage
-
-        StartCoroutine("towerCooldown");
-    }
-
-    IEnumerator towerCooldown()
-    {
-        attackReady = false;
-        yield return new WaitForSeconds(cooldown);
-        attackReady = true;
     }
 }
