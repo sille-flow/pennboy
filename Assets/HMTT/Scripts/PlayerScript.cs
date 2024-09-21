@@ -143,20 +143,26 @@ public class PlayerScript : MonoBehaviour
 
     public void CheckDash()
     {
+        dashCD = 2f;
+
         if (canDash && Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
         {
             StartCoroutine(Dash());
+        }
+
+        if (canDash && Input.GetKeyDown(KeyCode.LeftShift) && !isGrounded)
+        {
+            StartCoroutine(AirDash());
         }
     }
 
     public IEnumerator Dash()
     {
-        dashCD = 3f;
-        dashSpeed = 40f;
+        dashSpeed = 30f;
         canDash = false;
         isDashing = true;
 
-        dashDuration = 0.2f;
+        dashDuration = 0.15f;
         float dashCounter = 0f;
 
         while (dashCounter < dashDuration)
@@ -172,9 +178,26 @@ public class PlayerScript : MonoBehaviour
         canDash = true;
     }
 
-    public void AirDash()
+    public IEnumerator AirDash()
     {
+        dashSpeed = 20f;
+        canDash = false;
+        isDashing = true;
 
+        dashDuration = 0.1f;
+        float dashCounter = 0f;
+
+        while (dashCounter < dashDuration)
+        {
+            rb.transform.Translate(playerBody.transform.right*dashSpeed*Time.deltaTime);
+            dashCounter += Time.deltaTime;
+            yield return null;
+        }
+
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCD);
+        canDash = true;
     }
 
     private void CheckWall()
