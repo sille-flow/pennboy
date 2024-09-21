@@ -226,11 +226,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 07f39e49991de421882e498828e2b7c5, type: 2}
+    - target: {fileID: -1439730007547781893, guid: d6c9cd2f03d354f948009ceaf085b960,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 07f39e49991de421882e498828e2b7c5, type: 2}
     - target: {fileID: 919132149155446097, guid: d6c9cd2f03d354f948009ceaf085b960,
         type: 3}
       propertyPath: m_Name
       value: fucked up cart
       objectReference: {fileID: 0}
+    - target: {fileID: 1129496810705857465, guid: d6c9cd2f03d354f948009ceaf085b960,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 07f39e49991de421882e498828e2b7c5, type: 2}
+    - target: {fileID: 7071182760956848314, guid: d6c9cd2f03d354f948009ceaf085b960,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 07f39e49991de421882e498828e2b7c5, type: 2}
     - target: {fileID: 7202271454713460447, guid: d6c9cd2f03d354f948009ceaf085b960,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
