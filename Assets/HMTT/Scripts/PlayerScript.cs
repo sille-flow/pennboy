@@ -194,6 +194,10 @@ public class PlayerScript : MonoBehaviour
 
         while (dashCounter < dashDuration)
         {
+            CheckWall();
+            if (isWallRight) {
+                dashSpeed = 0;
+            }
             rb.transform.Translate(playerBody.transform.right*dashSpeed*Time.deltaTime);
             dashCounter += Time.deltaTime;
             yield return null;
@@ -217,6 +221,10 @@ public class PlayerScript : MonoBehaviour
 
         while (dashCounter < dashDuration)
         {
+            CheckWall();
+            if (isWallRight) {
+                dashSpeed = 0;
+            }
             rb.transform.Translate(playerBody.transform.right*dashSpeed*Time.deltaTime);
             dashCounter += Time.deltaTime;
             yield return null;
