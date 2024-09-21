@@ -37,6 +37,10 @@ public class player1movement : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (collision.gameObject.CompareTag("Player") && collision.transform.position.y + 1.43 <= transform.position.y)
+        {
+            isGrounded = true;
+        }
     }
 
 }
