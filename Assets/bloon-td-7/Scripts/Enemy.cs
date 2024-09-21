@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float moveSpeed;
+    protected float moveSpeed;
     public int waypointIndex = 0;
     protected List<Vector3> waypoints;
     protected Rigidbody rb;
-    protected int dmg = 1;
-    protected int health = 1;
+    protected int dmg;
+    protected int health;
     protected int id;
     protected int moneyWorth;
     protected string modifiers;
@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour
         Initialize(0.1f, 1, 1, 0, 1, false, 1);
     }
 
+    /// <summary>
+    /// Initializes a new enemy with the given parameters. To be called when instatiating new enemies.
+    /// </summary>
     public void Initialize(float moveSpeed, int dmg, int health, int id, int moneyWorth, bool isCamo, float size)
     {
         this.health = health;
