@@ -27,6 +27,7 @@ public class PlayerScript : MonoBehaviour
     private bool isDashing { get; set; }
     private bool canDash { get; set; }
     private float dashCD { get; set; }
+    private float dashDuration { get; set; }
     private Collider col;
     private Rigidbody rb;
 
@@ -61,6 +62,7 @@ public class PlayerScript : MonoBehaviour
         col = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         cha = GetComponent<CharacterController>();
+        canDash = true;
     }
 
     // Update is called once per frame
@@ -71,6 +73,7 @@ public class PlayerScript : MonoBehaviour
         Move();
         Jump();
         DoubleJump();
+        CheckDash();
     }
     public void Move()
     {
@@ -138,24 +141,35 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void CheckDash()
+    {
+        if (canDash && Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
     public IEnumerator Dash()
     {
-        dashCD = 1f;
-        dashSpeed = 10f;
-        if(canDash&&Input.GetKeyDown(KeyCode.LeftShift)&&isGrounded) {
-            canDash = false;
-            isDashing = true;
-            gravityForce = 0f;
+        dashCD = 3f;
+        dashSpeed = 40f;
+        canDash = false;
+        isDashing = true;
 
-            yield return new WaitForSeconds(0.5f);
-            isDashing = false;
-            gravityForce = 5f; //back to original gravity
-            
-            yield return new WaitForSeconds(dashCD);
-            canDash = true;
+        dashDuration = 0.2f;
+        float dashCounter = 0f;
 
+        while (dashCounter < dashDuration)
+        {
+            rb.transform.Translate(playerBody.transform.right*dashSpeed*Time.deltaTime);
+            dashCounter += Time.deltaTime;
+            yield return null;
         }
 
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCD);
+        canDash = true;
     }
 
     public void AirDash()
