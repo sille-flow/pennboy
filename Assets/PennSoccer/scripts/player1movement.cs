@@ -22,7 +22,7 @@ public class player1movement : MonoBehaviour
 
 
 
-        player1Rb.velocity = new Vector3(Time.deltaTime * speed * horizontalInput * 1000, player1Rb.velocity.y, player1Rb.velocity.z);
+        player1Rb.velocity = new Vector3(Time.deltaTime * speed * horizontalInput * 700, player1Rb.velocity.y, player1Rb.velocity.z);
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {

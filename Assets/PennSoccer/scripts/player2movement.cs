@@ -19,7 +19,7 @@ public class player2movement : MonoBehaviour
     {
         // Horizontal movement using wasd
         horizontalInput = Input.GetAxis("Horizontal2");
-        player2Rb.velocity = new Vector3(Time.deltaTime * speed * horizontalInput*1000, player2Rb.velocity.y, player2Rb.velocity.z);
+        player2Rb.velocity = new Vector3(Time.deltaTime * speed * horizontalInput*700, player2Rb.velocity.y, player2Rb.velocity.z);
         
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {

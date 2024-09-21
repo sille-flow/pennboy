@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028373, g: 0.22571398, b: 0.30692294, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f522200bcea7b4e0190148fff49f180f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 5
+  speed: 6
+  jumpForce: 6
   isGrounded: 1
 --- !u!54 &466438201
 Rigidbody:
@@ -523,8 +523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0897267990a3429f810570af2998cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 5
+  speed: 6
+  jumpForce: 6
   isGrounded: 1
 --- !u!212 &1568879839
 SpriteRenderer:
@@ -664,7 +664,7 @@ PrefabInstance:
     - target: {fileID: 5887934739902861980, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
       propertyPath: m_Size.z
-      value: 0.023453012
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5887934739902861980, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
@@ -674,7 +674,7 @@ PrefabInstance:
     - target: {fileID: 5887934739902861980, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.4882728
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5887934739902861980, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
