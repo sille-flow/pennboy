@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
     private bool isWallLeft;
     [SerializeField]
     private float dashSpeed { get; set; }
-    private bool isDashing { get; }
+    private bool isDashing { get; set; }
     private bool canDash { get; set; }
     private float dashCD { get; set; }
     private Collider col;
@@ -138,8 +138,23 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void Dash()
+    public IEnumerator Dash()
     {
+        dashCD = 1f;
+        dashSpeed = 10f;
+        if(canDash&&Input.GetKeyDown(KeyCode.LeftShift)&&isGrounded) {
+            canDash = false;
+            isDashing = true;
+            gravityForce = 0f;
+
+            yield return new WaitForSeconds(0.5f);
+            isDashing = false;
+            gravityForce = 5f; //back to original gravity
+            
+            yield return new WaitForSeconds(dashCD);
+            canDash = true;
+
+        }
 
     }
 
