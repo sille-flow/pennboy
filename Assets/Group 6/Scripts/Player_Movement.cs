@@ -23,15 +23,12 @@ public class Player_Movement : MonoBehaviour
 
     private float speedUp = 2f;
 
-    private Vector3 cameraRotationVector;
-
     private void Start()
     {
         jumpVelocity = Mathf.Sqrt(-2 * gravityValue * jumpHeight);
         controller = gameObject.GetComponent<CharacterController>();
         // set the skin width appropriately according to Unity documentation: https://docs.unity3d.com/Manual/class-CharacterController.html
         controller.skinWidth = 0.1f * controller.radius;
-        cameraRotationVector = Camera.main.transform.localEulerAngles; 
     }
 
     void Update()
@@ -61,21 +58,14 @@ public class Player_Movement : MonoBehaviour
         
         // Rotates the camera
         float rotX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        print(Camera.main.transform.eulerAngles.x);
-        float rotY = -Input.GetAxis("Mouse Y");
-        float newRot = rotY * mouseSensitivity + cameraRotationVector.x;
-        if (newRot < 270 && newRot > 90) {
-            if (rotY < 0) {
-                cameraRotationVector.y = 270;
-            }
-            if (rotY > 0) {
-                cameraRotationVector.y = 90;
-            }
-
+        float rotY = -Input.GetAxis("Mouse Y") * mouseSensitivity;
+        gameObject.transform.Rotate(0, rotX, 0);
+        Camera.main.transform.Rotate(rotY, 0, 0);
+        if (Camera.main.transform.localEulerAngles.y == 180 && Camera.main.transform.localEulerAngles.z == 180) {
+            Camera.main.transform.localEulerAngles = new Vector3(Camera.main.transform.localEulerAngles.x, 0, 0);
         }
-
-        Camera.main.transform.localEulerAngles = cameraRotationVector;
-        // Camera.main.transform.Rotate(rotY, 0, 0);
+        
+        //Camera.main.transform.localEulerAngles = cameraRotationVector;
         gameObject.transform.Rotate(0, rotX, 0);
     }
 
