@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028373, g: 0.22571398, b: 0.30692294, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -664,7 +664,7 @@ PrefabInstance:
     - target: {fileID: 5887934739902861980, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
       propertyPath: m_Size.z
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5887934739902861980, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
@@ -761,7 +761,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 822338d65b3391d42a308b5918474057, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -800,8 +800,8 @@ Transform:
   m_GameObject: {fileID: 2012912490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5205054, y: 1.93, z: 5}
-  m_LocalScale: {x: 34.135338, y: 12.968, z: 1}
+  m_LocalPosition: {x: 0.4, y: 3.6, z: 5}
+  m_LocalScale: {x: 46.24314, y: 19.859196, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -866,7 +866,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0a6f846592ae4a559a7b5b2c1fdd3ab, type: 2}
+  - {fileID: 2100000, guid: 483da8166c749d947aedbfc08dc0d605, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -988,6 +988,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887934739902861980, guid: 98a655ae28a004a358378c308bb3f51f,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5887934739902861980, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
