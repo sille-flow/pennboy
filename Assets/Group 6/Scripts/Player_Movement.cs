@@ -9,6 +9,8 @@ public class Player_Movement : MonoBehaviour
 
     private Vector3 playerVelocity = new Vector3(0,0,0);
     private bool groundedPlayer;
+    private float basePlayerSpeed = 5.0f;
+
     private float playerSpeed = 5.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
@@ -24,10 +26,11 @@ public class Player_Movement : MonoBehaviour
     private void Start()
     {
         jumpVelocity = Mathf.Sqrt(-2 * gravityValue * jumpHeight);
-        print(jumpVelocity);
         controller = gameObject.GetComponent<CharacterController>();
         // set the skin width appropriately according to Unity documentation: https://docs.unity3d.com/Manual/class-CharacterController.html
         controller.skinWidth = 0.1f * controller.radius;
+        
+        
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -49,9 +52,9 @@ public class Player_Movement : MonoBehaviour
         playerVelocity.x = 0;
         playerVelocity.z = 0;
         if (Input.GetKey(KeyCode.LeftShift)) {
-            playerSpeed = 5f * speedUp;
+            playerSpeed = basePlayerSpeed * speedUp;
         } else {
-            playerSpeed = 5f;
+            playerSpeed = basePlayerSpeed;
         }
         playerVelocity += (gameObject.transform.right * Input.GetAxis("Horizontal") + gameObject.transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
         controller.Move(playerVelocity * Time.deltaTime);
