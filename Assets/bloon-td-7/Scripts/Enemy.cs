@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float moveSpeed = 2f;
+    [SerializeField] protected float moveSpeed;
     public int waypointIndex = 0;
     protected List<Vector3> waypoints;
     protected Rigidbody rb;
@@ -14,16 +14,16 @@ public class Enemy : MonoBehaviour
     protected int id;
     protected int moneyWorth;
     protected string modifiers;
-    private const float WAYPOINT_CHANGE_DISTANCE = 0.1f;
+    private const float WAYPOINT_CHANGE_DISTANCE = 0.01f;
     public bool isCamo { get; protected set; }
     private bool canStart = false;
 
     private void Start()
     {
-        Initialize(0.1f, 1, 1, 0, 1, false);
+        Initialize(0.1f, 1, 1, 0, 1, false, 1);
     }
 
-    public void Initialize(float moveSpeed, int dmg, int health, int id, int moneyWorth, bool isCamo)
+    public void Initialize(float moveSpeed, int dmg, int health, int id, int moneyWorth, bool isCamo, float size)
     {
         this.health = health;
         this.id = id;
@@ -31,9 +31,11 @@ public class Enemy : MonoBehaviour
         this.moveSpeed = moveSpeed;
         this.isCamo = isCamo;
         this.moneyWorth = moneyWorth;
+        transform.localScale = new Vector3(size, size, size);
         waypoints = new List<Vector3>();
 
         Transform waypointListTransform = GameObject.Find("EnemyWaypoints").transform;
+
         // Temp script to get all waypoints until game manager is implemented
         foreach (Transform child in waypointListTransform)
         {
@@ -49,20 +51,25 @@ public class Enemy : MonoBehaviour
 
     protected void Update()
     {
-        if (canStart)
+        if (!canStart) return;
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex + 1], moveSpeed);
+        if (CalcDistance(transform.position, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
         {
-            transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex + 1], moveSpeed);
-            if (CalcDistance(transform.position, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
+            Debug.Log("Changed to Waypoint " + (waypointIndex + 1));
+            transform.position = waypoints[waypointIndex + 1];
+            waypointIndex++;
+            if (waypointIndex >= waypoints.Count-1)
             {
-                Debug.Log("Changed to Waypoint " + (waypointIndex + 1));
-                transform.position = waypoints[waypointIndex + 1];
-                waypointIndex++;
-                if (waypointIndex >= waypoints.Count-1)
-                {
-                    Debug.Log("Reached the End");
-                    Destroy(gameObject);
-                }
+                Debug.Log("Reached the End");
+                // Deal dmg damage to player health
+                Die();
             }
+        }
+
+        if (health <= 0)
+        {
+            // Add money count to game manager.money
+            Die();
         }
     }
 
@@ -83,4 +90,14 @@ public class Enemy : MonoBehaviour
 
         return Mathf.Sqrt((dx*dx)+(dy*dy)+(dz*dz));
     }
+
+    /// <summary>
+    /// Destroys this enemy's game object
+    /// </summary>
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+
 }
