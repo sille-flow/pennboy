@@ -20,7 +20,7 @@ public static class EnemyStuff
         /// <param name="moneyWorth">How much money is gained upon destroying the enemy</param>
         /// <param name="isCamo">Whether the enemy is camo or not</param>
         /// <param name="size">How much to scale the enemy size by (1 is default) </param>
-        public EnemyInfo (int id, float moveSpeed, int dmg, int health, int moneyWorth, float size = 1f, bool isCamo = false)
+        public EnemyInfo (float moveSpeed, int dmg, int health, int moneyWorth, float size = 5f, bool isCamo = false)
         {
             this.moveSpeed = moveSpeed;
             this.size = size;
@@ -28,12 +28,12 @@ public static class EnemyStuff
             this.health = health;
             this.moneyWorth = moneyWorth;
             this.isCamo = isCamo;
-            this.id = id;
         }
     }
 
     public static EnemyInfo[] enemies = {
-        new EnemyInfo(0, 0.1f, 1, 1, 1)
+        new EnemyInfo(0.1f, 1, 5, 10),
+        new EnemyInfo(0.1f, 4, 30, 50)
     };
 
 }
