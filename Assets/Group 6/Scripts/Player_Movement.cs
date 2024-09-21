@@ -21,7 +21,7 @@ public class Player_Movement : MonoBehaviour
 
     private float mouseSensitivity = 1;
 
-    private float speedUp = 1.5f;
+    private float speedUp = 2f;
 
     private void Start()
     {
