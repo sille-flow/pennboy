@@ -23,12 +23,15 @@ public class Player_Movement : MonoBehaviour
 
     private float speedUp = 2f;
 
+    private Vector3 cameraRotationVector;
+
     private void Start()
     {
         jumpVelocity = Mathf.Sqrt(-2 * gravityValue * jumpHeight);
         controller = gameObject.GetComponent<CharacterController>();
         // set the skin width appropriately according to Unity documentation: https://docs.unity3d.com/Manual/class-CharacterController.html
         controller.skinWidth = 0.1f * controller.radius;
+        cameraRotationVector = Camera.main.transform.localEulerAngles; 
     }
 
     void Update()
@@ -58,10 +61,22 @@ public class Player_Movement : MonoBehaviour
         
         // Rotates the camera
         float rotX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float rotY = Math.Clamp(-Input.GetAxis("Mouse Y") * mouseSensitivity, -90, 90);
-        Camera.main.transform.Rotate(rotY, 0, 0);
-        gameObject.transform.Rotate(0, rotX, 0);
+        print(Camera.main.transform.eulerAngles.x);
+        float rotY = -Input.GetAxis("Mouse Y");
+        float newRot = rotY * mouseSensitivity + cameraRotationVector.x;
+        if (newRot < 270 && newRot > 90) {
+            if (rotY < 0) {
+                cameraRotationVector.y = 270;
+            }
+            if (rotY > 0) {
+                cameraRotationVector.y = 90;
+            }
 
+        }
+
+        Camera.main.transform.localEulerAngles = cameraRotationVector;
+        // Camera.main.transform.Rotate(rotY, 0, 0);
+        gameObject.transform.Rotate(0, rotX, 0);
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit) {
