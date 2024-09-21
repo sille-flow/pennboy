@@ -25,4 +25,19 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+
+    public void LoadLevelSelect()
+    {
+        SceneManager.LoadScene(6);
+    }
+
+    public void LoadCredits()
+    {
+        SceneManager.LoadScene(7);
+    }
+
+    public void LoadHowToPlay()
+    {
+        SceneManager.LoadScene(8);
+    }
 }
