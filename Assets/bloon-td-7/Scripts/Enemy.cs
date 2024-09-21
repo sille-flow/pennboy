@@ -55,7 +55,6 @@ public class Enemy : MonoBehaviour
     protected void Update()
     {
         if (!canStart) return;
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex + 1], moveSpeed);
         if (CalcDistance(transform.position, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
         {
             Debug.Log("Changed to Waypoint " + (waypointIndex + 1));
@@ -74,6 +73,11 @@ public class Enemy : MonoBehaviour
             // Add money count to game manager.money
             Die();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime);
     }
 
     /// <summary>
