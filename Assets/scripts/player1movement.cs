@@ -6,7 +6,7 @@ public class player1movement : MonoBehaviour
 {
     public float speed = 5.0f;
     public float jumpForce = 5.0f;
-    private float horizonatlInput;
+    private float horizontalInput;
     private float forwardInput;
     private Rigidbody player1Rb;
     public bool isGrounded = true;
@@ -19,11 +19,11 @@ public class player1movement : MonoBehaviour
     void Update()
     {
         // Horizontal movement using left and right arrow keys
-        horizonatlInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-        transform.Translate(Vector3.right * Time.deltaTime * speed * horizonatlInput);
+        transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
