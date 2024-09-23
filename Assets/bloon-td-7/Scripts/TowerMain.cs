@@ -11,12 +11,12 @@ public class TowerMain : MonoBehaviour
     [SerializeField] protected int damage = 10;
     [SerializeField] protected float range = 7.5f;
     protected List<Vector3> enemiesInRange;
-    protected float remainingCooldown = cooldown;
+    protected float remainingCooldown;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        remainingCooldown = cooldown;
     }
 
     //private void onCollisionEnter(Collision collision)
@@ -27,9 +27,11 @@ public class TowerMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        remainingCooldown += Time.deltaTime;
         if (remainingCooldown < cooldown) { return; }
         remainingCooldown -= cooldown;
 
+        Debug.Log("pew");
         
 
         // TODO: get target enemy

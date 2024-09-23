@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Initialize(0.1f, 1, 1, 0, 1, false, 5);
+        Initialize(5f, 1, 1, 0, 1, false, 5);
     }
 
     /// <summary>
