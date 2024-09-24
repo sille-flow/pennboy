@@ -67,12 +67,6 @@ public class Enemy : MonoBehaviour
                 Die();
             }
         }
-
-        if (health <= 0)
-        {
-            // Add money count to game manager.money
-            Die();
-        }
     }
 
     private void FixedUpdate()
@@ -106,5 +100,14 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void Damage(int dmg)
+    {
+        health -= dmg;
+        if (health <= 0)
+        {
+            // Add money count to game manager
+            Die();
+        }
+    }
 
 }
