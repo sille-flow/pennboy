@@ -33,6 +33,7 @@ public class TowerMain : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        Debug.Log("left");
         enemiesInRange.Remove(collision.gameObject);
     }
 
@@ -43,6 +44,14 @@ public class TowerMain : MonoBehaviour
     {
         foreach (var target in enemiesInRange)
         {
+            // the below line is very scuffed but it works
+            if (target == null)
+            {
+                Debug.Log("loop");
+                enemiesInRange.Remove(target);
+                return GetTarget();
+            }
+            //Debug.Log(target.name);
             return target;
         };
         return null;
@@ -59,13 +68,13 @@ public class TowerMain : MonoBehaviour
 
         // get the target enemy
         GameObject SelectedTarget = GetTarget();
+        Debug.Log(SelectedTarget);
         if (SelectedTarget == null) { return; }
 
         // reset cooldown
         remainingCooldown = 0;
 
         // attack
-        Debug.Log("Pew");
         SelectedTarget.GetComponent<Enemy>().Damage(damage);
 
 

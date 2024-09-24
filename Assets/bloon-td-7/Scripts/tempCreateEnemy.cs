@@ -14,6 +14,7 @@ public class tempCreateEnemy : MonoBehaviour
         
     }
 
+    private int ticker = 0;
     // Update is called once per frame
     void Update()
     {
@@ -22,7 +23,9 @@ public class tempCreateEnemy : MonoBehaviour
             timer += Time.deltaTime;
         } else {
             timer = 0;
-            Instantiate(enemy, transform.position, transform.rotation);
+            GameObject newenemy = Instantiate(enemy, transform.position, transform.rotation);
+            newenemy.name = string.Concat("Enemy ", ticker.ToString());
+            ticker++;
         }
     }
 }
