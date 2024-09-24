@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,7 +11,7 @@ public class TowerMain : MonoBehaviour
     [SerializeField] protected float cooldown = 1f;
     [SerializeField] protected int damage = 10;
     [SerializeField] protected float range = 7.5f;
-    protected List<Vector3> enemiesInRange;
+    protected List<GameObject> enemiesInRange = new List<GameObject>();
     protected float remainingCooldown;
 
     // Start is called before the first frame update
@@ -19,20 +20,46 @@ public class TowerMain : MonoBehaviour
         remainingCooldown = cooldown;
     }
 
-    //private void onCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("ooga booga");
-    //}
+    // range collision detection
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject hit = collision.gameObject;
+        if (hit.tag == "Enemy")
+        {
+            enemiesInRange.Add(hit);
+        }
+            
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        enemiesInRange.Remove(collision.gameObject);
+    }
+    private GameObject GetTarget()
+    {
+        foreach (var target in enemiesInRange)
+        {
+            return target;
+        };
+        return null;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        remainingCooldown += Time.deltaTime;
-        if (remainingCooldown < cooldown) { return; }
-        remainingCooldown -= cooldown;
+        if (remainingCooldown < cooldown)
+        {
+            remainingCooldown += Time.deltaTime;
+            return;
+        }
 
-        Debug.Log("pew");
-        
+        // get the target enemy
+        GameObject SelectedTarget = GetTarget();
+        if (SelectedTarget == null) { return; }
+
+        // attack
+        Destroy(SelectedTarget);
+
 
         // TODO: get target enemy
         // TODO: get damage
