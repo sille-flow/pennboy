@@ -9,7 +9,7 @@ public class TowerMain : MonoBehaviour
 
     
     [SerializeField] protected float cooldown = 1f;
-    [SerializeField] protected int damage = 10;
+    [SerializeField] protected int damage = 1;
     [SerializeField] protected float range = 7.5f;
     protected List<GameObject> enemiesInRange = new List<GameObject>();
     protected float remainingCooldown;
@@ -35,6 +35,10 @@ public class TowerMain : MonoBehaviour
     {
         enemiesInRange.Remove(collision.gameObject);
     }
+
+    /// <summary>
+    /// Gets the target from enemies in a towers range.
+    /// </summary>
     private GameObject GetTarget()
     {
         foreach (var target in enemiesInRange)
@@ -57,8 +61,12 @@ public class TowerMain : MonoBehaviour
         GameObject SelectedTarget = GetTarget();
         if (SelectedTarget == null) { return; }
 
+        // reset cooldown
+        remainingCooldown = 0;
+
         // attack
-        Destroy(SelectedTarget);
+        Debug.Log("Pew");
+        SelectedTarget.GetComponent<Enemy>().Damage(damage);
 
 
         // TODO: get target enemy

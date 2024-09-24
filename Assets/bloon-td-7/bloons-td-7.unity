@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  damage: 10
+  damage: 1
   range: 7.5
 --- !u!135 &1439296255
 SphereCollider:
