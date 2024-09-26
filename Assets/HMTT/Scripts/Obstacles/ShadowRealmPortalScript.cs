@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShadowRealmPortalScript : MonoBehaviour
 {
+    //This is the script for the shadow realm portal obstacle. When the player makes contact with this obstacle, gravity should be reversed
+
     // Start is called before the first frame update
     void Start()
     {
