@@ -1,49 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovementScript : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed { get; set; }
+    private float accFactor;
     [SerializeField]
-    private float accFactor { get; set; }
+    private float maxSpeed;
     [SerializeField]
-    private float maxSpeed { get; set; }
+    private float jumpForce;
     [SerializeField]
-    private float jumpForce { get; set; }
-    [SerializeField]
-    private float doubleJumpForce { get; set; }
+    private float doubleJumpForce;
     private bool canDoubleJump;
     [SerializeField]
-    private float gravityForce { get; set; }
-    public bool isGrounded;
+    private float baseGravity;
+    [SerializeField]
+    private float wallGravity;
+    private float gravityForce;
+    private bool isGrounded;
     private bool isWallRight;
     private bool isWallLeft;
     [SerializeField]
-    private float dashSpeed { get; set; }
-    private bool isDashing { get; set; }
-    private bool canDash { get; set; }
-    private float dashCD { get; set; }
-    private float dashDuration { get; set; }
+    private float dashSpeed;
+    private bool isDashing;
+    private bool canDash;
+    [SerializeField]
+    private float dashCD;
+    [SerializeField]
+    private float dashDuration;
     private Collider col;
     private Rigidbody rb;
-
-    private CharacterController cha;
     [SerializeField]
-    private float wallJumpForce { get; set; }
-    private bool isOnWall { get; set; }
-    private bool isWallJumping;
-    private bool isAlive { get; set; }
+    private float wallJumpForce;
+    private bool isOnWall;
     private bool isActive { get; set; }
 
-    private Vector3 spherePos;
-    private Vector3 offsetHeight;
-
-    public void addForce(Vector3 force)
-    {
-        rb.AddForce(force);
-    }
+    [SerializeField]
+    private LayerMask groundMask;
 
     public Vector3 getVelocity()
     {
@@ -53,39 +48,56 @@ public class MovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        col = GetComponent<Collider>();
-        rb = GetComponent<Rigidbody>();
-        cha = GetComponent<CharacterController>();
+        col = this.gameObject.GetComponent<Collider>();
+        rb = this.gameObject.GetComponent<Rigidbody>();
         canDash = true;
-        accFactor = 2f;
-        maxSpeed = 4f;
-        gravityForce = -1f;
-
+        isActive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(canDoubleJump);
         applyGravity();
         CheckIfGround();
         CheckWall();
-        Move();
+        if (isActive)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (isGrounded)
+                {
+                    Jump();
+                }
+                else if (!isGrounded && !isOnWall) 
+                {
+                    DoubleJump();
+                } else
+                {
+                    WallJump();
+                }
+            }
+            Move();
+        }
     }
 
 
     void applyGravity() //1
     {
-        rb.AddForce(transform.up*gravityForce); //apply force in the direction of gravity
+        rb.AddForce(transform.up*gravityForce, ForceMode.Acceleration); //apply force in the direction of gravity
     }
 
     void Move() //2
-    {   
-        if(rb.velocity.x < maxSpeed)
+    {
+        Vector3 force = new Vector3(Input.GetAxis("Horizontal") * accFactor, 0, 0);
+        rb.AddForce(force, ForceMode.Impulse);
+
+        Vector3 clampedVel = rb.velocity;
+        if (Mathf.Abs(rb.velocity.x) > maxSpeed)
         {
-            Vector3 horizontalInput = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-            rb.AddForce(horizontalInput*accFactor);
+            clampedVel = new Vector3(Mathf.Sign(clampedVel.x) * maxSpeed, rb.velocity.y, 0);
         }
-        
+        rb.velocity = clampedVel;
         //move function should move the player using rb.AddForce rather than transform.Translate
         //can use Input.GetAxis("Horizontal")
     }
@@ -93,11 +105,17 @@ public class MovementScript : MonoBehaviour
     void Jump() //3
     {
         //use AddForce()
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
     void DoubleJump() //4
     {
-
+        if (canDoubleJump) 
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
+            canDoubleJump = false;
+        }
     }
 
     void WallJump() //3
@@ -129,31 +147,33 @@ public class MovementScript : MonoBehaviour
         //change gravityForce
         RaycastHit hit; //get a hit variable to store the hit information
        
-        spherePos = transform.position;
+        Vector3 spherePos = transform.position;
         if (Physics.Raycast(spherePos, -transform.right, out hit, .2f)){
             isWallRight = false;
             isWallLeft = true;
+            gravityForce = wallGravity;
         }
         else if(Physics.Raycast(spherePos, transform.right, out hit, .2f)){
             isWallLeft = false;
             isWallRight= true;
+            gravityForce = wallGravity;
         }
         else{
             isWallRight = false;
             isWallLeft = false;
+            gravityForce = baseGravity;
         }
     }
 
     void CheckIfGround() //2
     {
-        RaycastHit hit; //get a hit variable to store the hit information
-       
-        spherePos = transform.position - offsetHeight;
-        if (Physics.SphereCast(spherePos, .4f,  -transform.up, out hit, .11f))
+        float offsetHeight = col.bounds.extents.y;
+        Vector3 rayPos = transform.position + Vector3.down * offsetHeight;
+        isGrounded = Physics.CheckSphere(rayPos, 0.3f, groundMask);
+        if (isGrounded)
         {
-            isGrounded = true;
-        } else {
-            isGrounded = false;   
+            canDoubleJump = true;
+            canDash = true;
         }
     }
 }
