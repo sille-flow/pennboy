@@ -7,6 +7,8 @@ public class MovementScript : MonoBehaviour
     [SerializeField]
     private float moveSpeed { get; set; }
     [SerializeField]
+    private float accFactor { get; set; }
+    [SerializeField]
     private float maxSpeed { get; set; }
     [SerializeField]
     private float jumpForce { get; set; }
@@ -55,21 +57,35 @@ public class MovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cha = GetComponent<CharacterController>();
         canDash = true;
+        accFactor = 2f;
+        maxSpeed = 4f;
+        gravityForce = -1f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        applyGravity();
+        CheckIfGround();
+        CheckWall();
+        Move();
     }
+
 
     void applyGravity() //1
     {
-        //apply force in the direction of gravity
+        rb.AddForce(transform.up*gravityForce); //apply force in the direction of gravity
     }
 
     void Move() //2
-    {
+    {   
+        if(rb.velocity.x < maxSpeed)
+        {
+            Vector3 horizontalInput = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+            rb.AddForce(horizontalInput*accFactor);
+        }
+        
         //move function should move the player using rb.AddForce rather than transform.Translate
         //can use Input.GetAxis("Horizontal")
     }
@@ -111,10 +127,33 @@ public class MovementScript : MonoBehaviour
     {
         //when the player is stuck to the wall, they should slowly slide down
         //change gravityForce
+        RaycastHit hit; //get a hit variable to store the hit information
+       
+        spherePos = transform.position;
+        if (Physics.Raycast(spherePos, -transform.right, out hit, .2f)){
+            isWallRight = false;
+            isWallLeft = true;
+        }
+        else if(Physics.Raycast(spherePos, transform.right, out hit, .2f)){
+            isWallLeft = false;
+            isWallRight= true;
+        }
+        else{
+            isWallRight = false;
+            isWallLeft = false;
+        }
     }
 
     void CheckIfGround() //2
     {
-
+        RaycastHit hit; //get a hit variable to store the hit information
+       
+        spherePos = transform.position - offsetHeight;
+        if (Physics.SphereCast(spherePos, .4f,  -transform.up, out hit, .11f))
+        {
+            isGrounded = true;
+        } else {
+            isGrounded = false;   
+        }
     }
 }
