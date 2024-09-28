@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d911c6835ea8ba428a3ab676d7caca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
   waypointIndex: 0
 --- !u!54 &809955296917683738
 Rigidbody:
