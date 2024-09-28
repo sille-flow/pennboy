@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
         if (Physics.Raycast(mouseray, out hit, 100, PlacementLayerMask))
         {
             Debug.Log(LastPos);
-            LastPos = mousePos;
+            LastPos = hit.point;
         }
         
         return LastPos;
