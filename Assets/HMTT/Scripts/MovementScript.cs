@@ -157,7 +157,7 @@ public class MovementScript : MonoBehaviour
         accFactor *= 1.5f;
 
         float dashTimeElapsed = 0f;
-        Debug.Log("Dashing for " + dashDuration);
+        //Debug.Log("Dashing for " + dashDuration);
         while (dashTimeElapsed < dashDuration)
         {
             Vector3 dashForce = new Vector3(dashDirection * accFactor, 0, 0);
@@ -167,7 +167,6 @@ public class MovementScript : MonoBehaviour
         if (Mathf.Abs(clampedVel.x) > dashSpeed)
         {
             clampedVel = new Vector3(Mathf.Sign(clampedVel.x) * dashSpeed, clampedVel.y, clampedVel.z);
-            Debug.Log("Greater");
         }
         rb.velocity = clampedVel;
 
@@ -175,7 +174,7 @@ public class MovementScript : MonoBehaviour
         yield return null;
         }
 
-        Debug.Log("Dash done");
+       // Debug.Log("Dash done");
         accFactor = originalAccFactor;
         isDashing = false;
         yield return new WaitForSeconds(dashCD);
@@ -197,7 +196,7 @@ public class MovementScript : MonoBehaviour
         accFactor *= 1.3f;
 
         float dashTimeElapsed = 0f;
-        Debug.Log("Air Dash");
+       // Debug.Log("Air Dash");
         while (dashTimeElapsed < dashDuration)
         {
             Vector3 dashForce = new Vector3(dashDirection * accFactor, 0, 0);
@@ -209,7 +208,6 @@ public class MovementScript : MonoBehaviour
         {
             clampedVel = new Vector3(Mathf.Sign(clampedVel.x) * dashSpeed, clampedVel.y, clampedVel.z);
             rb.AddForce(transform.up * gravityForce * (-0.1f), ForceMode.Acceleration);
-            Debug.Log("Greater");
         }
         rb.velocity = clampedVel;
 
@@ -230,12 +228,12 @@ public class MovementScript : MonoBehaviour
         RaycastHit hit; //get a hit variable to store the hit information
        
         Vector3 spherePos = transform.position;
-        if (Physics.Raycast(spherePos, -transform.right, out hit, .2f)){
+        if (Physics.Raycast(spherePos, -transform.right, out hit, .5f)){
             isWallRight = false;
             isWallLeft = true;
             gravityForce = wallGravity;
         }
-        else if(Physics.Raycast(spherePos, transform.right, out hit, .2f)){
+        else if(Physics.Raycast(spherePos, transform.right, out hit, .5f)){
             isWallLeft = false;
             isWallRight= true;
             gravityForce = wallGravity;
