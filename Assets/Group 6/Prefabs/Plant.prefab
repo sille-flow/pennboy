@@ -262,6 +262,7 @@ MonoBehaviour:
   damageSlope: 1
   damageOffset: 0
   maxDamage: 100
+  cooldownTime: 100
 --- !u!4 &9185521304845644785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 468ae0bb07db8495e96f18f245d7a959,

@@ -29,7 +29,10 @@ public class LuggageCart : MonoBehaviour
     void OnCollisionEnter(Collision collision) {
         PropertyDamageCollider col = collision.gameObject.GetComponent<PropertyDamageCollider>();
         if (col != null) {
-            level.reduceBudget(Mathf.RoundToInt(col.calculateDamage(collision.impulse.magnitude)));
+            int damage = col.calculateDamage(collision.impulse.magnitude);
+            if (damage != 0) {
+                level.reduceBudget(damage);
+            }
         }
     }
 }

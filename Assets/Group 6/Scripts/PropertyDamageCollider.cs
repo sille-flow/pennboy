@@ -5,12 +5,11 @@ using UnityEngine;
 
 public class PropertyDamageCollider : MonoBehaviour
 {
-    [SerializeField]
-    private float damageSlope = 1;
-    [SerializeField]
-    private float damageOffset = 0;
-    [SerializeField]
-    private float maxDamage = 100;
+    [SerializeField] private float damageSlope = 1;
+    [SerializeField] private float damageOffset = 0;
+    [SerializeField] private float maxDamage = 100;
+    [SerializeField] private float cooldownTime;
+    private float currCooldownTime = 0;
 
 
     // Start is called before the first frame update
@@ -22,13 +21,18 @@ public class PropertyDamageCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currCooldownTime > 0) {
+            currCooldownTime = Mathf.Clamp(currCooldownTime - Time.deltaTime, 0, cooldownTime);
+        }
     }
 
 
-    public float calculateDamage(float impulse) {
-        return Mathf.Clamp(damageSlope * impulse + damageOffset, 0, maxDamage);
+    public int calculateDamage(float impulse) {
+        int damage = Mathf.RoundToInt(Mathf.Clamp(damageSlope * impulse + damageOffset, 0, maxDamage));
+        if (damage > 0 && currCooldownTime == 0) {
+            currCooldownTime = cooldownTime;
+            return damage;
+        }
+        return 0;
     }
-
-
 }
