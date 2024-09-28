@@ -61,6 +61,9 @@ public class FoxfireScript : MonoBehaviour
         {
             Destroy(other.gameObject);
             Destroy(this.gameObject);
+        } else
+        {
+            Destroy(this.gameObject);
         }
     }
 }
