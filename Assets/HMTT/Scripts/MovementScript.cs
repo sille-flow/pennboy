@@ -161,6 +161,8 @@ public class MovementScript : MonoBehaviour
             } else {
                 isFastFall = false;
             }
+        } if(isDashing){
+            gravityForce = 0f;
         }
         else{
             gravityForce = baseGravity;
@@ -232,7 +234,6 @@ public class MovementScript : MonoBehaviour
         {
         rb.velocity = new Vector3(dashDirection * (dashSpeed - 2f), 0f, 0f);
         dashTimeElapsed += Time.deltaTime;
-        gravityForce = 0f;
         yield return null;
         }
 
