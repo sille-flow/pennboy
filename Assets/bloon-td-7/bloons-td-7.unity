@@ -280,8 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229bb6b64993e4a8bb0c62dbb9e3fca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 7294189362684381154, guid: a4276a9052b49b643835578eab984f8e, type: 3}
-  enemy2: {fileID: 4984291110047305093, guid: 457aba83a8906438588fac83a6686afe, type: 3}
+  enemies: []
+  enemyList: {fileID: 2443749890622689818, guid: ced218ab5057b4f0689d42135a22805d,
+    type: 3}
   enemiesSpawned: 0
 --- !u!4 &227897934
 Transform:

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    protected float moveSpeed;
+    public float moveSpeed;
     public int waypointIndex = 0;
     protected List<Vector3> waypoints;
     protected Rigidbody rb;

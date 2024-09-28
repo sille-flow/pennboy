@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class testWave : MonoBehaviour
 {
-    public GameObject enemy;
-    public GameObject enemy2;
-    private List<GameObject> enemies = new List<GameObject>();
+    public List<GameObject> enemies = new List<GameObject>();
+    public GameObject enemyList;
     
     private int enemyIndex = 0;
     public int enemiesSpawned;
-    private float spawnRate = 2;
+    private float spawnRate = 1;
     private float timer;
     // Start is called before the first frame update
     void Start()
     {
-        enemies.Add(enemy);
-        enemies.Add(enemy2);
     }
 
     // Update is called once per frame
@@ -30,10 +27,14 @@ public class testWave : MonoBehaviour
         {
             timer = 0;
             enemiesSpawned += 1;
-            if (enemiesSpawned > 3) {
+            if (enemiesSpawned > 5) {
+                enemyIndex = 2;
+            } else if (enemiesSpawned > 3)
+            {
                 enemyIndex = 1;
             }
-            Instantiate(enemies[enemyIndex], transform.position, transform.rotation);
+            //Debug.Log("enemiesSpanwed: " + enemiesSpawned + "enemyIndex: " + enemyIndex);
+            Instantiate(enemyList.transform.GetChild(enemyIndex).gameObject, transform.position, transform.rotation);
         }
     }
 }
