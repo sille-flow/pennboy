@@ -132,6 +132,11 @@ public class MovementScript : MonoBehaviour
             StartCoroutine(Dash());
         }
 
+        if (canDash && Input.GetKeyDown(KeyCode.LeftShift) && !isGrounded)
+        {
+            StartCoroutine(AirDash());
+        }
+
     }
 
     IEnumerator Dash() //3
@@ -179,7 +184,43 @@ public class MovementScript : MonoBehaviour
 
     IEnumerator AirDash() //3
     {
-        yield return new WaitForSeconds(1);
+        canDash = false;
+        isDashing = true;
+        float dashDirection = Input.GetAxisRaw("Horizontal");
+
+        if (dashDirection == 0)
+        {
+            dashDirection = Mathf.Sign(rb.velocity.x);
+        }
+
+        float originalAccFactor = accFactor;
+        accFactor *= 1.3f;
+
+        float dashTimeElapsed = 0f;
+        Debug.Log("Air Dash");
+        while (dashTimeElapsed < dashDuration)
+        {
+            Vector3 dashForce = new Vector3(dashDirection * accFactor, 0, 0);
+            rb.AddForce(dashForce, ForceMode.Impulse);
+            rb.AddForce(transform.up * gravityForce * (-0.1f), ForceMode.Acceleration); //slows gravity
+
+        Vector3 clampedVel = rb.velocity;
+        if (Mathf.Abs(clampedVel.x) > dashSpeed)
+        {
+            clampedVel = new Vector3(Mathf.Sign(clampedVel.x) * dashSpeed, clampedVel.y, clampedVel.z);
+            rb.AddForce(transform.up * gravityForce * (-0.1f), ForceMode.Acceleration);
+            Debug.Log("Greater");
+        }
+        rb.velocity = clampedVel;
+
+        dashTimeElapsed += Time.deltaTime;
+        yield return null;
+        }
+
+        accFactor = originalAccFactor;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCD);
+        canDash = true;
     }
 
     void CheckWall() //3
