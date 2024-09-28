@@ -40,4 +40,9 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene(8);
     }
+
+    public void LoadLevel3()
+    {
+        SceneManager.LoadScene(9);
+    }
 }

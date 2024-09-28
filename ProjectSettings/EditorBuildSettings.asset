@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Group 6/Scenes/How to Play.unity
     guid: 7b51e521287c54f08b8c3ea2cf282690
+  - enabled: 1
+    path: Assets/Group 6/Scenes/Level 3.unity
+    guid: 6839cae2ee08a4a219a6ace803227d95
   m_configObjects: {}
