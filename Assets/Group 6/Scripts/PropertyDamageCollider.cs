@@ -26,8 +26,8 @@ public class PropertyDamageCollider : MonoBehaviour
     }
 
 
-    private float calculateDamage(float normalSpeed) {
-        return Mathf.Clamp(damageSlope * normalSpeed + damageOffset, 0, maxDamage);
+    public float calculateDamage(float impulse) {
+        return Mathf.Clamp(damageSlope * impulse + damageOffset, 0, maxDamage);
     }
 
 

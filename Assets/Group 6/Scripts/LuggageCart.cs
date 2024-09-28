@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class SpeedMax : MonoBehaviour
 {
+    [SerializeField]
+    Game level;
     public float maxSpeed = 15f;
     private float maxSqrSpeed;
     // Start is called before the first frame update
@@ -18,6 +23,13 @@ public class SpeedMax : MonoBehaviour
         if(GetComponent<Rigidbody>().velocity.sqrMagnitude > maxSqrSpeed)
         {
             GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized * maxSpeed;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        PropertyDamageCollider col = collision.gameObject.GetComponent<PropertyDamageCollider>();
+        if (col != null) {
+            level.reduceBudget(Mathf.RoundToInt(col.calculateDamage(collision.impulse.magnitude)));
         }
     }
 }
