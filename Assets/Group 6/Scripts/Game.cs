@@ -24,6 +24,8 @@ public class Game : MonoBehaviour
     {
         if (budget <= 0) {
             SceneManager.LoadScene(loseScene);
+            Cursor.lockState = Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
