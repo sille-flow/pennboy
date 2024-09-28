@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float maxHeight = 2f;
     [SerializeField] float distance = 2.5f;
-    [SerializeField] float duration = 1f;
+    [SerializeField] float Duration = 1f;
     [SerializeField] float minimumHeight = 5f;
     public Transform m_Transform;
     public GameObject mainCamera;
@@ -16,9 +16,11 @@ public class PlayerController : MonoBehaviour
     bool isJumping = false;
     Vector3 startingPos = Vector3.zero;
     Vector3 destination = Vector3.zero;
+    float duration = 0;
     // Start is called before the first frame update
     void Start()
     {
+        float duration = Duration;
         m_Transform = gameObject.GetComponent<Transform>();
         //mainCamera = GameObject.Find("")
     }
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour
             {
                 jumpElapsedTime = Time.time - jumpStartTime;
                 isJumping = true;
+                if (jumpElapsedTime < 1) duration *= 0.5f;
+                  else duration += jumpElapsedTime * 0.1f;
                 //add 2 directions later
                 destination = m_Transform.position +
                     m_Transform.forward * jumpElapsedTime * distance;
@@ -58,6 +62,7 @@ public class PlayerController : MonoBehaviour
                     Quaternion.Euler(0, m_Transform.rotation.y, m_Transform.rotation.z);
                 destination = Vector3.zero;
                 startingPos = Vector3.zero;
+                duration = Duration;
             }
             //still going
             else
