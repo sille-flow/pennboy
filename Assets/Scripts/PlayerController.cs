@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed = 0.02f;
     [SerializeField] float maxHeight = 2f;
     [SerializeField] float distance = 2.5f;
+    [SerializeField] float duration = 1f;
+    [SerializeField] float minimumHeight = 5f;
     public Transform m_Transform;
+    public GameObject mainCamera;
 
     float jumpStartTime = 0;
     float jumpElapsedTime = 0;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_Transform = gameObject.GetComponent<Transform>();
+        //mainCamera = GameObject.Find("")
     }
 
     // Update is called once per frame
@@ -36,7 +39,8 @@ public class PlayerController : MonoBehaviour
                 jumpElapsedTime = Time.time - jumpStartTime;
                 isJumping = true;
                 //add 2 directions later
-                destination = m_Transform.position + new Vector3(-jumpElapsedTime, 0, 0) * distance;
+                destination = m_Transform.position +
+                    m_Transform.forward * jumpElapsedTime * distance;
                 //Debug.Log("Start Jumping");
             }
         }
@@ -50,18 +54,19 @@ public class PlayerController : MonoBehaviour
                 jumpElapsedTime = 0;
                 jumpStartTime = 0;
                 m_Transform.position = destination;
-                m_Transform.rotation = Quaternion.identity;
+                m_Transform.rotation =
+                    Quaternion.Euler(0, m_Transform.rotation.y, m_Transform.rotation.z);
                 destination = Vector3.zero;
                 startingPos = Vector3.zero;
             }
             //still going
             else
             {
-                Debug.Log("Jump Happening");
                 float time = (Time.time - (jumpStartTime+jumpElapsedTime));
-                m_Transform.position = evaluate(startingPos, destination, time);
-                m_Transform.forward =
-                    evaluate(startingPos, destination, time + 0.01f) * 0.01f* speed - transform.position;
+                m_Transform.position = evaluate(startingPos, destination, time / duration);
+                m_Transform.rotation *= Quaternion.Euler((Time.deltaTime / duration) * 360, 0, 0);
+                //m_Transform.forward =
+                //    evaluate(startingPos, destination, time * speed + 0.01f) - transform.position;
             }
             
         }
@@ -70,11 +75,9 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 evaluate(Vector3 startPos, Vector3 endPos, float t)
     {
-        Vector3 midPos = new Vector3(
-                startingPos.x + (endPos.x - startPos.x) / 2,
-                Vector3.Distance(startPos, endPos)*maxHeight,
-                endPos.z
-            );
+        Vector3 midPos = (endPos + startPos)/2;
+        midPos.y = Vector3.Distance(startPos, endPos) * maxHeight;
+        if (midPos.y < minimumHeight) midPos.y = minimumHeight;
         Vector3 ab = Vector3.Lerp(startPos, midPos, t);
         Vector3 bc = Vector3.Lerp(midPos, endPos, t);
         return Vector3.Lerp(ab, bc, t);
