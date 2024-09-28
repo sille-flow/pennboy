@@ -171,6 +171,7 @@ MonoBehaviour:
   budget: 1000
   winScene: 3
   loseScene: 4
+  hud: {fileID: 7490552872074169388}
 --- !u!1 &6779298456530596657
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +452,7 @@ GameObject:
   - component: {fileID: 419774983269215673}
   - component: {fileID: 3020552244793675207}
   - component: {fileID: 5159790892386470293}
-  - component: {fileID: 7468166758361332383}
+  - component: {fileID: 7490552872074169388}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -543,7 +544,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7468166758361332383
+--- !u!114 &7490552872074169388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -552,10 +553,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7411916265128148000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91af57d1426a1406aa860aff0dc4eb5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 581daaa8e952dab379f197c9c6f404c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToEdit: {fileID: 1979212544188574439}
+  timeText: {fileID: 1979212544188574439}
+  budgetText: {fileID: 7962390744678457946}
 --- !u!1001 &2319465953236323011
 PrefabInstance:
   m_ObjectHideFlags: 0

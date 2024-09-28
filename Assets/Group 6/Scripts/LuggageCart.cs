@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class SpeedMax : MonoBehaviour
+public class LuggageCart : MonoBehaviour
 {
     [SerializeField]
     Game level;

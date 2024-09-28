@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3270744393526393679}
-  - component: {fileID: 5035722210829173185}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -33,18 +32,6 @@ Transform:
   - {fileID: 9185521304845644785}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5035722210829173185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8201526457612696811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70a5226a13731fb3792a63ae5bc1ab1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8715379560640025626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,6 +146,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8539142330609746729}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 468ae0bb07db8495e96f18f245d7a959,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1145502013955402901}
   m_SourcePrefab: {fileID: 100100000, guid: 468ae0bb07db8495e96f18f245d7a959, type: 3}
 --- !u!1 &8372849598270220619 stripped
 GameObject:
@@ -256,6 +247,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1145502013955402901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8372849598270220619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a5226a13731fb3792a63ae5bc1ab1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageSlope: 1
+  damageOffset: 0
+  maxDamage: 100
 --- !u!4 &9185521304845644785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 468ae0bb07db8495e96f18f245d7a959,
