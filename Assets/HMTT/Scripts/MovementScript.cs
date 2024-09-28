@@ -85,7 +85,7 @@ public class MovementScript : MonoBehaviour
         applyGravity();
         if (isActive)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
             {
                 if (isGrounded)
                 {
@@ -113,7 +113,7 @@ public class MovementScript : MonoBehaviour
     void Move() //2
     {
         Vector3 force = new Vector3(Input.GetAxis("Horizontal") * accFactor, 0, 0);
-        rb.AddForce(force, ForceMode.Impulse);
+       rb.AddForce(force, ForceMode.Impulse);
 
         Vector3 clampedVel = rb.velocity;
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)
