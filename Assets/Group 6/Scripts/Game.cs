@@ -22,7 +22,7 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (budget == 0) {
+        if (budget <= 0) {
             SceneManager.LoadScene(loseScene);
         }
     }
