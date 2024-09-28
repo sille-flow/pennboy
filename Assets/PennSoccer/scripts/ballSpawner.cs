@@ -30,11 +30,11 @@ public class ballSpawner : MonoBehaviour
     void SpawnBall()
     {
         // Get the world position of the camera's edges (orthographic camera assumed)
-        float cameraHeight = 2f * mainCamera.orthographicSize;
-        float cameraWidth = cameraHeight * mainCamera.aspect;
-
+       // float cameraHeight = 2f * mainCamera.orthographicSize;
+        //float cameraWidth = cameraHeight * mainCamera.aspect;
+       
         // Generate a random x-position within the screen bounds
-        float randomX = Random.Range(-cameraWidth / 2, cameraWidth / 2);
+        float randomX = Random.Range(GameObject.Find("leftGoal").transform.position.x / 2, GameObject.Find("rightGoal").transform.position.x / 2);
 
         // Use the constant y-position
         float yPosition = fixedYPosition;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028373, g: 0.22571398, b: 0.30692294, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 239611607}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.3581, y: 1.8462, z: -6}
+  m_LocalPosition: {x: 9.46, y: 1.8462, z: -6}
   m_LocalScale: {x: 0.46828747, y: 0.47122622, z: 7.1875}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 763256601}
   - component: {fileID: 763256600}
   m_Layer: 0
-  m_Name: goalRIght
+  m_Name: rightGoal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,7 +488,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -502,7 +502,7 @@ Transform:
   m_GameObject: {fileID: 763256599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.94, y: -0.13, z: -8}
+  m_LocalPosition: {x: 9.94, y: -0.13, z: -8}
   m_LocalScale: {x: 0.48010346, y: 0.44853118, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 915801423}
   - component: {fileID: 915801422}
   m_Layer: 0
-  m_Name: goalLeft
+  m_Name: leftGoal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +595,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -609,7 +609,7 @@ Transform:
   m_GameObject: {fileID: 915801421}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.01, y: -0.18, z: -8}
+  m_LocalPosition: {x: -10.07, y: -0.18, z: -8}
   m_LocalScale: {x: 0.48010346, y: 0.44853118, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1103,7 +1103,7 @@ Transform:
   m_GameObject: {fileID: 1506112254}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.2603, y: 1.756, z: -6}
+  m_LocalPosition: {x: -9.45, y: 1.756, z: -6}
   m_LocalScale: {x: 0.46086746, y: 0.5879304, z: 7.1875}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1290,7 +1290,7 @@ PrefabInstance:
     - target: {fileID: 5647863270566720545, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: PennSoccerPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5887934739902861980, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
@@ -1668,7 +1668,7 @@ GameObject:
   - component: {fileID: 2107403267}
   m_Layer: 0
   m_Name: Field
-  m_TagString: Ground
+  m_TagString: PennSoccerGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1830,7 +1830,7 @@ PrefabInstance:
     - target: {fileID: 5647863270566720545, guid: 98a655ae28a004a358378c308bb3f51f,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: PennSoccerPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

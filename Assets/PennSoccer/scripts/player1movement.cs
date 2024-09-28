@@ -8,11 +8,13 @@ public class player1movement : MonoBehaviour
     public float jumpForce = 5.0f;
     private float horizontalInput;
     private Rigidbody player1Rb;
+    bool facingRight = true;
     public bool isGrounded = true;
 
     void Start()
     {
         player1Rb = GetComponent<Rigidbody>();
+        
     }
 
     void Update()
@@ -29,15 +31,25 @@ public class player1movement : MonoBehaviour
             player1Rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+
+    }
+
+    void Flip()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("PennSoccerGround"))
         {
             isGrounded = true;
         }
-        if (collision.gameObject.CompareTag("Player") && collision.transform.position.y + 1.43 <= transform.position.y)
+        if (collision.gameObject.CompareTag("PennSoccerPlayer") && collision.transform.position.y + 1.43 <= transform.position.y)
         {
             isGrounded = true;
         }
