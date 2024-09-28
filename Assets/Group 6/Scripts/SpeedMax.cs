@@ -5,18 +5,19 @@ using UnityEngine;
 public class SpeedMax : MonoBehaviour
 {
     public float maxSpeed = 15f;
+    private float maxSqrSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        maxSqrSpeed = maxSpeed * maxSpeed;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(GetComponent<Rigidbody>().velocity.magnitude > maxSpeed)
+        if(GetComponent<Rigidbody>().velocity.sqrMagnitude > maxSqrSpeed)
         {
-               GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * 0.99f;
+            GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized * maxSpeed;
         }
     }
 }
