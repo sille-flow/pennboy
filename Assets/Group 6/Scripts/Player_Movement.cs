@@ -69,10 +69,7 @@ public class Player_Movement : MonoBehaviour
             } else {
                 Camera.main.transform.localEulerAngles = new Vector3(270, 0, 0);
             }
-            //Camera.main.transform.localEulerAngles = new Vector3(Camera.main.transform.localEulerAngles.x, 0, 0);
         }
-        
-        //Camera.main.transform.localEulerAngles = cameraRotationVector;
         gameObject.transform.Rotate(0, rotX, 0);
     }
 

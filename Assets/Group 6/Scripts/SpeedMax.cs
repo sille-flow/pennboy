@@ -16,7 +16,7 @@ public class SpeedMax : MonoBehaviour
     {
         if(GetComponent<Rigidbody>().velocity.magnitude > maxSpeed)
         {
-               GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized * maxSpeed;
+               GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * 0.99f;
         }
     }
 }
