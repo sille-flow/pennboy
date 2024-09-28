@@ -35,7 +35,11 @@ public class MovementScript : MonoBehaviour
     [SerializeField]
     private float wallJumpForce;
     private bool isOnWall;
+
+    private bool isFastFall;
     private bool isActive { get; set; }
+
+    private bool isjump;
 
     [SerializeField]
     private LayerMask groundMask;
@@ -52,6 +56,7 @@ public class MovementScript : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
         canDash = true;
         isActive = true;
+        gravityForce = baseGravity;
     }
 
     // Update is called once per frame
@@ -80,7 +85,6 @@ public class MovementScript : MonoBehaviour
             }
             Move();
         }
-        
     }
 
 
@@ -126,6 +130,13 @@ public class MovementScript : MonoBehaviour
 
         float jumpDirection = isWallRight ? -1 : 1; // Jump away from the wall
         rb.AddForce(new Vector3(jumpDirection * wallJumpForce, jumpForce, 0), ForceMode.Impulse);
+    }
+
+    void WallSlide() //3
+    {
+        if(!isGrounded) {
+            gravityForce = wallGravity;
+        } 
     }
 
     void CheckDash() //2
@@ -229,6 +240,9 @@ public class MovementScript : MonoBehaviour
         if (Input.GetKey(KeyCode.S) && !isGrounded) {
             Debug.Log("fast fall");
             gravityForce = gravityForce * 2f;
+            isFastFall = true;
+        } else {
+            isFastFall = false;
         }
     }
 
@@ -242,24 +256,24 @@ public class MovementScript : MonoBehaviour
         if (Physics.Raycast(spherePos, -transform.right, out hit, .5f)){
             isWallRight = false;
             isWallLeft = true;
-            if (!isGrounded) {
-                gravityForce = wallGravity;
-                isOnWall = true;
-            }
+            isOnWall = true;
+            WallSlide();
+
         }
         else if(Physics.Raycast(spherePos, transform.right, out hit, .5f)){
             isWallLeft = false;
             isWallRight= true;
-            if (!isGrounded) {
-                gravityForce = wallGravity;
-                isOnWall = true;
-            }
+            isOnWall = true;
+            WallSlide();
+
         }
         else{
             isWallRight = false;
             isWallLeft = false;
             isOnWall = false;
-            gravityForce = baseGravity;
+            if (!isFastFall) {
+                gravityForce = baseGravity;
+            }
         }
     }
 
