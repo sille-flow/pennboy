@@ -22,6 +22,7 @@ public class MovementScript : MonoBehaviour
     private bool isGrounded;
     private bool isWallRight;
     private bool isWallLeft;
+    private int gravityDir { get; set; }
     [SerializeField]
     private float dashSpeed;
     private bool isDashing;
@@ -49,11 +50,22 @@ public class MovementScript : MonoBehaviour
         return rb.velocity;
     }
 
+    public int getGravityDir()
+    {
+        return gravityDir;
+    }
+
+    public void setGravityDir(int newGravityDir)
+    {
+        gravityDir = newGravityDir;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         col = this.gameObject.GetComponent<Collider>();
         rb = this.gameObject.GetComponent<Rigidbody>();
+        gravityDir = 1;
         canDash = true;
         isActive = true;
         gravityForce = baseGravity;
@@ -90,7 +102,7 @@ public class MovementScript : MonoBehaviour
 
     void applyGravity() //1
     {
-        rb.AddForce(transform.up*gravityForce, ForceMode.Acceleration); //apply force in the direction of gravity
+        rb.AddForce(transform.up*gravityForce*gravityDir, ForceMode.Acceleration); //apply force in the direction of gravity
     }
 
     void Move() //2
@@ -235,7 +247,7 @@ public class MovementScript : MonoBehaviour
         canDash = true;
     }
 
-     public void FastFall() 
+     void FastFall() 
     {
         if (Input.GetKey(KeyCode.S) && !isGrounded) {
             Debug.Log("fast fall");
