@@ -56,12 +56,10 @@ public class Enemy : MonoBehaviour
         if (!canStart) return;
         if (CalcDistance(transform.position, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
         {
-            //Debug.Log("Changed to Waypoint " + (waypointIndex + 1));
             transform.position = waypoints[waypointIndex + 1];
             waypointIndex++;
             if (waypointIndex >= waypoints.Count-1)
             {
-               // Debug.Log("Reached the End");
                 // Deal dmg damage to player health
                 Die();
             }

@@ -76,4 +76,12 @@ public class TowerMain : MonoBehaviour
         // TODO: get target enemy
         // TODO: get damage
     }
+
+    //protected void Attack(GameObject target)
+    //{
+    //    if (target == null) return;
+    //    Projectile projectile = Instantiate(GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
+    //    projectile.Initialize(damage, projectileSpeed, projectilePierce, target.transform.position);
+    //    Debug.Log("Attacking Enemy " + projectileSpeed);
+    //}
 }
