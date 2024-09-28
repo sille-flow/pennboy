@@ -57,10 +57,11 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(canDoubleJump);
+        //Debug.Log(canDoubleJump);
         applyGravity();
         CheckIfGround();
         CheckWall();
+        CheckDash();
         if (isActive)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -79,6 +80,7 @@ public class MovementScript : MonoBehaviour
             }
             Move();
         }
+        
     }
 
 
@@ -125,6 +127,10 @@ public class MovementScript : MonoBehaviour
 
     void CheckDash() //2
     {
+        if (canDash && Input.GetKeyDown(KeyCode.LeftShift) && isGrounded)
+        {
+            StartCoroutine(Dash());
+        }
 
     }
 
@@ -133,7 +139,42 @@ public class MovementScript : MonoBehaviour
         //the dash should set the player's velocity to the dash velocity IF the player's original velocity was slower than the dash's velocity.
         //otherwise, use the player's original velocity
         //goign to need to store the player's original velocity in a temporary variable
-        yield return new WaitForSeconds(1);
+        canDash = false;
+        isDashing = true;
+        float dashDirection = Input.GetAxisRaw("Horizontal");
+
+        if (dashDirection == 0)
+        {
+            dashDirection = Mathf.Sign(rb.velocity.x); // If no input is detected, maintain the current movement direction
+        }
+
+        float originalAccFactor = accFactor;
+        accFactor *= 1.5f;
+
+        float dashTimeElapsed = 0f;
+        Debug.Log("Dashing for " + dashDuration);
+        while (dashTimeElapsed < dashDuration)
+        {
+            Vector3 dashForce = new Vector3(dashDirection * accFactor, 0, 0);
+            rb.AddForce(dashForce, ForceMode.Impulse);
+
+        Vector3 clampedVel = rb.velocity;
+        if (Mathf.Abs(clampedVel.x) > dashSpeed)
+        {
+            clampedVel = new Vector3(Mathf.Sign(clampedVel.x) * dashSpeed, clampedVel.y, clampedVel.z);
+            Debug.Log("Greater");
+        }
+        rb.velocity = clampedVel;
+
+        dashTimeElapsed += Time.deltaTime;
+        yield return null;
+        }
+
+        Debug.Log("Dash done");
+        accFactor = originalAccFactor;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCD);
+        canDash = true;
     }
 
     IEnumerator AirDash() //3
