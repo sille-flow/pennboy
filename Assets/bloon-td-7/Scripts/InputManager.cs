@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlacementSystem : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
     [SerializeField]
     private Camera SceneCamera;
@@ -21,8 +21,10 @@ public class PlacementSystem : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(mouseray, out hit, 100, PlacementLayerMask))
         {
+            Debug.Log(LastPos);
             LastPos = mousePos;
         }
+        
         return LastPos;
     }
 }
