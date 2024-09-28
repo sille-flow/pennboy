@@ -101,6 +101,7 @@ public class MovementScript : MonoBehaviour
             }
             Move();
         }
+        Debug.Log(canDash);
     }
 
 
@@ -144,7 +145,7 @@ public class MovementScript : MonoBehaviour
     {
         rb.velocity = new Vector3(rb.velocity.x, 0, 0);
 
-        float jumpDirection = isWallRight ? -2.5f : 2.5f; // Jump away from the wall
+        float jumpDirection = isWallRight ? -2f : 2f; // Jump away from the wall
         rb.AddForce(new Vector3(jumpDirection * wallJumpForce, jumpForce, 0), ForceMode.Impulse);
     }
 
@@ -166,8 +167,9 @@ public class MovementScript : MonoBehaviour
             } else {
                 isFastFall = false;
             }
-        } if(isDashing){
-            gravityForce = 0f;
+            if(isDashing){
+                gravityForce = 0f;
+            }
         }
         else{
             gravityForce = baseGravity;
@@ -278,7 +280,6 @@ public class MovementScript : MonoBehaviour
         if (isGrounded)
         {
             canDoubleJump = true;
-            canDash = true;
         }
     }
 }
