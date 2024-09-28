@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   budget: 1000
   winScene: 3
-  loseScene: 4
+  loseScene: 5
   hud: {fileID: 7490552872074169388}
 --- !u!1 &6779298456530596657
 GameObject:
