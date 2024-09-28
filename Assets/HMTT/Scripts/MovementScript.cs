@@ -35,7 +35,6 @@ public class MovementScript : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]
     private float wallJumpForce;
-    private bool isOnWall;
 
     private bool isFastFall;
     private bool isActive { get; set; }
@@ -74,11 +73,11 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        applyGravity();
-        FastFall();
         CheckIfGround();
         CheckWall();
         CheckDash();
+        SetGravity();
+        applyGravity();
         if (isActive)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -87,10 +86,10 @@ public class MovementScript : MonoBehaviour
                 {
                     Jump();
                 }
-                else if (!isGrounded && !isOnWall) 
+                else if (!isGrounded && (isWallLeft || isWallRight)) 
                 {
                     DoubleJump();
-                } else if (!isGrounded && isOnWall) 
+                } else if (!isGrounded && (isWallLeft || isWallRight)) 
                 {
                     WallJump();
                 }
@@ -144,11 +143,30 @@ public class MovementScript : MonoBehaviour
         rb.AddForce(new Vector3(jumpDirection * wallJumpForce, jumpForce, 0), ForceMode.Impulse);
     }
 
-    void WallSlide() //3
+    void SetGravity() //3
     {
         if(!isGrounded) {
-            gravityForce = wallGravity;
-        } 
+            if((isWallLeft || isWallRight) && rb.velocity.y <= 0.01f)
+            {
+                gravityForce = wallGravity;
+            }
+            else{
+                gravityForce = baseGravity;
+            }
+
+            if (Input.GetKey(KeyCode.S) && !isFastFall) {
+            Debug.Log("fast fall");
+            gravityForce = gravityForce * 3.5f;
+            isFastFall = true;
+            } else {
+                isFastFall = false;
+            }
+        }
+        else{
+            gravityForce = baseGravity;
+        }
+
+        
     }
 
     void CheckDash() //2
@@ -224,45 +242,25 @@ public class MovementScript : MonoBehaviour
         canDash = true;
     }
 
-     void FastFall() 
-    {
-        if (Input.GetKey(KeyCode.S) && !isGrounded) {
-            Debug.Log("fast fall");
-            gravityForce = gravityForce * 2f;
-            isFastFall = true;
-        } else {
-            isFastFall = false;
-        }
-    }
-
     void CheckWall() //3
     {
         //when the player is stuck to the wall, they should slowly slide down
         //change gravityForce
-        RaycastHit hit; //get a hit variable to store the hit information
-       
-        Vector3 spherePos = transform.position;
-        if (Physics.Raycast(spherePos, -transform.right, out hit, .5f)){
+
+        float offSetWidth = col.bounds.extents.x;
+        Vector3 rayPosLeft = transform.position + Vector3.left * offSetWidth;
+        Vector3 rayPosRight = transform.position + Vector3.right * offSetWidth;
+        if (Physics.CheckSphere(rayPosLeft, 0.2f, groundMask)){
             isWallRight = false;
             isWallLeft = true;
-            isOnWall = true;
-            WallSlide();
-
         }
-        else if(Physics.Raycast(spherePos, transform.right, out hit, .5f)){
+        else if(Physics.CheckSphere(rayPosRight, 0.2f, groundMask)){
             isWallLeft = false;
             isWallRight= true;
-            isOnWall = true;
-            WallSlide();
-
         }
         else{
             isWallRight = false;
             isWallLeft = false;
-            isOnWall = false;
-            if (!isFastFall) {
-                gravityForce = baseGravity;
-            }
         }
     }
 
@@ -270,7 +268,7 @@ public class MovementScript : MonoBehaviour
     {
         float offsetHeight = col.bounds.extents.y;
         Vector3 rayPos = transform.position + Vector3.down * offsetHeight;
-        isGrounded = Physics.CheckSphere(rayPos, 0.3f, groundMask);
+        isGrounded = Physics.CheckSphere(rayPos, 0.1f, groundMask);
         if (isGrounded)
         {
             canDoubleJump = true;
