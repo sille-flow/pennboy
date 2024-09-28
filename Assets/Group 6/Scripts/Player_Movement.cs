@@ -62,7 +62,14 @@ public class Player_Movement : MonoBehaviour
         gameObject.transform.Rotate(0, rotX, 0);
         Camera.main.transform.Rotate(rotY, 0, 0);
         if (Camera.main.transform.localEulerAngles.y == 180 && Camera.main.transform.localEulerAngles.z == 180) {
-            Camera.main.transform.localEulerAngles = new Vector3(Camera.main.transform.localEulerAngles.x, 0, 0);
+            float diffBetweenUpDir = Mathf.Abs(270 - Camera.main.transform.localEulerAngles.x);
+            float diffBetweenDownDir = Mathf.Abs(90 - Camera.main.transform.localEulerAngles.x);
+            if (diffBetweenDownDir <= diffBetweenUpDir) {
+                Camera.main.transform.localEulerAngles = new Vector3(90, 0, 0);
+            } else {
+                Camera.main.transform.localEulerAngles = new Vector3(270, 0, 0);
+            }
+            //Camera.main.transform.localEulerAngles = new Vector3(Camera.main.transform.localEulerAngles.x, 0, 0);
         }
         
         //Camera.main.transform.localEulerAngles = cameraRotationVector;
