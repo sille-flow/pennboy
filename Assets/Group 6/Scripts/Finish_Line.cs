@@ -7,6 +7,9 @@ public class Finish_Line : MonoBehaviour
 {
     [SerializeField]
     Game level;
+
+    [SerializeField]
+    GameObject luggageCart;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,7 @@ public class Finish_Line : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider col) {
-        if(col.tag == "Luggage_Cart") {
+        if(col.gameObject == luggageCart) {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             level.win();

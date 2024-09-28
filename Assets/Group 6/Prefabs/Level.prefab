@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 2519180427931064429}
+  luggageCart: {fileID: 4470206823010468085}
 --- !u!1 &3783390290335496100
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +312,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14a8db076cc7fbe97be7c625506795e7, type: 3}
+--- !u!1 &4470206823010468085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1553815013276994814, guid: 14a8db076cc7fbe97be7c625506795e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 3141577324128521227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8694747365054813913 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5994551993744579282, guid: 14a8db076cc7fbe97be7c625506795e7,
