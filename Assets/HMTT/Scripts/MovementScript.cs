@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MovementScript : MonoBehaviour
 {
@@ -37,6 +38,10 @@ public class MovementScript : MonoBehaviour
     private float wallJumpForce;
 
     private bool isFastFall;
+    [SerializeField]
+    float fastFallWall;
+    [SerializeField]
+    float fastFallAir;
     private bool isActive { get; set; }
 
     private bool isjump;
@@ -86,7 +91,7 @@ public class MovementScript : MonoBehaviour
                 {
                     Jump();
                 }
-                else if (!isGrounded && (isWallLeft || isWallRight)) 
+                else if (!isGrounded && !(isWallLeft || isWallRight)) 
                 {
                     DoubleJump();
                 } else if (!isGrounded && (isWallLeft || isWallRight)) 
@@ -139,7 +144,7 @@ public class MovementScript : MonoBehaviour
     {
         rb.velocity = new Vector3(rb.velocity.x, 0, 0);
 
-        float jumpDirection = isWallRight ? -1 : 1; // Jump away from the wall
+        float jumpDirection = isWallRight ? -2.5f : 2.5f; // Jump away from the wall
         rb.AddForce(new Vector3(jumpDirection * wallJumpForce, jumpForce, 0), ForceMode.Impulse);
     }
 
@@ -155,9 +160,9 @@ public class MovementScript : MonoBehaviour
             }
 
             if (Input.GetKey(KeyCode.S) && !isFastFall) {
-            Debug.Log("fast fall");
-            gravityForce = gravityForce * 3.5f;
-            isFastFall = true;
+                Debug.Log("fast fall");
+                gravityForce *= (isWallLeft || isWallRight) ? fastFallWall : fastFallAir;
+                isFastFall = true;
             } else {
                 isFastFall = false;
             }
