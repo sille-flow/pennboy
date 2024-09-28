@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthManager : MonoBehaviour
 {
-    public int maxHealth = 100; 
+    private int maxHealth = 100; 
     private int currentHealth; 
-    public Text healthText; 
+    [SerializeField] private TextMeshProUGUI healthText; 
 
     void Start()
     {

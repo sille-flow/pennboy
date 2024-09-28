@@ -61,7 +61,8 @@ public class Enemy : MonoBehaviour
             if (waypointIndex >= waypoints.Count-1)
             {
                 // Deal dmg damage to player health
-                Die();
+                GameManager.instance.healthManager.TakeDamage(dmg);
+                Destroy(gameObject);
             }
         }
     }
@@ -94,6 +95,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
+        GameManager.instance.moneyManager.EarnMoney(moneyWorth);
         Destroy(gameObject);
     }
 
