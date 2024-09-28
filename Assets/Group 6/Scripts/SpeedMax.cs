@@ -13,7 +13,7 @@ public class SpeedMax : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         if(GetComponent<Rigidbody>().velocity.sqrMagnitude > maxSqrSpeed)
         {
