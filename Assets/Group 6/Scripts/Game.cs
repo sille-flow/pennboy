@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -7,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class Game : MonoBehaviour
 {
     [SerializeField] private int budget = 1000;
+    private int maxBudget;
     [SerializeField] private int winScene = 3;
     [SerializeField] private int loseScene = 4;
     [SerializeField] private HUD hud;
@@ -17,6 +19,9 @@ public class Game : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         hud.updateBudget(budget);
+
+        // set maxbudget
+        maxBudget = budget;
     }
 
     // Update is called once per frame
@@ -30,9 +35,8 @@ public class Game : MonoBehaviour
     }
 
     public void reduceBudget(int damage) {
-        budget -= damage;
+        budget = Mathf.Clamp(budget - damage, 0, maxBudget);
         hud.updateBudget(budget);
-        print(budget);
     }
 
     public void win() {
