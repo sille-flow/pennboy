@@ -57,8 +57,8 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(canDoubleJump);
         applyGravity();
+        FastFall();
         CheckIfGround();
         CheckWall();
         CheckDash();
@@ -122,7 +122,7 @@ public class MovementScript : MonoBehaviour
 
     void WallJump() //3
     {
-         rb.velocity = new Vector3(rb.velocity.x, 0, 0);
+        rb.velocity = new Vector3(rb.velocity.x, 0, 0);
 
         float jumpDirection = isWallRight ? -1 : 1; // Jump away from the wall
         rb.AddForce(new Vector3(jumpDirection * wallJumpForce, jumpForce, 0), ForceMode.Impulse);
@@ -222,6 +222,14 @@ public class MovementScript : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashCD);
         canDash = true;
+    }
+
+     public void FastFall() 
+    {
+        if (Input.GetKey(KeyCode.S) && !isGrounded) {
+            Debug.Log("fast fall");
+            gravityForce = gravityForce * 2f;
+        }
     }
 
     void CheckWall() //3
