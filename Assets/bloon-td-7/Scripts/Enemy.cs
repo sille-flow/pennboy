@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Initialize(5f, 1, 3, 0, 1, false, 5);
+        Initialize(15f, 1, 3, 0, 1, false, 5);
     }
 
     /// <summary>
@@ -56,12 +56,12 @@ public class Enemy : MonoBehaviour
         if (!canStart) return;
         if (CalcDistance(transform.position, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
         {
-            Debug.Log("Changed to Waypoint " + (waypointIndex + 1));
+            //Debug.Log("Changed to Waypoint " + (waypointIndex + 1));
             transform.position = waypoints[waypointIndex + 1];
             waypointIndex++;
             if (waypointIndex >= waypoints.Count-1)
             {
-                Debug.Log("Reached the End");
+               // Debug.Log("Reached the End");
                 // Deal dmg damage to player health
                 Die();
             }
