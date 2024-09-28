@@ -16,6 +16,6 @@ public class UITest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textToEdit.text = $"{Mathf.Floor((Time.time - timeStore) * 100) / 100f}";
+        textToEdit.text = "Time: " + $"{Mathf.Floor((Time.time - timeStore) * 100) / 100f}";
     }
 }
