@@ -178,30 +178,18 @@ public class MovementScript : MonoBehaviour
         {
             dashDirection = Mathf.Sign(rb.velocity.x); // If no input is detected, maintain the current movement direction
         }
-
-        float originalAccFactor = accFactor;
-        accFactor *= 1.5f;
+        float originalvelocity = rb.velocity.x;
 
         float dashTimeElapsed = 0f;
-        //Debug.Log("Dashing for " + dashDuration);
+        //Debug.Log("Dash");
         while (dashTimeElapsed < dashDuration)
         {
-            Vector3 dashForce = new Vector3(dashDirection * accFactor, 0, 0);
-            rb.AddForce(dashForce, ForceMode.Impulse);
-
-        Vector3 clampedVel = rb.velocity;
-        if (Mathf.Abs(clampedVel.x) > dashSpeed)
-        {
-            clampedVel = new Vector3(Mathf.Sign(clampedVel.x) * dashSpeed, clampedVel.y, clampedVel.z);
-        }
-        rb.velocity = clampedVel;
-
+        rb.velocity = new Vector3(dashDirection * dashSpeed, 0f, 0f);
         dashTimeElapsed += Time.deltaTime;
         yield return null;
         }
 
        // Debug.Log("Dash done");
-        accFactor = originalAccFactor;
         isDashing = false;
         yield return new WaitForSeconds(dashCD);
         canDash = true;
@@ -218,30 +206,19 @@ public class MovementScript : MonoBehaviour
             dashDirection = Mathf.Sign(rb.velocity.x);
         }
 
-        float originalAccFactor = accFactor;
-        accFactor *= 1.3f;
+        float originalvelocity = rb.velocity.x;
 
         float dashTimeElapsed = 0f;
-       // Debug.Log("Air Dash");
+        //Debug.Log("Air Dash";
         while (dashTimeElapsed < dashDuration)
         {
-            Vector3 dashForce = new Vector3(dashDirection * accFactor, 0, 0);
-            rb.AddForce(dashForce, ForceMode.Impulse);
-            rb.AddForce(transform.up * gravityForce * (-0.1f), ForceMode.Acceleration); //slows gravity
-
-        Vector3 clampedVel = rb.velocity;
-        if (Mathf.Abs(clampedVel.x) > dashSpeed)
-        {
-            clampedVel = new Vector3(Mathf.Sign(clampedVel.x) * dashSpeed, clampedVel.y, clampedVel.z);
-            rb.AddForce(transform.up * gravityForce * (-0.1f), ForceMode.Acceleration);
-        }
-        rb.velocity = clampedVel;
-
+        rb.velocity = new Vector3(dashDirection * (dashSpeed - 2f), 0f, 0f);
         dashTimeElapsed += Time.deltaTime;
+        gravityForce = 0f;
         yield return null;
         }
 
-        accFactor = originalAccFactor;
+       // Debug.Log("Air Dash Done");
         isDashing = false;
         yield return new WaitForSeconds(dashCD);
         canDash = true;
