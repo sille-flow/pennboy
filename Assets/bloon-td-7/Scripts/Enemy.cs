@@ -8,18 +8,19 @@ public class Enemy : MonoBehaviour
     public int waypointIndex = 0;
     protected List<Vector3> waypoints;
     protected Rigidbody rb;
-    protected int dmg;
-    protected int health;
-    protected int id;
-    protected int moneyWorth;
-    protected string modifiers;
+    public int dmg;
+    public int health;
+    public int id;
+    public int moneyWorth;
+    public string modifiers;
     private const float WAYPOINT_CHANGE_DISTANCE = 0.01f;
     public bool isCamo { get; protected set; }
     private bool canStart = false;
 
     private void Start()
     {
-        Initialize(15f, 1, 3, 0, 1, false, 5);
+        //Initialize(15f, 1, 3, 0, 1, false, 5);
+        Initialize(moveSpeed, dmg, health, id, moneyWorth, isCamo, 5);
     }
 
     /// <summary>

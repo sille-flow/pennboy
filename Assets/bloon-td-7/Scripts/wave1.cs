@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testWave : MonoBehaviour
+public class wave1 : MonoBehaviour
 {
     public List<GameObject> enemies = new List<GameObject>();
     public GameObject enemyList;
@@ -10,7 +10,7 @@ public class testWave : MonoBehaviour
     private int enemyIndex = 0;
     public int enemiesSpawned;
     private float spawnRate = 1;
-    private float timer;
+    private float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,11 +27,17 @@ public class testWave : MonoBehaviour
         {
             timer = 0;
             enemiesSpawned += 1;
-            if (enemiesSpawned > 5) {
-                enemyIndex = 2;
-            } else if (enemiesSpawned > 3)
+            switch (enemiesSpawned)
             {
-                enemyIndex = 1;
+                case 10:
+                    Destroy(gameObject);
+                    break;
+                case 5:
+                    enemyIndex = 2;
+                    break;
+                case 3:
+                    enemyIndex = 1;
+                    break;
             }
             //Debug.Log("enemiesSpanwed: " + enemiesSpawned + "enemyIndex: " + enemyIndex);
             Instantiate(enemyList.transform.GetChild(enemyIndex).gameObject, transform.position, transform.rotation);
