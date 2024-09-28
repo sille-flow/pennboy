@@ -255,3 +255,4 @@ MonoBehaviour:
   damageSlope: 0.5
   damageOffset: 0
   maxDamage: 300
+  cooldownTime: 1
