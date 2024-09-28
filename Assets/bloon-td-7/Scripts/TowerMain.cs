@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Data;
 using UnityEngine;
 
 public class TowerMain : MonoBehaviour
@@ -11,7 +11,7 @@ public class TowerMain : MonoBehaviour
     [SerializeField] protected float cooldown = 1f;
     [SerializeField] protected int damage = 1;
     [SerializeField] protected float range = 7.5f;
-    protected List<GameObject> enemiesInRange = new List<GameObject>();
+    public List<GameObject> enemiesInRange = new List<GameObject>();
     protected float remainingCooldown;
 
     // Start is called before the first frame update
@@ -43,6 +43,11 @@ public class TowerMain : MonoBehaviour
     {
         foreach (var target in enemiesInRange)
         {
+            if (target == null)
+            {
+                enemiesInRange.Remove(target);
+                return GetTarget();
+            }
             return target;
         };
         return null;
@@ -65,7 +70,6 @@ public class TowerMain : MonoBehaviour
         remainingCooldown = 0;
 
         // attack
-        Debug.Log("Pew");
         SelectedTarget.GetComponent<Enemy>().Damage(damage);
 
 
