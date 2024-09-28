@@ -73,7 +73,7 @@ public class MovementScript : MonoBehaviour
                 else if (!isGrounded && !isOnWall) 
                 {
                     DoubleJump();
-                } else
+                } else if (!isGrounded && isOnWall) 
                 {
                     WallJump();
                 }
@@ -122,7 +122,10 @@ public class MovementScript : MonoBehaviour
 
     void WallJump() //3
     {
+         rb.velocity = new Vector3(rb.velocity.x, 0, 0);
 
+        float jumpDirection = isWallRight ? -1 : 1; // Jump away from the wall
+        rb.AddForce(new Vector3(jumpDirection * wallJumpForce, jumpForce, 0), ForceMode.Impulse);
     }
 
     void CheckDash() //2
@@ -231,16 +234,23 @@ public class MovementScript : MonoBehaviour
         if (Physics.Raycast(spherePos, -transform.right, out hit, .5f)){
             isWallRight = false;
             isWallLeft = true;
-            gravityForce = wallGravity;
+            if (!isGrounded) {
+                gravityForce = wallGravity;
+                isOnWall = true;
+            }
         }
         else if(Physics.Raycast(spherePos, transform.right, out hit, .5f)){
             isWallLeft = false;
             isWallRight= true;
-            gravityForce = wallGravity;
+            if (!isGrounded) {
+                gravityForce = wallGravity;
+                isOnWall = true;
+            }
         }
         else{
             isWallRight = false;
             isWallLeft = false;
+            isOnWall = false;
             gravityForce = baseGravity;
         }
     }
