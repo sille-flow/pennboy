@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028373, g: 0.22571398, b: 0.30692294, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1657,6 +1657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthManager: {fileID: 1459573116}
   moneyManager: {fileID: 1459573115}
+  waveManager: {fileID: 143490672}
   projectile: {fileID: 256981420410339639, guid: 6b1314265e6922847856d7ac8eb041b2,
     type: 3}
 --- !u!4 &1459573118

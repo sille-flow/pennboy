@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
             {
                 // Deal dmg damage to player health
                 GameManager.instance.healthManager.TakeDamage(dmg);
-                Destroy(gameObject);
+                Die();
             }
         }
     }
@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        GameManager.instance.moneyManager.EarnMoney(moneyWorth);
+       // GameManager.instance.waveManager.waveList.transform.GetChild(GameManager.instance.waveManager.waveIndex).GetComponent<wave1>().enemies.Remove(gameObject) ;
         Destroy(gameObject);
     }
 

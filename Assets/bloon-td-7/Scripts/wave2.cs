@@ -8,9 +8,11 @@ public class wave2 : MonoBehaviour
     public GameObject enemyList;
 
     private int enemyIndex = 0;
-    public int enemiesSpawned;
+    public int enemiesSpawned = 0;
     private float spawnRate = 0.25f;
+    private int enemyCount = 20;
     private float timer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,15 +25,13 @@ public class wave2 : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        else
+        else if (enemiesSpawned < enemyCount)
         {
             timer = 0;
             enemiesSpawned += 1;
+            
             switch (enemiesSpawned)
             {
-                case 20:
-                    Destroy(gameObject);
-                    break;
                 case 15:
                     enemyIndex = 1;
                     break;
@@ -39,8 +39,26 @@ public class wave2 : MonoBehaviour
                     enemyIndex = 2;
                     break;
             }
+
             //Debug.Log("enemiesSpanwed: " + enemiesSpawned + "enemyIndex: " + enemyIndex);
-            Instantiate(enemyList.transform.GetChild(enemyIndex).gameObject, transform.position, transform.rotation);
+            GameObject newEnemy = Instantiate(enemyList.transform.GetChild(enemyIndex).gameObject, transform.position, transform.rotation);
+            enemies.Add(newEnemy);
+            if (checkAllNull(enemies) && enemies.Count == enemyCount)
+            {
+                //Debug.Log("start next wave countdown");
+                GameManager.instance.waveManager.waveOccurring = false;
+            }
         }
+    }
+    private bool checkAllNull(List<GameObject> l)
+    {
+        foreach (GameObject obj in l)
+        {
+            if (obj != null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

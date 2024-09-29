@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
-  enemyList: {fileID: 0}
+  enemyList: {fileID: 2443749890622689818, guid: ced218ab5057b4f0689d42135a22805d,
+    type: 3}
   enemiesSpawned: 0
 --- !u!1 &2760104987152425872
 GameObject:
