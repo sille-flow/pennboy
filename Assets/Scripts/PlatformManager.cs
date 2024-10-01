@@ -9,16 +9,28 @@ public class PlatformManager : MonoBehaviour
     private List<GameObject> _platformPrefabs; // List of platform prefabs that can be instantiated
     [SerializeField]
     List<GameObject> _activePlatforms; // Platforms currently visible in the game
+
+    [SerializeField]
+    private CameraController _cameraController;
+
     private GameObject _currentPlatform; // The platform player is currently on
     private GameObject _nextPlatform;  // The platform that the player will jump to
-
-    [Button("GeneratePlatform", "GeneratePlatform button")]
-    public int testGeneratePlatform;
 
     private void Start()
     {
         _currentPlatform = _activePlatforms[0];
         _nextPlatform = GeneratePlatform();
+    }
+
+    private void Update()
+    {
+#if UNITY_EDITOR
+        // For debugging, comment out when player is intergrated
+        if (Input.GetKeyDown("space"))
+        {
+            JumpLanded();
+        }
+#endif
     }
 
     /// <summary>
@@ -28,6 +40,7 @@ public class PlatformManager : MonoBehaviour
     {
         _currentPlatform = _nextPlatform;
         _nextPlatform = GeneratePlatform();
+        _cameraController.MoveCamera(_currentPlatform.transform.position);
         DeinstantiateOldPlatform();
     }
 
