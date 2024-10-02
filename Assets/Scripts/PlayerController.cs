@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     bool isJumping = false;
     Vector3 startingPos = Vector3.zero;
     Vector3 destination = Vector3.zero;
-    float duration = 0;
+    float duration = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,12 +70,10 @@ public class PlayerController : MonoBehaviour
                 float time = (Time.time - (jumpStartTime+jumpElapsedTime));
                 m_Transform.position = evaluate(startingPos, destination, time / duration);
                 m_Transform.rotation *= Quaternion.Euler((Time.deltaTime / duration) * 360, 0, 0);
-                //m_Transform.forward =
-                //    evaluate(startingPos, destination, time * speed + 0.01f) - transform.position;
             }
-            
+
         }
-       
+
     }
 
     public Vector3 evaluate(Vector3 startPos, Vector3 endPos, float t)
