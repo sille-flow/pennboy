@@ -7,18 +7,22 @@ public class PlatformManager : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> _platformPrefabs; // List of platform prefabs that can be instantiated
+
     [SerializeField]
     List<GameObject> _activePlatforms; // Platforms currently visible in the game
 
     [SerializeField]
     private CameraController _cameraController;
 
+    [SerializeField]
+    private int _maxPlatformCount = 6; // Maximum number of platforms to exist at a time.
+
     private GameObject _currentPlatform; // The platform player is currently on
     private GameObject _nextPlatform;  // The platform that the player will jump to
 
     private void Start()
     {
-        _currentPlatform = _activePlatforms[0];
+        _currentPlatform = GeneratePlatform();
         _nextPlatform = GeneratePlatform();
     }
 
@@ -64,15 +68,22 @@ public class PlatformManager : MonoBehaviour
     {
         bool isGeneratingOnLeft = (UnityEngine.Random.value < 0.5);
 
-        Vector3 newPlatformPosition = _currentPlatform.transform.position;
-        float distance = 3;
-        if (isGeneratingOnLeft)
+        Vector3 newPlatformPosition;
+        if (_currentPlatform is null) // No platform has been generated so far
         {
-            newPlatformPosition += _currentPlatform.transform.forward * distance;
-        }
-        else
+            newPlatformPosition = transform.position;
+        } else // Generating new platform based on current platform position
         {
-            newPlatformPosition += _currentPlatform.transform.right * distance;
+            newPlatformPosition = _currentPlatform.transform.position;
+            float distance = 3;
+            if (isGeneratingOnLeft)
+            {
+                newPlatformPosition += _currentPlatform.transform.forward * distance;
+            }
+            else
+            {
+                newPlatformPosition += _currentPlatform.transform.right * distance;
+            }
         }
 
         GameObject newPlatform = GameObject.Instantiate(_platformPrefabs[0], newPlatformPosition, Quaternion.identity);
@@ -86,6 +97,11 @@ public class PlatformManager : MonoBehaviour
     /// </summary>
     private void DeinstantiateOldPlatform()
     {
-
+        while (_activePlatforms.Count > _maxPlatformCount)
+        {
+            GameObject platformToRemove = _activePlatforms[0];
+            _activePlatforms.RemoveAt(0);
+            Destroy(platformToRemove);
+        }
     }
 }
