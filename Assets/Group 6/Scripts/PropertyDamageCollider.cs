@@ -9,6 +9,7 @@ public class PropertyDamageCollider : MonoBehaviour
     [SerializeField] private float damageOffset = 0;
     [SerializeField] private float maxDamage = 100;
     [SerializeField] private float cooldownTime;
+    [SerializeField] private AudioSource crashSound;
     private float currCooldownTime = 0;
 
 
@@ -28,6 +29,7 @@ public class PropertyDamageCollider : MonoBehaviour
 
 
     public int calculateDamage(float impulse) {
+        crashSound.Play(0);
         int damage = Mathf.RoundToInt(Mathf.Clamp(damageSlope * impulse + damageOffset, 0, maxDamage));
         if (damage > 0 && currCooldownTime == 0) {
             currCooldownTime = cooldownTime;
