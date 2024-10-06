@@ -17,7 +17,7 @@ public class Player_Movement : MonoBehaviour
 
     private float jumpVelocity;
 
-    private float playerMass = 120;
+    //private float playerMass = 120;
 
     private float mouseSensitivity = 1;
 
