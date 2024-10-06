@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player_Movement : MonoBehaviour
 {
@@ -51,6 +52,11 @@ public class Player_Movement : MonoBehaviour
             playerSpeed = basePlayerSpeed * speedUp;
         } else {
             playerSpeed = basePlayerSpeed;
+        }
+        if (Input.GetKey(KeyCode.F)) {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            SceneManager.LoadScene(5);
         }
         playerVelocity += (gameObject.transform.right * Input.GetAxis("Horizontal") + gameObject.transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
         controller.Move(playerVelocity * Time.deltaTime);

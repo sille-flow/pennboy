@@ -21,6 +21,6 @@ public class HUD : MonoBehaviour
     }
 
     public void updateBudget(int newBudget) {
-        budgetText.text = "Budget: " + $"{newBudget}";
+        budgetText.text = "Budget: $" + $"{newBudget}";
     }
 }
