@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float distance = 2.5f;
     [SerializeField] float Duration = 1f;
     [SerializeField] float minimumHeight = 5f;
+    [SerializeField] PlatformManager platformManager; 
+    [SerializeField] CameraController cameraController;
+
     public Transform m_Transform;
     public GameObject mainCamera;
 
@@ -63,6 +66,9 @@ public class PlayerController : MonoBehaviour
                 destination = Vector3.zero;
                 startingPos = Vector3.zero;
                 duration = Duration;
+
+                platformManager.JumpLanded();
+                cameraController.MoveCamera(transform.position); 
             }
             //still going
             else

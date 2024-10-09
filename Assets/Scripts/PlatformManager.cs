@@ -12,9 +12,6 @@ public class PlatformManager : MonoBehaviour
     List<GameObject> _activePlatforms; // Platforms currently visible in the game
 
     [SerializeField]
-    private CameraController _cameraController;
-
-    [SerializeField]
     private int _maxPlatformCount = 6; // Maximum number of platforms to exist at a time.
 
     private GameObject _currentPlatform; // The platform player is currently on
@@ -30,10 +27,10 @@ public class PlatformManager : MonoBehaviour
     {
 #if UNITY_EDITOR
         // For debugging, comment out when player is intergrated
-        if (Input.GetKeyDown("space"))
-        {
-            JumpLanded();
-        }
+        //if (Input.GetKeyDown("space"))
+        //{
+        //    JumpLanded();
+        //}
 #endif
     }
 
@@ -44,7 +41,6 @@ public class PlatformManager : MonoBehaviour
     {
         _currentPlatform = _nextPlatform;
         _nextPlatform = GeneratePlatform();
-        _cameraController.MoveCamera(_currentPlatform.transform.position);
         DeinstantiateOldPlatform();
     }
 
