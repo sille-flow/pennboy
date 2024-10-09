@@ -38,7 +38,7 @@ public class LuggageCart : MonoBehaviour
         int damage = 0;
         PropertyDamageCollider col = collision.gameObject.GetComponent<PropertyDamageCollider>();
         Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.name.Contains("Wall")) {
+        if (collision.gameObject.tag == "Group6Wall") {
             crashSound.Play(0);
             damage = Mathf.RoundToInt(Mathf.Clamp(damageSlope * collision.impulse.magnitude + damageOffset, 0, maxDamage));
             Debug.Log(damage);
