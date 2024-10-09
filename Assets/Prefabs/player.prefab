@@ -57,8 +57,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHeight: 2
   distance: 2.5
-  Duration: 1
+  minJumpDuration: 0.3
+  maxJumpDuration: 0.8
   minimumHeight: 5
+  platformManager: {fileID: 0}
+  cameraController: {fileID: 0}
   m_Transform: {fileID: 0}
   mainCamera: {fileID: 0}
 --- !u!23 &5219964766141275938

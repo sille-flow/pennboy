@@ -2,84 +2,89 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState
+{
+    ReadyToJump,
+    JumpCharging,
+    Jumping, 
+    InputLocked,
+}
+
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float maxHeight = 2f;
     [SerializeField] float distance = 2.5f;
-    [SerializeField] float Duration = 1f;
+    [SerializeField] float minJumpDuration = 1f;
+    [SerializeField] float maxJumpDuration = 2f;
     [SerializeField] float minimumHeight = 5f;
     [SerializeField] PlatformManager platformManager; 
     [SerializeField] CameraController cameraController;
 
-    public Transform m_Transform;
-    public GameObject mainCamera;
+    PlayerState playerState = PlayerState.ReadyToJump;
 
-    float jumpStartTime = 0;
-    float jumpElapsedTime = 0;
-    bool isJumping = false;
+    float jumpChargeStartTime = 0;
+    float jumpChargeDuration = 0;
+
     Vector3 startingPos = Vector3.zero;
     Vector3 destination = Vector3.zero;
-    float duration = 1;
-    // Start is called before the first frame update
+    float jumpDuration = 1;
+
     void Start()
     {
-        float duration = Duration;
-        m_Transform = gameObject.GetComponent<Transform>();
-        //mainCamera = GameObject.Find("")
+        float duration = minJumpDuration;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!isJumping)
+        switch(playerState)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                jumpStartTime = Time.time;
-                startingPos = m_Transform.position;
-                //Debug.Log("Jump Held Down");
-            }
-            if (Input.GetKeyUp(KeyCode.Space) && jumpStartTime != 0)
-            {
-                jumpElapsedTime = Time.time - jumpStartTime;
-                isJumping = true;
-                if (jumpElapsedTime < 1) duration *= 0.5f;
-                  else duration += jumpElapsedTime * 0.1f;
-                //add 2 directions later
-                destination = m_Transform.position +
-                    m_Transform.forward * jumpElapsedTime * distance;
-                //Debug.Log("Start Jumping");
-            }
+            case PlayerState.ReadyToJump:
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    jumpChargeStartTime = Time.time;
+                    startingPos = transform.position;
+                    playerState = PlayerState.JumpCharging; 
+                }
+                break; 
+
+            case PlayerState.JumpCharging:
+                if (Input.GetKeyUp(KeyCode.Space) && jumpChargeStartTime != 0)
+                {
+                    jumpChargeDuration = Time.time - jumpChargeStartTime;
+                    jumpDuration = Mathf.Clamp(jumpChargeDuration, minJumpDuration, maxJumpDuration);
+
+                    // Add 2 directions later
+                    destination = transform.position +
+                        transform.forward * jumpChargeDuration * distance;
+
+                    playerState = PlayerState.Jumping;
+                }
+                break; 
+            case PlayerState.Jumping:
+                // Jumped to Pos
+                if (Vector3.Distance(transform.position, destination) < 0.05f)
+                {
+                    // Reset transform to upright position
+                    transform.position = destination;
+                    transform.rotation =
+                        Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
+
+                    // Generate new platform if jump landed 
+                    platformManager.JumpLanded();
+                    cameraController.MoveCamera(transform.position);
+
+                    playerState = PlayerState.ReadyToJump; 
+                }
+                // Still going
+                else
+                {
+                    float time = (Time.time - (jumpChargeStartTime + jumpChargeDuration));
+                    transform.position = evaluate(startingPos, destination, time / jumpDuration);
+                    transform.rotation *= Quaternion.Euler((Time.deltaTime / jumpDuration) * 360, 0, 0);
+                }
+                break; 
         }
-        else
-        {
-            //Jumped to Pos
-            if(Vector3.Distance(m_Transform.position,destination) < 0.05f)
-            {
-                //Debug.Log("Jump Ended");
-                isJumping = false;
-                jumpElapsedTime = 0;
-                jumpStartTime = 0;
-                m_Transform.position = destination;
-                m_Transform.rotation =
-                    Quaternion.Euler(0, m_Transform.rotation.y, m_Transform.rotation.z);
-                destination = Vector3.zero;
-                startingPos = Vector3.zero;
-                duration = Duration;
-
-                platformManager.JumpLanded();
-                cameraController.MoveCamera(transform.position); 
-            }
-            //still going
-            else
-            {
-                float time = (Time.time - (jumpStartTime+jumpElapsedTime));
-                m_Transform.position = evaluate(startingPos, destination, time / duration);
-                m_Transform.rotation *= Quaternion.Euler((Time.deltaTime / duration) * 360, 0, 0);
-            }
-
-        }
-
     }
 
     public Vector3 evaluate(Vector3 startPos, Vector3 endPos, float t)
