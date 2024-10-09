@@ -35,7 +35,7 @@ public class LuggageCart : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        int damage = 0;
+        int damage;
         PropertyDamageCollider col = collision.gameObject.GetComponent<PropertyDamageCollider>();
         Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "Group6Wall") {

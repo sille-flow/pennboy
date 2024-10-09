@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Player_Movement : MonoBehaviour
 {
+    [SerializeField] Game level;
+
     private CharacterController controller;
 
     private Vector3 playerVelocity = new Vector3(0,0,0);
@@ -82,7 +84,17 @@ public class Player_Movement : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit) {
         if (hit.rigidbody != null) {
             Vector3 horizontalDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-            hit.rigidbody.AddForce(horizontalDir * 100000);
+            Vector3 force = horizontalDir * 100000;
+            hit.rigidbody.AddForce(force);
+
+            // property damage from player
+            PropertyDamageCollider col = hit.gameObject.GetComponent<PropertyDamageCollider>();
+            if (col != null) {
+                int damage = col.calculateDamage(force.magnitude);
+                if (damage != 0) {
+                    level.reduceBudget(damage);
+                }
+            }
         }
     }
 }
