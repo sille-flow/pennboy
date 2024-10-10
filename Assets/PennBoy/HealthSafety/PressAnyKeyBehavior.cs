@@ -2,6 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace PennBoy
+{
 public class PressAnyKeyBehavior : MonoBehaviour
 {
     [SerializeField] private CanvasGroup pressAny;
@@ -25,4 +27,5 @@ public class PressAnyKeyBehavior : MonoBehaviour
         keyBorder.color = flashColor;
         text.color = flashColor;
     }
+}
 }
