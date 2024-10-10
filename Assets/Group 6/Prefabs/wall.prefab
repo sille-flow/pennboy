@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a5226a13731fb3792a63ae5bc1ab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSlope: 0.01
+  damageSlope: 0.025
   damageOffset: 0
   maxDamage: 50
   cooldownTime: 10
