@@ -2,6 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlatformDirection
+{
+    Left, 
+    Right
+}
+
 [Serializable]
 public class PlatformManager : MonoBehaviour
 {
@@ -14,10 +20,14 @@ public class PlatformManager : MonoBehaviour
     [SerializeField]
     private int _maxPlatformCount = 6; // Maximum number of platforms to exist at a time.
 
+    [SerializeField] float minPlatformSize = 1f;
+    [SerializeField] float maxPlatformSize = 2f; 
+
     private GameObject _currentPlatform; // The platform player is currently on
     private GameObject _nextPlatform;  // The platform that the player will jump to
+    private PlatformDirection _nextPlatformDirection; // Either left or right 
 
-    private void Start()
+    private void Awake()
     {
         _currentPlatform = GeneratePlatform();
         _nextPlatform = GeneratePlatform();
@@ -57,12 +67,37 @@ public class PlatformManager : MonoBehaviour
         return _nextPlatform.transform.position;
     }
 
+    public float GetNextPlatformRadius()
+    {
+        if (_nextPlatform == null)
+        {
+            Debug.LogError("Next platform is null. Check if the next platform has been instantiated by calling GeneratePlatform and set");
+        }
+
+
+        return _nextPlatform.transform.localScale.x / 2; 
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns> The direction of the next platform (left or right) </returns>
+    public PlatformDirection GetNextPlatformDirection()
+    {
+        return _nextPlatformDirection; 
+    }
+
     /// <summary>
     /// Creates a platform in either left or right of the platform
     /// </summary>
     private GameObject GeneratePlatform()
     {
         bool isGeneratingOnLeft = (UnityEngine.Random.value < 0.5);
+        // Set the direction of the direction of the next platform 
+        // Player uses this info for aligning to the platform and changing thd direction it is facing 
+        _nextPlatformDirection = (isGeneratingOnLeft) ? PlatformDirection.Left : PlatformDirection.Right;
+        
+        
 
         Vector3 newPlatformPosition;
         if (_currentPlatform is null) // No platform has been generated so far
@@ -83,6 +118,17 @@ public class PlatformManager : MonoBehaviour
         }
 
         GameObject newPlatform = GameObject.Instantiate(_platformPrefabs[0], newPlatformPosition, Quaternion.identity);
+
+        // Randomize the size of the platform by adjusting its radius.
+        // The platform's default scale assumes a radius of 1, which is then scaled to a random value between minPlatformRadius and maxPlatformRadius.
+        float platformSize = UnityEngine.Random.Range(minPlatformSize, maxPlatformSize);
+        newPlatform.transform.localScale = new Vector3(platformSize, 1, platformSize);
+
+#if UNITY_EDITOR
+        PlatformDebug platformDebug = newPlatform.GetComponent<PlatformDebug>();
+        platformDebug.SetPlatformRadius(platformSize / 2);
+#endif
+
         _activePlatforms.Add(newPlatform);
 
         return newPlatform;

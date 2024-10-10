@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 309257024344784313, guid: 878e883f1b0eb420581d095da132d40e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 309257024344784313, guid: 878e883f1b0eb420581d095da132d40e,
         type: 3}
@@ -186,6 +186,11 @@ PrefabInstance:
       propertyPath: platformManager
       value: 
       objectReference: {fileID: 1065729012}
+    - target: {fileID: 3754026934016403476, guid: 878e883f1b0eb420581d095da132d40e,
+        type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1966103772}
     - target: {fileID: 8489976797144303734, guid: 878e883f1b0eb420581d095da132d40e,
         type: 3}
       propertyPath: m_Name
@@ -233,11 +238,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3627926723087552323, guid: 356169b85e7f44d419d9323b95770306,
-        type: 3}
-      propertyPath: _cameraController
-      value: 
-      objectReference: {fileID: 1966103772}
     - target: {fileID: 7052527156688873008, guid: 356169b85e7f44d419d9323b95770306,
         type: 3}
       propertyPath: m_LocalPosition.x

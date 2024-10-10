@@ -47,5 +47,6 @@ MonoBehaviour:
   _platformPrefabs:
   - {fileID: 5321281970895473480, guid: 10ba010c46aa945819ca3ef1aa584785, type: 3}
   _activePlatforms: []
-  _cameraController: {fileID: 0}
   _maxPlatformCount: 6
+  minPlatformRadius: 1
+  maxPlatformRadius: 2
