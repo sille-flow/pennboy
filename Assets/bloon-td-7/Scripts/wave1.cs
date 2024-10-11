@@ -39,6 +39,7 @@ public class wave1 : MonoBehaviour
             }
             //Debug.Log("enemiesSpanwed: " + enemiesSpawned + " enemyIndex: " + enemyIndex);
             GameObject newEnemy = Instantiate(enemyList.transform.GetChild(enemyIndex).gameObject, transform.position, transform.rotation);
+            newEnemy.tag = "BTD7Enemy";
             enemies.Add(newEnemy);
         } 
         if (checkAllNull(enemies) && enemies.Count == enemyCount)

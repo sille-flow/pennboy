@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Projectile
+  - BTD7Projectile
+  - BTD7Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - BTD7Projectile
+  - BTD7Tower
   - 
   - 
   - 

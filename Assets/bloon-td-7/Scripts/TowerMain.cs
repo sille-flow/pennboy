@@ -13,6 +13,8 @@ public class TowerMain : MonoBehaviour
     [SerializeField] protected float range = 7.5f;
     public List<GameObject> enemiesInRange = new List<GameObject>();
     protected float remainingCooldown;
+    protected float projectileSpeed = 100f;
+    protected int projectilePierce = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,7 @@ public class TowerMain : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameObject hit = collision.gameObject;
-        if (hit.tag == "Enemy")
+        if (hit.tag == "BTD7Enemy")
         {
             enemiesInRange.Add(hit);
         }
@@ -70,18 +72,18 @@ public class TowerMain : MonoBehaviour
         remainingCooldown = 0;
 
         // attack
-        SelectedTarget.GetComponent<Enemy>().Damage(damage);
+        //SelectedTarget.GetComponent<Enemy>().Damage(damage);
+        Attack(SelectedTarget);
 
 
         // TODO: get target enemy
         // TODO: get damage
     }
 
-    //protected void Attack(GameObject target)
-    //{
-    //    if (target == null) return;
-    //    Projectile projectile = Instantiate(GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
-    //    projectile.Initialize(damage, projectileSpeed, projectilePierce, target.transform.position);
-    //    Debug.Log("Attacking Enemy " + projectileSpeed);
-    //}
+    protected void Attack(GameObject target)
+    {
+        if (target == null) return;
+        Projectile projectile = Instantiate(GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
+        projectile.Initialize(damage, projectileSpeed, projectilePierce, target.transform.position);
+    }
 }

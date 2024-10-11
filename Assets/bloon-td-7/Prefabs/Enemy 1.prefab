@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3029357783383531719}
   m_Layer: 0
   m_Name: Enemy 1
-  m_TagString: Enemy
+  m_TagString: BTD7Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d911c6835ea8ba428a3ab676d7caca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
   waypointIndex: 0
+  dmg: 0
+  health: 0
+  id: 0
+  moneyWorth: 0
+  modifiers: 
 --- !u!54 &3029357783383531719
 Rigidbody:
   m_ObjectHideFlags: 0

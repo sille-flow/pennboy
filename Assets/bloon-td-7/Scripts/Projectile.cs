@@ -17,13 +17,13 @@ public class Projectile : MonoBehaviour
         pierce_cap = pierce;
         pierce_counter = 0;
         rb = GetComponent<Rigidbody>();
-        Vector3 rotation = target-transform.position;
-        Vector3 direction = transform.position - target;
-        rb.velocity = new Vector3(direction.x, transform.position.y, direction.y).normalized*speed;
+        Vector3 direction = target-transform.position;
+        Vector3 rotation = transform.position - target;
+        rb.velocity = new Vector3(direction.x, 0, direction.z).normalized*speed;
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag != "Enemy") return;
+        if (collision.gameObject.tag != "BTD7Enemy") return;
 
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         enemy.Damage(dmg);
@@ -31,7 +31,10 @@ public class Projectile : MonoBehaviour
         if (pierce_counter >= pierce_cap) Destroy(gameObject);
     }
 
-
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 
 
 }
