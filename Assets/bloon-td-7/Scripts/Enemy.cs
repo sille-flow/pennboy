@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     public bool isCamo { get; protected set; }
     private bool canStart = false;
 
+    public float DistanceTravelled { get; protected set; }
+
     private void Start()
     {
         //Initialize(15f, 1, 3, 0, 1, false, 5);
@@ -55,6 +57,7 @@ public class Enemy : MonoBehaviour
     protected void Update()
     {
         if (!canStart) return;
+        DistanceTravelled += rb.velocity.magnitude * Time.deltaTime;
         if (CalcDistance(transform.position, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
         {
             transform.position = waypoints[waypointIndex + 1];
@@ -64,6 +67,7 @@ public class Enemy : MonoBehaviour
                 // Deal dmg damage to player health
                 GameManager.instance.healthManager.TakeDamage(dmg);
                 Die();
+                GameManager.instance.moneyManager.SpendMoney(moneyWorth);
             }
         }
     }
@@ -71,15 +75,6 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime);
-    }
-
-    /// <summary>
-    /// Returns the distance between the enemy and its next waypoint.
-    /// </summary>
-    /// <returns>float distance to next waypoint</returns>
-    public float GetDistanceToWaypoint()
-    {
-        return CalcDistance(transform.position, waypoints[waypointIndex + 1]);
     }
 
     private float CalcDistance(Vector3 pos1, Vector3 pos2)
@@ -96,7 +91,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
-       // GameManager.instance.waveManager.waveList.transform.GetChild(GameManager.instance.waveManager.waveIndex).GetComponent<wave1>().enemies.Remove(gameObject) ;
+        GameManager.instance.moneyManager.EarnMoney(moneyWorth);
         Destroy(gameObject);
     }
 

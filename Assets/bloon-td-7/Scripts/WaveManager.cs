@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class WaveManager : MonoBehaviour
     public bool waveOccurring = false;
     public GameObject waveList;
     public int waveIndex = 0;
+    [SerializeField] private TextMeshProUGUI roundText;
 
     // Start is called before the first frame update
     private void Start()
@@ -18,6 +20,7 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        roundText.text = "Round:\n" + waveIndex;
         if (timer < waveCooldown && !waveOccurring)
         {
             timer += Time.deltaTime;

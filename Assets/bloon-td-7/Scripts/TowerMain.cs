@@ -13,7 +13,7 @@ public class TowerMain : MonoBehaviour
     [SerializeField] protected float range = 7.5f;
     public List<GameObject> enemiesInRange = new List<GameObject>();
     protected float remainingCooldown;
-    protected float projectileSpeed = 100f;
+    protected float projectileSpeed = 120f;
     protected int projectilePierce = 1;
 
     // Start is called before the first frame update
@@ -53,6 +53,25 @@ public class TowerMain : MonoBehaviour
             return target;
         };
         return null;
+
+        /* ATTEMPT AT ENEMY TARGETING
+        GameObject enemyMax = null;
+        foreach (var target in enemiesInRange)
+        {
+            if (target == null)
+                enemiesInRange.Remove(target);
+            else
+            {
+                if (enemyMax == null)
+                    enemyMax = target;
+                else if (enemyMax.GetComponent<Enemy>().DistanceTravelled < target.GetComponent<Enemy>().DistanceTravelled)
+                {
+                    enemyMax = target;
+                }
+            }
+        }
+        return enemyMax;
+        */
     }
 
     // Update is called once per frame
