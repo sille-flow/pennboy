@@ -1573,7 +1573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69824f9cc2827cb419c8169f544048ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
+  cooldown: 0.1
   damage: 1
   range: 7.5
   enemiesInRange: []

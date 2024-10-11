@@ -32,8 +32,8 @@ public static class EnemyStuff
     }
 
     public static EnemyInfo[] enemies = {
-        new EnemyInfo(0.1f, 1, 5, 10),
-        new EnemyInfo(0.1f, 4, 30, 50)
+        new EnemyInfo(10f, 1, 5, 10),
+        new EnemyInfo(30f, 4, 30, 50)
     };
 
 }
