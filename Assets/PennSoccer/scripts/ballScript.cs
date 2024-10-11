@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class ballScript : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class ballScript : MonoBehaviour
     public Camera mainCamera; // Reference to the main camera
     public float fixedYPosition = 4.78f; // The constant y-position you want the ball to spawn at
     public float spawnDelay = 1f;
+    public TextMeshProUGUI scoreText;
     private float leftBoundary;
     private float rightBoundary;
     public int player1score;
@@ -35,15 +37,17 @@ public class ballScript : MonoBehaviour
         }
     }
 
-    private void OnColliderEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "PennSoccerGoalL")
         {
             player2score++;
+            UpdateScoreText();
         }
         if(other.gameObject.tag == "PennSoccerGoalR")
         {
             player1score++;
+            UpdateScoreText();
         }
     }
 
@@ -62,5 +66,10 @@ public class ballScript : MonoBehaviour
         transform.position = spawnPosition;
     
       
+    }
+
+    void UpdateScoreText()
+    {
+        scoreText.text = "Player 1 score: " + player1score + " \n Player 2 score: " + player2score;
     }
 }
