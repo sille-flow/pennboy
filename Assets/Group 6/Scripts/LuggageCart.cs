@@ -27,6 +27,9 @@ public class LuggageCart : MonoBehaviour
 
     void OnCollisionEnter(Collision collision) {
         PropertyDamageCollider col = collision.gameObject.GetComponent<PropertyDamageCollider>();
+        if (collision.gameObject.name == "Fall off zone") {
+            level.reduceBudget(100000);
+        }
         if (col != null) {
             int damage = col.calculateDamage(collision.impulse.magnitude);
             if (damage != 0) {
