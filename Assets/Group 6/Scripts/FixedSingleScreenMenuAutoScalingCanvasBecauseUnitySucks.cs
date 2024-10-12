@@ -20,7 +20,6 @@ public class FixedSingleScreenMenuAutoScalingCanvasBecauseUnitySucks : MonoBehav
     // Start is called before the first frame update
     void Start()
     {
-        // backgroundImage.SetNativeSize();
         defaultWidth = backgroundImage.mainTexture.width;
         defaultHeight = backgroundImage.mainTexture.height;
         currWidth = defaultWidth;
