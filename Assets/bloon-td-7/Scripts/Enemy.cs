@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
         this.moneyWorth = moneyWorth;
         transform.localScale = new Vector3(size, size, size);
         waypoints = new List<Vector3>();
+        this.gameObject.layer = 2;
 
         Transform waypointListTransform = GameObject.Find("EnemyWaypoints").transform;
 

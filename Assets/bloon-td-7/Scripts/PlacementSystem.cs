@@ -14,8 +14,10 @@ public class PlacementSystem : MonoBehaviour
 
     private void Update()
     {
-        Vector3 MousePosition = inputManager.GetPlacementPosition();
+        (Vector3 MousePosition, bool validplacement) = inputManager.GetPlacementPosition();
+
         mouseIndicator.transform.position = MousePosition + new Vector3(0, 3.5f, 0);
+        if (!validplacement) { return; }
 
         if (Input.GetMouseButtonDown(0))
         {
