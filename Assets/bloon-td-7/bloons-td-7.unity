@@ -287,7 +287,7 @@ MonoBehaviour:
   waveList: {fileID: 8240689702561200034, guid: 90fc9f1702e3948f3b01d8e4b8c8dba3,
     type: 3}
   waveIndex: 0
-  roundText: {fileID: 0}
+  roundText: {fileID: 1898435359}
 --- !u!4 &143490673
 Transform:
   m_ObjectHideFlags: 0
