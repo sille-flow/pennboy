@@ -10,10 +10,12 @@ public class player1movement : MonoBehaviour
     private Rigidbody player1Rb;
     bool facingRight = true;
     public bool isGrounded = true;
+    private SpriteRenderer charRender1;
 
     void Start()
     {
         player1Rb = GetComponent<Rigidbody>();
+        charRender1 = GetComponent<SpriteRenderer>();
         
     }
 
@@ -32,15 +34,31 @@ public class player1movement : MonoBehaviour
             isGrounded = false;
         }
 
+        Flip();
+
     }
+
+    //void Flip()
+    //{
+    //    Vector3 currentScale = gameObject.transform.localScale;
+    //    currentScale.x *= -1;
+    //    gameObject.transform.localScale = currentScale;
+
+    //    facingRight = !facingRight;
+    //}
 
     void Flip()
     {
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x *= -1;
-        gameObject.transform.localScale = currentScale;
+        if(horizontalInput > 0)
+        {
+            facingRight = false;
+            charRender1.flipX = false;
+        } else if (horizontalInput < 0)
+        {
+            facingRight = true;
+            charRender1.flipX = true;
+        }
 
-        facingRight = !facingRight;
     }
 
     private void OnCollisionEnter(Collision collision)

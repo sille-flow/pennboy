@@ -35,6 +35,9 @@ public class ballScript : MonoBehaviour
             SpawnBall();
             
         }
+
+        PlayerPrefs.SetInt("Player 1 Score", player1score);
+        PlayerPrefs.SetInt("Player 2 Score", player2score);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,6 +73,6 @@ public class ballScript : MonoBehaviour
 
     void UpdateScoreText()
     {
-        scoreText.text = "Player 1 score: " + player1score + " \n Player 2 score: " + player2score;
+        scoreText.text = player1score + "   " + player2score;
     }
 }

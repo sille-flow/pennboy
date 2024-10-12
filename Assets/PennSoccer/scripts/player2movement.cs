@@ -9,10 +9,14 @@ public class player2movement : MonoBehaviour
     private float horizontalInput;
     private Rigidbody player2Rb;
     public bool isGrounded = true;
+    public bool facingRight;
+    private SpriteRenderer charRender2;
 
     void Start()
     {
         player2Rb = GetComponent<Rigidbody>();
+        charRender2 = GetComponent<SpriteRenderer>();
+
     }
 
     void Update()
@@ -26,6 +30,23 @@ public class player2movement : MonoBehaviour
             player2Rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+
+        Flip();
+    }
+
+    void Flip()
+    {
+        if (horizontalInput > 0)
+        {
+            facingRight = false;
+            charRender2.flipX = false;
+        }
+        else if (horizontalInput < 0)
+        {
+            facingRight = true;
+            charRender2.flipX = true;
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -9,6 +9,8 @@ TagManager:
   - PennSoccerPlayer
   - PennSoccerGoalR
   - PennSoccerGoalL
+  - PennSoccerUI
+  - PennSoccerBall
   layers:
   - Default
   - TransparentFX
