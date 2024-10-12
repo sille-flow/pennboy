@@ -19,10 +19,13 @@ public class InputManager : MonoBehaviour
         Ray mouseray = SceneCamera.ScreenPointToRay(mousePos);
 
         RaycastHit hit;
-        if (Physics.Raycast(mouseray, out hit, 100, PlacementLayerMask))
+        if (Physics.Raycast(mouseray, out hit, 1000, PlacementLayerMask) && (hit.transform.gameObject.tag != "BTD7PlacementBlocker"))
         {
-            Debug.Log(LastPos);
             LastPos = hit.point;
+        }
+        else
+        {
+            LastPos = new Vector3(0, -100, 0);
         }
         
         return LastPos;

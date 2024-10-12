@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BTD7Projectile
   - BTD7Enemy
+  - BTD7PlacementBlocker
   layers:
   - Default
   - TransparentFX

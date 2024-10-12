@@ -11,7 +11,7 @@ public class TowerMain : MonoBehaviour
     [SerializeField] protected float cooldown = 1f;
     [SerializeField] protected int damage = 1;
     [SerializeField] protected float range = 7.5f;
-    public List<GameObject> enemiesInRange = new List<GameObject>();
+    protected List<GameObject> enemiesInRange = new List<GameObject>();
     protected float remainingCooldown;
     protected float projectileSpeed = 120f;
     protected int projectilePierce = 1;

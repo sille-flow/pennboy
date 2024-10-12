@@ -6,7 +6,7 @@ using TMPro;
 
 public class MoneyManager : MonoBehaviour
 {
-    private int startingMoney = 100; 
+    private int startingMoney = 200; 
     private int currentMoney;
 
     [SerializeField] public TextMeshProUGUI moneyText; 
@@ -32,6 +32,11 @@ public class MoneyManager : MonoBehaviour
             return true; 
         }
         return false;
+    }
+
+    public int GetCurrentMoney()
+    {
+        return currentMoney;
     }
 
     void UpdateMoneyUI()
