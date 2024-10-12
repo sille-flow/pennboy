@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoxfireScript : MonoBehaviour
 {
-    private PlayerScript player;
+    private MovementScript player;
     [SerializeField] float minBezierDuration;
     [SerializeField] float maxBezierDuration;
     private float duration;
@@ -16,13 +16,15 @@ public class FoxfireScript : MonoBehaviour
     private Vector3 endPoint;
     private Vector3 startPoint;
     private float time;
+    private Vector3 offset;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerScript>();
-        startPoint = transform.position;
+        offset = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), 0);
+        player = FindObjectOfType<MovementScript>();
+        startPoint = this.transform.parent.transform.position;
         endPoint = player.transform.position;
         duration = Random.Range(minBezierDuration, maxBezierDuration);
         curveHeight = Random.Range(minCurveHeight, maxCurveHeight);
@@ -36,7 +38,9 @@ public class FoxfireScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        endPoint = player.transform.position;
+        startPoint = this.transform.parent.transform.position;
+        endPoint = player.transform.position + offset;
+        controlPoint = (startPoint + endPoint) / 2 + Vector3.up * curveHeight;
         time += Time.deltaTime;
         float t = Mathf.Clamp01(time / duration);
 

@@ -11,6 +11,8 @@ public class MovementScript : MonoBehaviour
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
+    private float airDrag;
+    [SerializeField]
     private float jumpForce;
     [SerializeField]
     private float doubleJumpForce;
@@ -43,6 +45,9 @@ public class MovementScript : MonoBehaviour
     [SerializeField]
     float fastFallAir;
     private bool isActive { get; set; }
+
+    [SerializeField]
+    Animator anim;
 
     private bool isjump;
 
@@ -85,6 +90,9 @@ public class MovementScript : MonoBehaviour
         applyGravity();
         if (isActive)
         {
+            anim.SetBool("Running", (Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded));
+            anim.SetFloat("MotionSpeed", Mathf.Pow((rb.velocity.x / maxSpeed), 0.1f));
+            anim.SetBool("FreeFall", (rb.velocity.y < 0 && !isGrounded));
             if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
             {
                 if (isGrounded)
@@ -94,14 +102,18 @@ public class MovementScript : MonoBehaviour
                 else if (!isGrounded && !(isWallLeft || isWallRight)) 
                 {
                     DoubleJump();
-                } else if (!isGrounded && (isWallLeft || isWallRight)) 
+                } 
+                else if (!isGrounded && (isWallLeft || isWallRight)) 
                 {
                     WallJump();
                 }
+                anim.SetBool("Jump", true);
+            } else
+            {
+                anim.SetBool("Jump", false);
             }
             Move();
         }
-        Debug.Log(canDash);
     }
 
 
@@ -113,7 +125,11 @@ public class MovementScript : MonoBehaviour
     void Move() //2
     {
         Vector3 force = new Vector3(Input.GetAxis("Horizontal") * accFactor, 0, 0);
-       rb.AddForce(force, ForceMode.Impulse);
+        if (!isGrounded)
+        {
+            force *= airDrag;
+        }
+        rb.AddForce(force, ForceMode.Impulse);
 
         Vector3 clampedVel = rb.velocity;
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)
@@ -161,7 +177,6 @@ public class MovementScript : MonoBehaviour
             }
 
             if (Input.GetKey(KeyCode.S) && !isFastFall) {
-                Debug.Log("fast fall");
                 gravityForce *= (isWallLeft || isWallRight) ? fastFallWall : fastFallAir;
                 isFastFall = true;
             } else {
@@ -211,9 +226,9 @@ public class MovementScript : MonoBehaviour
         //Debug.Log("Dash");
         while (dashTimeElapsed < dashDuration)
         {
-        rb.velocity = new Vector3(dashDirection * dashSpeed, 0f, 0f);
-        dashTimeElapsed += Time.deltaTime;
-        yield return null;
+            rb.velocity = new Vector3(dashDirection * dashSpeed, 0f, 0f);
+            dashTimeElapsed += Time.deltaTime;
+            yield return null;
         }
 
        // Debug.Log("Dash done");
@@ -239,9 +254,9 @@ public class MovementScript : MonoBehaviour
         //Debug.Log("Air Dash";
         while (dashTimeElapsed < dashDuration)
         {
-        rb.velocity = new Vector3(dashDirection * (dashSpeed - 2f), 0f, 0f);
-        dashTimeElapsed += Time.deltaTime;
-        yield return null;
+            rb.velocity = new Vector3(dashDirection * (dashSpeed - 2f), 0f, 0f);
+            dashTimeElapsed += Time.deltaTime;
+            yield return null;
         }
 
        // Debug.Log("Air Dash Done");
@@ -281,5 +296,6 @@ public class MovementScript : MonoBehaviour
         {
             canDoubleJump = true;
         }
+        anim.SetBool("Grounded", isGrounded);
     }
 }

@@ -20,6 +20,7 @@ public class ShadowMonsterScript : MonoBehaviour
     [SerializeField] float stateDownTime;
     private float currDownTime;
 
+    [SerializeField] Transform firePivot;
     [SerializeField] GameObject foxfire;
     [SerializeField] float foxfireCD;
     [SerializeField] int foxfireCDVariance;
@@ -27,6 +28,7 @@ public class ShadowMonsterScript : MonoBehaviour
     [SerializeField] int maxFoxfire;
     private float currCD;
 
+    [SerializeField]
     private float moveSpeed;
     private int state; //0 = offscreen, 1 = onscreen, 2 = on-player
     [SerializeField] float onScreenPos;
@@ -67,17 +69,17 @@ public class ShadowMonsterScript : MonoBehaviour
         switch(state)
         {
             case 0:
-                target = new Vector3(player.transform.position.x - onScreenPos * 2, 0, 0);
+                target = new Vector3(player.transform.position.x - onScreenPos * 2, this.transform.position.y, this.transform.position.z);
                 transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
                 break;
             case 1:
-                target = new Vector3(player.transform.position.x - onScreenPos, 0, 0);
-                transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+                target = new Vector3(player.transform.position.x - onScreenPos, this.transform.position.y, this.transform.position.z);
+                transform.position = target;
                 currCD -= Time.deltaTime;
                 fire();
                 break;
             case 2:
-                target = new Vector3(player.transform.position.x, 0, 0);
+                target = new Vector3(player.transform.position.x, this.transform.position.y, this.transform.position.z);
                 transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
                 break;
         }
@@ -90,8 +92,8 @@ public class ShadowMonsterScript : MonoBehaviour
             int randInt = Random.Range(minFoxfire, maxFoxfire);
             for (int i = 0; i < randInt; i++)
             {
-                GameObject foxfireInstance = Instantiate(foxfire);
-                foxfireInstance.transform.position = this.transform.position;
+                GameObject foxfireInstance = Instantiate(foxfire, firePivot.transform);
+                foxfireInstance.transform.position = firePivot.transform.position;
             }
             currCD = foxfireCD + Random.Range(-foxfireCDVariance, foxfireCDVariance);
         }
