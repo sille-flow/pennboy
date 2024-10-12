@@ -348,12 +348,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 307704443}
-  timeLeft: 5
+  timeLeft: 120
   gameEnd: 0
-  winnerText: {fileID: 0}
-  winText: {fileID: 516471749}
   ball: {fileID: 3925695099744327306}
-  winningPlayer: 
 --- !u!114 &307704443
 MonoBehaviour:
   m_ObjectHideFlags: 0
