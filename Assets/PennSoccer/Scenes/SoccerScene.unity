@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 307704443}
-  timeLeft: 120
+  timeLeft: 30
   gameEnd: 0
   ball: {fileID: 3925695099744327306}
 --- !u!114 &307704443
@@ -1178,7 +1178,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1325243448}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1229,7 +1229,7 @@ Transform:
   m_GameObject: {fileID: 1325243448}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.53, y: 0.17, z: -7.57}
+  m_LocalPosition: {x: -11.9, y: 0.17, z: -7.57}
   m_LocalScale: {x: 1.1768, y: 17.76636, z: 26.61}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1947,7 +1947,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097130334}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1998,7 +1998,7 @@ Transform:
   m_GameObject: {fileID: 2097130334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.73, y: 0.37, z: -7.57}
+  m_LocalPosition: {x: 12.6, y: 0.37, z: -7.57}
   m_LocalScale: {x: 1.1768, y: 17.76636, z: 26.61}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2130,7 +2130,7 @@ PrefabInstance:
     - target: {fileID: 328061977414940775, guid: 2db2871b54ce244009b5b038d97ca7e7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.564
+      value: -7.13
       objectReference: {fileID: 0}
     - target: {fileID: 328061977414940775, guid: 2db2871b54ce244009b5b038d97ca7e7,
         type: 3}
