@@ -32,14 +32,6 @@ public class PlayerController : MonoBehaviour
     float jumpDuration = 0f;
     float jumpAnimationEndThreshold = 0.01f;
 
-    int score = 0;
-    private ParticleSystem chargingEffect;
-
-    private void Start()
-    {
-        chargingEffect = gameObject.GetComponentInChildren<ParticleSystem>();
-    }
-
     void Update()
     {
         switch(playerState)
@@ -55,18 +47,9 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case PlayerState.JumpCharging:
-                if (!chargingEffect.isPlaying)
-                {
-                    chargingEffect.gameObject.SetActive(true);
-                    chargingEffect.Play();
-                }
-                ShrinkAnimationController.instance.Shrink(Time.deltaTime);
                 // Check if player released the jump button
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
-                    ShrinkAnimationController.instance.ResetSize();
-                    chargingEffect.gameObject.SetActive(false);
-                    chargingEffect.Stop();
                     jumpChargeDuration = Time.time - jumpChargeStartTime;
                     jumpDuration = Mathf.Clamp(jumpChargeDuration, minJumpDuration, maxJumpDuration);
 
@@ -88,13 +71,10 @@ public class PlayerController : MonoBehaviour
                     if(IsPlayerOnPlatform())
                     {
                         platformManager.JumpLanded();
-                        score += 1;
-                        CanvasScript.instance.UpdateScore(score);
                     } else
                     {
                         playerState = PlayerState.GameOver;
                         Rigidbody temp = gameObject.AddComponent<Rigidbody>();
-                        StartCoroutine("gameOver");
                         Debug.Log("Game Over!");
                         return; 
                     }
@@ -115,14 +95,6 @@ public class PlayerController : MonoBehaviour
 
             // TODO: Add input cacheing while player state is "InputLocked" so that it feels responsive.
         }
-    }
-
-    private IEnumerator gameOver()
-    {
-        yield return new WaitForSeconds(1.5f);
-        CanvasScript.instance.DisplayGameOver();
-        yield return new WaitForSeconds(2f);
-        CanvasScript.instance.RestartScene();
     }
 
     /// <summary>

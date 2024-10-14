@@ -1,14 +1,24 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class CanvasScript : MonoBehaviour
 {
+    public static CanvasScript instance;
     [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] GameObject gameOverScreen;
+    GameObject gameOverScreen;
 
     private int testIterator = 1;
-    
+    private void Awake()
+    {
+        instance = this;
+    }
+    private void Start()
+    {
+        gameOverScreen = GameObject.Find("GameOverScreen");
+        gameOverScreen.SetActive(false);
+    }
     // Call this method to restart the current scene.
     // Currently used by the restart button in the game over scene.
     public void RestartScene() {
