@@ -13,7 +13,7 @@ public class TowerMain : MonoBehaviour
     [SerializeField] protected float range = 7.5f;
     protected List<GameObject> enemiesInRange = new List<GameObject>();
     protected float remainingCooldown;
-    protected float projectileSpeed = 120f;
+    protected float projectileSpeed = 240f;
     protected int projectilePierce = 1;
 
     // Start is called before the first frame update
