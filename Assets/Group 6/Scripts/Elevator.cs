@@ -39,7 +39,7 @@ public class Elevator : MonoBehaviour
         isMoving = true;
 
         // Move the elevator to the target position
-        while (Vector3.Distance(elevatorPlatform.position, targetPosition.position) > 0.1f)
+        while (Vector3.Distance(elevatorPlatform.position, targetPosition.position) > 0.5f)
         {
             elevatorPlatform.position = Vector3.MoveTowards(elevatorPlatform.position, targetPosition.position, elevatorSpeed * Time.deltaTime);
             yield return null;
@@ -65,7 +65,7 @@ public class Elevator : MonoBehaviour
         isMoving = true;
 
         // Move the elevator to the start position
-        while (Vector3.Distance(elevatorPlatform.position, startPosition.position) > 0.1f)
+        while (Vector3.Distance(elevatorPlatform.position, startPosition.position) > 0.5f)
         {
             elevatorPlatform.position = Vector3.MoveTowards(elevatorPlatform.position, startPosition.position, elevatorSpeed * Time.deltaTime);
             yield return null;
