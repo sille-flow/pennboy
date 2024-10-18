@@ -250,5 +250,5 @@ MonoBehaviour:
   damageSlope: 0.025
   damageOffset: 0
   maxDamage: 50
-  cooldownTime: 10
+  cooldownTime: 3
   crashSound: {fileID: 8087151018330872006}
