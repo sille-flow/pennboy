@@ -328,7 +328,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
@@ -349,7 +349,7 @@ MonoBehaviour:
   targetPosition: {fileID: 3422147830414731498}
   startPosition: {fileID: 470445115175702099}
   elevatorSpeed: 2
-  delayTime: 2
+  delayTime: 3
 --- !u!1 &5945104622969083224
 GameObject:
   m_ObjectHideFlags: 0

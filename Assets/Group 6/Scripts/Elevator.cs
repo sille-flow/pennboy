@@ -22,6 +22,10 @@ public class Elevator : MonoBehaviour
             playerInTrigger = true;
             StartCoroutine(MoveElevatorUp());
         }
+        if (other.gameObject.name == "Luggage_Cart" && !isMoving)
+        {
+            other.transform.SetParent(elevatorPlatform);
+        }
     }
 
     // Detect when the player exits the trigger area
@@ -30,6 +34,10 @@ public class Elevator : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             playerInTrigger = false;
+        }
+        if (other.gameObject.name == "Luggage_Cart" && !isMoving)
+        {
+            other.transform.SetParent(null);
         }
     }
 
