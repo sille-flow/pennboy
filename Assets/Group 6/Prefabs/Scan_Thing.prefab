@@ -328,9 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a5226a13731fb3792a63ae5bc1ab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSlope: 0.1
+  damageSlope: 0.05
   damageOffset: 0
-  maxDamage: 500
+  maxDamage: 300
   cooldownTime: 0
   crashSound: {fileID: 2665670669702337352}
 --- !u!1001 &8584610071738290034
@@ -499,8 +499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a5226a13731fb3792a63ae5bc1ab1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSlope: 0.1
+  damageSlope: 0.05
   damageOffset: 0
-  maxDamage: 500
+  maxDamage: 300
   cooldownTime: 0
   crashSound: {fileID: 2665670669702337352}
