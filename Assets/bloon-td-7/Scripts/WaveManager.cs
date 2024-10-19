@@ -61,7 +61,7 @@ public class WaveManager : MonoBehaviour
                 WaveInfo currWave = waves[waveIndex];
                 for (int i = 0; i < waves[waveIndex].enemyIdList.Count(); i++)
                 {
-                    new Spawner(currWave.enemyIdList[i], currWave.enemyCount[i], currWave.spacing[i]);
+                    new Spawner(currWave.enemyIdList[i], currWave.enemyCount[i], currWave.spacing[i], currWave.time[i]);
                 }
                 //Instantiate(waveList.transform.GetChild(waveIndex).gameObject, transform.position, transform.rotation);
                 waveOccurring = true;
@@ -147,14 +147,15 @@ public class WaveManager : MonoBehaviour
         int enemySpawned = 0;
         int enemyCount;
         float spacing;
+        float start_time;
        
         //one for loop on all spawners and call this
         public void Update()
         {
-            if (timer < spacing && enemySpawned < enemyCount)
+            if (timer < start_time + spacing && enemySpawned < enemyCount)
             {
                 timer += Time.deltaTime;
-            } else if (timer >= spacing)
+            } else if (timer >= start_time + spacing)
             {
 
                 EnemyInfo enemyInfo = GameManager.instance.waveManager.enemyList[enemyId];
@@ -165,7 +166,7 @@ public class WaveManager : MonoBehaviour
                 newEnemy.GetComponent<Renderer>().material.color = enemyInfo.color;
                 enemies.Add(newEnemy);
                 enemySpawned++;
-                timer = 0;
+                timer = start_time;
             }
             //Debug.Log(checkAllNull(enemies));
             if (checkAllNull(enemies) && enemies.Count == enemyCount)
@@ -175,11 +176,12 @@ public class WaveManager : MonoBehaviour
             }
 
         }
-        public Spawner (int enemyId, int enemyCount, float spacing) 
+        public Spawner (int enemyId, int enemyCount, float spacing, float time) 
         {
             this.enemyId = enemyId;
             this.enemyCount = enemyCount;
             this.spacing = spacing;
+            this.start_time = time;
             GameManager.instance.waveManager.spawners.Add(this);
             GameManager.instance.waveManager.spawnersCreated++;
         }
