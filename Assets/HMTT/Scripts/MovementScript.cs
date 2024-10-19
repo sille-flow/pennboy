@@ -144,7 +144,7 @@ public class MovementScript : MonoBehaviour
     void Jump() //3
     {
         //use AddForce()
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpForce * gravityDir, ForceMode.Impulse);
     }
 
     void DoubleJump() //4
@@ -152,7 +152,7 @@ public class MovementScript : MonoBehaviour
         if (canDoubleJump) 
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            rb.AddForce(Vector3.up * doubleJumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * doubleJumpForce * gravityDir, ForceMode.Impulse);
             canDoubleJump = false;
         }
     }
@@ -290,7 +290,7 @@ public class MovementScript : MonoBehaviour
     void CheckIfGround() //2
     {
         float offsetHeight = col.bounds.extents.y;
-        Vector3 rayPos = transform.position + Vector3.down * offsetHeight;
+        Vector3 rayPos = transform.position + Vector3.down * offsetHeight * gravityDir;
         isGrounded = Physics.CheckSphere(rayPos, 0.1f, groundMask);
         if (isGrounded)
         {
