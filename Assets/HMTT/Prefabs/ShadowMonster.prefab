@@ -57,7 +57,7 @@ MonoBehaviour:
   minFoxfire: 2
   maxFoxfire: 5
   moveSpeed: 50
-  onScreenPos: 2
+  onScreenPos: 10.5
 --- !u!1 &4621190910187035261
 GameObject:
   m_ObjectHideFlags: 0
