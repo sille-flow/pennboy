@@ -162,7 +162,7 @@ public class MovementScript : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0, 0);
 
         float jumpDirection = isWallRight ? -2f : 2f; // Jump away from the wall
-        rb.AddForce(new Vector3(jumpDirection * wallJumpForce, jumpForce, 0), ForceMode.Impulse);
+        rb.AddForce(new Vector3(jumpDirection * wallJumpForce, jumpForce*gravityDir, 0), ForceMode.Impulse);
     }
 
     void SetGravity() //3
