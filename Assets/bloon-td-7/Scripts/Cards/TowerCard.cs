@@ -18,17 +18,27 @@ public class TowerCard : Card
 
     public override bool Use()
     {
-        if (isUsing) return false;
+        if (isUsing)
+        {
+            GameManager.instance.cardManager.placementSystem.disableTowerPlacement(false);
+            isUsing = false;
+            return false;
+        }
 
         GameManager.instance.cardManager.placementSystem.enableTowerPlacement(this);
         return true;
     }
 
+    /// <summary>
+    /// Deactivates the current tower card, either when card was used to place a tower of when card is turned off.
+    /// </summary>
+    /// <param name="didPlace">True if was placed, false if not placed.</param>
     public override void Deactivate(bool didPlace)
     {
         base.Deactivate(didPlace);
         if (!didPlace)
         {
+            Debug.Log("Deactivated " + id);
             isUsing = false;
             return;
         }

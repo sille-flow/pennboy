@@ -41,10 +41,6 @@ public class PlacementSystem : MonoBehaviour
 
             disableTowerPlacement(true);
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            disableTowerPlacement(false);
-        }
     }
 
     /// <summary>
@@ -54,6 +50,10 @@ public class PlacementSystem : MonoBehaviour
     /// <param name="card">reference to card calling this function</param>
     public void enableTowerPlacement(TowerCard card)
     {
+        if (isPlacing)
+        {
+            cardUsing.Deactivate(false);
+        }
         cardUsing = card;
         isPlacing = true;
         mouseIndicator.SetActive(true);
@@ -63,7 +63,7 @@ public class PlacementSystem : MonoBehaviour
     /// Disables tower placement.
     /// </summary>
     /// <param name="didPlace">True if did place the tower, false if exiting on escape</param>
-    private void disableTowerPlacement(bool didPlace)
+    public void disableTowerPlacement(bool didPlace)
     {
         cardUsing.Deactivate(didPlace);
         isPlacing = false;
