@@ -45,4 +45,9 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene(9);
     }
+
+    public void LoadLevel4()
+    {
+        SceneManager.LoadScene(10);
+    }
 }
