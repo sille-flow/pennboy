@@ -8,13 +8,12 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Card[] hand;
     [SerializeField] private List<int> deck;
     [SerializeField] private Card[] CardTypes;
-    private bool[] isUsingCard;
+    [SerializeField] private GameObject[] towerObjects;
+    public PlacementSystem placementSystem;
 
     private void Start()
     {
-        hand = new Card[5];
         deck = new List<int>();
-        isUsingCard = new bool[5];
 
         generateDeck();
     }
@@ -27,8 +26,9 @@ public class CardManager : MonoBehaviour
         {
             int index = UnityEngine.Random.Range(0, deckCopy.Count);
             deck.Add(deckCopy[index].cardId);
+            Debug.Log("deck_list " + deck.Count);
             deckCopy[index].count--;
-            if (deckCopy[index].count == 0)
+            if (deckCopy[index].count <= 0)
                 deckCopy.RemoveAt(index);
         }
 
@@ -37,13 +37,8 @@ public class CardManager : MonoBehaviour
         {
             int cardType = deck[0];
             deck.RemoveAt(0);
-            hand[i] = generateCard(i);
+            hand[i].ResetCard(towerObjects[cardType],cardType);
         }
-    }
-    
-    private Card generateCard(int cardId)
-    {
-        return null;
     }
 
     /// <summary>
@@ -56,11 +51,10 @@ public class CardManager : MonoBehaviour
         {
             if (hand[i] == card)
             {
-                hand[i] = generateCard(deck[0]);
+                int newId = deck[0];
                 deck.RemoveAt(0);
-                isUsingCard[i] = false;
                 deck.Add(card.id);
-                Destroy(card);
+                hand[i].ResetCard(towerObjects[newId],newId);
                 return;
             }
         }
@@ -72,8 +66,7 @@ public class CardManager : MonoBehaviour
     /// <param name="cardNumber"></param>
     public void UseCard(int cardNumber)
     {
-        if (isUsingCard[cardNumber]) return;
-        isUsingCard[cardNumber] = hand[cardNumber].Use();
+        hand[cardNumber].isUsing = hand[cardNumber].Use();
     }
 
     private class DeckPair

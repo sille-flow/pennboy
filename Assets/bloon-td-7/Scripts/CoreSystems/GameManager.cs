@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public HealthManager healthManager;
     public MoneyManager moneyManager;
     public WaveManager waveManager;
+    public CardManager cardManager;
     public GameObject enemy;
     
     public GameObject projectile;
