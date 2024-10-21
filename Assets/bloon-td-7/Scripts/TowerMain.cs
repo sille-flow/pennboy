@@ -43,35 +43,26 @@ public class TowerMain : MonoBehaviour
     /// </summary>
     private GameObject GetTarget()
     {
-        foreach (var target in enemiesInRange)
-        {
-            if (target == null)
-            {
-                enemiesInRange.Remove(target);
-                return GetTarget();
-            }
-            return target;
-        };
-        return null;
-
-        /* ATTEMPT AT ENEMY TARGETING
         GameObject enemyMax = null;
-        foreach (var target in enemiesInRange)
+        for (int i = 0; i < enemiesInRange.Count; i++)
         {
-            if (target == null)
-                enemiesInRange.Remove(target);
+            if (enemiesInRange[i] == null)
+            {
+                enemiesInRange.RemoveAt(i);
+                i--;
+            }
             else
             {
                 if (enemyMax == null)
-                    enemyMax = target;
-                else if (enemyMax.GetComponent<Enemy>().DistanceTravelled < target.GetComponent<Enemy>().DistanceTravelled)
+                    enemyMax = enemiesInRange[i];
+                else if (enemyMax.GetComponent<Enemy>().DistanceTravelled > enemiesInRange[i].GetComponent<Enemy>().DistanceTravelled)
                 {
-                    enemyMax = target;
+                    enemyMax = enemiesInRange[i];
                 }
             }
         }
         return enemyMax;
-        */
+        
     }
 
     // Update is called once per frame
