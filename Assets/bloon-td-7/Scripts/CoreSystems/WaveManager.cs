@@ -23,20 +23,38 @@ public class WaveManager : MonoBehaviour
         spawners = new List<Spawner>();
     }
     // Update is called once per frame
+    /// <summary>
+    /// EnemyInfo(float moveSpeed, int dmg, int health, int moneyWorth, Color color, float size = 5, bool isCamo = false)
+    /// </summary>
     public EnemyInfo[] enemyList =
     {
-        new EnemyInfo(15f,1,2,15, Color.red),
-        new EnemyInfo(40f,1000,1,30, Color.blue),
-        new EnemyInfo(10f, 20, 5, 100, Color.yellow)
+        new EnemyInfo(8f,1,1,15, Color.red),            //0 - basic enemy
+        new EnemyInfo(25f,1,1,30, Color.blue),          //1 - fast enemy
+        new EnemyInfo(6f,2,5,100, Color.yellow),        //2 - slow tanky enemy
+        new EnemyInfo(16f,2,2,50,Color.magenta),        //3 - basic fast enemy        
+        new EnemyInfo(100f,0,10000,0,Color.black)       //4 - distraction enemy
     };
-
+    /// <summary>
+    /// WaveInfo(       all are in one string
+    /// enemyIds,
+    /// enemyCount,
+    /// spacing,        (time in seconds between enemy spawn)
+    /// time               (when cluster spawns)
+    /// </summary>
     public WaveInfo[] waves =
     {
+        //tutorial wave
         new WaveInfo(
-                "0,1",
-                "3,5",
-                "0.1,0.6",
-                "0,5"
+                "0",
+                "6",
+                "0.4",
+                "1"
+            ),
+        new WaveInfo(
+                "0,1,3",
+                "3,5,10",
+                "0.1,0.6,0.1",
+                "0,5,2"
             ),
         new WaveInfo(
                 "1,2,0",
@@ -48,6 +66,8 @@ public class WaveManager : MonoBehaviour
      
     void Update()
     {
+        //stop waves after final wave
+        if(waveIndex >= waves.Count()) { return; }
         roundText.text = "Round:\n" + waveIndex;
         if (globalTimer < waveCooldown && !waveOccurring)
         {
@@ -95,6 +115,16 @@ public class WaveManager : MonoBehaviour
         public float size;
         public Color color;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="moveSpeed">How fast enemies move</param>
+        /// <param name="dmg">The damage enemies deal after passing the map</param>
+        /// <param name="health">The health of the enemy</param>
+        /// <param name="moneyWorth">The money the enemy drops after dying</param>
+        /// <param name="color">The color of the enemy</param>
+        /// <param name="size">The size of the enemy</param>
+        /// <param name="isCamo">Whether enemies are camoflauged or not</param>
         public EnemyInfo(float moveSpeed, int dmg, int health, int moneyWorth, Color color, float size = 5, bool isCamo = false)
         {
             this.moveSpeed = moveSpeed;

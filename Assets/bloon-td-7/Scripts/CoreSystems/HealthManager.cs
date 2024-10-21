@@ -34,6 +34,6 @@ public class HealthManager : MonoBehaviour
 
     void GameOver()
     {
-        
+        Debug.Log("You LOST");
     }
 }
