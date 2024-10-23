@@ -1,13 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 
-public class TowerMain : MonoBehaviour
+public class Tower : MonoBehaviour
 {
-
-    
     [SerializeField] protected float cooldown = 1f;
     [SerializeField] protected int damage = 1;
     [SerializeField] protected float range = 7.5f;
@@ -15,14 +11,13 @@ public class TowerMain : MonoBehaviour
     protected float remainingCooldown;
     protected float projectileSpeed = 240f;
     protected int projectilePierce = 1;
+    [SerializeField] protected int[] UpgradeCosts = { 100,200,300,400 };
+    protected int level = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        remainingCooldown = cooldown;
-    }
-
-    // range collision detection
+    /// <summary>
+    /// range collision detection
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
         GameObject hit = collision.gameObject;
@@ -30,7 +25,6 @@ public class TowerMain : MonoBehaviour
         {
             enemiesInRange.Add(hit);
         }
-            
     }
 
     private void OnCollisionExit(Collision collision)
@@ -38,10 +32,11 @@ public class TowerMain : MonoBehaviour
         enemiesInRange.Remove(collision.gameObject);
     }
 
+
     /// <summary>
     /// Gets the target from enemies in a towers range.
     /// </summary>
-    private GameObject GetTarget()
+    protected GameObject GetTarget()
     {
         GameObject enemyMax = null;
         for (int i = 0; i < enemiesInRange.Count; i++)
@@ -62,11 +57,17 @@ public class TowerMain : MonoBehaviour
             }
         }
         return enemyMax;
-        
+    }
+
+
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
+        remainingCooldown = cooldown;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (remainingCooldown < cooldown)
         {
@@ -82,18 +83,39 @@ public class TowerMain : MonoBehaviour
         remainingCooldown = 0;
 
         // attack
-        //SelectedTarget.GetComponent<Enemy>().Damage(damage);
         Attack(SelectedTarget);
-
-
-        // TODO: get target enemy
-        // TODO: get damage
     }
 
-    protected void Attack(GameObject target)
+    protected virtual void Attack(GameObject target) { }
+
+    /// <summary>
+    /// Upgrades the tower level when given a money amount spent. Upgrade funcitonality to be implemented in children classes.
+    /// </summary>
+    /// <param name="cost">Money sacrificed</param>
+    public void CalcLevel (int cost)
     {
-        if (target == null) return;
-        Projectile projectile = Instantiate(GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
-        projectile.Initialize(damage, projectileSpeed, projectilePierce, target.transform.position);
+        int i = 0;
+        while (cost > UpgradeCosts[i])
+        {
+            level++;
+            i++;
+        }
+    }
+
+    protected virtual void Upgrade(int level)
+    {
+
+    }
+
+    /// <summary>
+    /// Returns the total cost of the tower based off of its level
+    /// </summary>
+    /// <returns></returns>
+    public int GetCost()
+    {
+        int sum = 0;
+        for (int i = 0; i < level; i++)
+            sum += UpgradeCosts[i];
+        return sum;
     }
 }
