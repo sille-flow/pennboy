@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -31,5 +32,20 @@ public class InputManager : MonoBehaviour
         }
         
         return (LastPos, valid);
+    }
+
+    public Tower GetTowerClicked()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = SceneCamera.nearClipPlane;
+        Ray mouseray = SceneCamera.ScreenPointToRay(mousePos);
+
+        RaycastHit hit;
+        if (Physics.Raycast(mouseray, out hit, 1000, PlacementLayerMask) && (hit.transform.gameObject.tag == "BTD7Tower"))
+        {
+            Debug.Log("Hit a Tower");
+            return hit.transform.GetComponent<Tower>();
+        }
+        return null;
     }
 }

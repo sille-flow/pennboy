@@ -14,6 +14,7 @@ public class TowerCard : Card
         this.towerPrefab = towerPrefab;
         this.id = id;
         isUsing = false;
+        canSacrifice = true;
     }
 
     public override bool Use()

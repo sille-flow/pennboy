@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17288361, g: 0.21605188, b: 0.29801258, a: 1}
+  m_IndirectSpecularColor: {r: 0.17288378, g: 0.2160521, b: 0.29801264, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseIndicator: {fileID: 1439199229}
   inputManager: {fileID: 1019288593}
-  isPlacing: 0
+  cardUsing: {fileID: 0}
 --- !u!1 &140371164
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   isUsing: 0
+  canSacrifice: 0
   towerPrefab: {fileID: 0}
   text: {fileID: 1925677497}
 --- !u!1 &226073996
@@ -1024,6 +1025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   isUsing: 0
+  canSacrifice: 0
   towerPrefab: {fileID: 0}
   text: {fileID: 2024699937}
 --- !u!1 &424248313
@@ -1667,7 +1669,9 @@ PrefabInstance:
     - {fileID: 4965867828688278868, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
     - {fileID: 8214901739824537978, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
     - {fileID: 2653078584067767022, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5023210504082975546, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
+    - {fileID: 4813887265481635749, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
@@ -5301,6 +5305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   isUsing: 0
+  canSacrifice: 0
   towerPrefab: {fileID: 0}
   text: {fileID: 1540979144}
 --- !u!1 &2047133192
@@ -5774,6 +5779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   isUsing: 0
+  canSacrifice: 0
   towerPrefab: {fileID: 0}
   text: {fileID: 1100370373}
 --- !u!1 &2107905052
@@ -6042,6 +6048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   isUsing: 0
+  canSacrifice: 0
   towerPrefab: {fileID: 0}
   text: {fileID: 1319765971}
 --- !u!1 &2129620392

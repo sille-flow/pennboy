@@ -6,10 +6,12 @@ public class Card : MonoBehaviour
 {
     public int id;
     public bool isUsing;
+    public bool canSacrifice;
 
     private void Start()
     {
         isUsing = false;
+        canSacrifice = false;
     }
 
     public virtual void ResetCard(GameObject towerPrefab, int id)
