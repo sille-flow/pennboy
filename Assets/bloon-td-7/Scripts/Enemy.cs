@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public string modifiers;
     private const float WAYPOINT_CHANGE_DISTANCE = 0.01f;
     public bool isCamo { get; protected set; }
+    public float size;
     private bool canStart = false;
 
     public float DistanceTravelled { get; protected set; }
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         //Initialize(15f, 1, 3, 0, 1, false, 5);
-        Initialize(moveSpeed, dmg, health, id, moneyWorth, isCamo, 5);
+        Initialize(moveSpeed, dmg, health, id, moneyWorth, isCamo, size);
     }
 
     /// <summary>
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
         this.moveSpeed = moveSpeed;
         this.isCamo = isCamo;
         this.moneyWorth = moneyWorth;
+        this.size = size;
         transform.localScale = new Vector3(size, size, size);
         waypoints = new List<Vector3>();
         this.gameObject.layer = 2;

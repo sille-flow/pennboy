@@ -28,12 +28,23 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     public EnemyInfo[] enemyList =
     {
-        new EnemyInfo(8f,1,1,15, Color.red),            //0 - basic enemy
-        new EnemyInfo(25f,1,1,30, Color.blue),          //1 - fast enemy
-        new EnemyInfo(6f,2,5,100, Color.yellow),        //2 - slow tanky enemy
-        new EnemyInfo(16f,2,2,50,Color.magenta),        //3 - basic fast enemy        
-        new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
-        new EnemyInfo(3,100,1000,1000,new Color(61, 110, 173)), //5 - boss enemy
+        new EnemyInfo(8f,1,1,15, new Color32(0,255,0,255)),                      //0 - slime
+        new EnemyInfo(25f,1,1,20, new Color32(125,209,123, 255)),        //1 - goblin
+        new EnemyInfo(6f,4,5,40, new Color32(21, 92, 20, 255),8),         //2 - orcs
+        new EnemyInfo(4f,10,15,60,new Color32(70, 89, 70, 255),12),        //3 - ogres
+        new EnemyInfo(10f,1,1,5,new Color32(255,255,255,255)),       //4 skeleton
+        new EnemyInfo(6f,10,5,15, new Color32(64, 255, 150,255)),   //5 elf
+        new EnemyInfo(30f,2,1,10, new Color32(222, 182, 250,255)),  //6 fairy
+        new EnemyInfo(40f,15,3,25, new Color32(117, 12, 5,255)),    //7 demon
+        new EnemyInfo(8f,3,4,10, new Color32(100,100,100,255)),    //8 dwarf
+        new EnemyInfo(15f,20,5,20, new Color32(40, 96, 250,255)),   //9 wizard
+        new EnemyInfo(30f,40,12,50, new Color32(139, 155, 199,255)), //10 light wizard
+        new EnemyInfo(30f,40,12,50, new Color32(0, 0, 46,255)), //11 dark wizard
+        new EnemyInfo(15f,100,25,100, new Color32(114, 0, 252,255),8), //12 master wizard
+        new EnemyInfo(200f,1000,100,1000,new Color32(255,0,0,255),20), //13 dragon
+        //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
+        //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
+        //new EnemyInfo(3,100,1000,1000,new Color(61, 110, 173),30), //5 - boss enemy
     };
     /// <summary>
     /// WaveInfo(       all are in one string
@@ -45,6 +56,28 @@ public class WaveManager : MonoBehaviour
     public WaveInfo[] waves =
     {
         //tutorial wave
+
+        //wave 1 - goblins only
+        new WaveInfo(
+                "0",
+                "20",
+                "0.6",
+                "0"
+            ),
+
+        //wave 2 - goblin + skeletons
+        new WaveInfo(
+                "0,4",
+                "10,6",
+                "0.5,0.4",
+                "0,3"
+            ),
+        new WaveInfo(
+                "1,2,0",
+                "20,1,4",
+                "0.5,0.1,0.5",
+                "0,5,4"
+            ),
         new WaveInfo(
                 "1,0,1,0,1,0",
                 "10,10,10,10,10,10",
@@ -56,24 +89,6 @@ public class WaveManager : MonoBehaviour
                 "10,10,10,10,10,10",
                 "0.4,0.3,0.5,0.2,0.3",
                 "0,2,1,3,4"
-            ),
-        new WaveInfo(
-                "0",
-                "6",
-                "0.4",
-                "1"
-            ),
-        new WaveInfo(
-                "0,1,3",
-                "3,5,10",
-                "0.1,0.6,0.1",
-                "0,5,2"
-            ),
-        new WaveInfo(
-                "1,2,0",
-                "20,1,4",
-                "0.5,0.1,0.5",
-                "0,5,4"
             ),
     };
      
@@ -126,7 +141,7 @@ public class WaveManager : MonoBehaviour
         public int moneyWorth;
         public bool isCamo;
         public float size;
-        public Color color;
+        public Color32 color;
 
         /// <summary>
         /// 
@@ -138,7 +153,7 @@ public class WaveManager : MonoBehaviour
         /// <param name="color">The color of the enemy</param>
         /// <param name="size">The size of the enemy</param>
         /// <param name="isCamo">Whether enemies are camoflauged or not</param>
-        public EnemyInfo(float moveSpeed, int dmg, int health, int moneyWorth, Color color, float size = 5, bool isCamo = false)
+        public EnemyInfo(float moveSpeed, int dmg, int health, int moneyWorth, Color32 color, float size = 5, bool isCamo = false)
         {
             this.moveSpeed = moveSpeed;
             this.dmg = dmg;
