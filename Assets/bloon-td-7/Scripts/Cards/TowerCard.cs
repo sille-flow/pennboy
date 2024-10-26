@@ -6,7 +6,6 @@ using UnityEngine;
 public class TowerCard : Card
 {
     public GameObject towerPrefab;
-    private bool active = false;
     // Temporary until sprites
     [SerializeField] private TextMeshProUGUI text;
     private RectTransform recttransform;
@@ -27,27 +26,20 @@ public class TowerCard : Card
         isUsing = false;
         canSacrifice = true;
         Targetpos = origin;
-        active = false;
     }
 
     public override bool Use()
     {
-        if (!active)
-        {
-            Targetpos = origin + new Vector3(0, 30, 0);
-        } else
-        {
-            Targetpos = origin;
-        }
-        active = !active;
 
         if (isUsing)
         {
+            Targetpos = origin;
             GameManager.instance.cardManager.placementSystem.disableTowerPlacement(false);
             isUsing = false;
             return false;
         }
 
+        Targetpos = origin + new Vector3(0, 30, 0);
         GameManager.instance.cardManager.placementSystem.enableTowerPlacement(this);
         return true;
     }
@@ -58,7 +50,6 @@ public class TowerCard : Card
     /// <param name="didPlace">True if was placed, false if not placed.</param>
     public override void Deactivate(bool didPlace)
     {
-        active = false;
         Targetpos = origin;
         base.Deactivate(didPlace);
         if (!didPlace)
@@ -74,8 +65,12 @@ public class TowerCard : Card
     {
         
         // moving schenanigains :)))))))))))
-        Vector3 moveamt = Vector3.Lerp(recttransform.position, Targetpos, 10f * Time.deltaTime);
-        recttransform.position = moveamt;
+        if ((recttransform.position - Targetpos).magnitude > .1)
+        {
+            Debug.Log("Ooga");
+            Vector3 moveamt = Vector3.Lerp(recttransform.position, Targetpos, 10f * Time.deltaTime);
+            recttransform.position = moveamt;
+        }
 
         // veer's actual card stuff
         base.Update();

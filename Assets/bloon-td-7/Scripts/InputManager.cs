@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class InputManager : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = SceneCamera.nearClipPlane;
         Ray mouseray = SceneCamera.ScreenPointToRay(mousePos);
-
         bool valid = false;
         RaycastHit hit;
         if (Physics.Raycast(mouseray, out hit, 1000, PlacementLayerMask) && (hit.transform.gameObject.tag != "BTD7PlacementBlocker"))
