@@ -6,6 +6,7 @@ using UnityEngine;
 public class TowerCard : Card
 {
     public GameObject towerPrefab;
+    private bool active = false;
     // Temporary until sprites
     [SerializeField] private TextMeshProUGUI text;
     private RectTransform recttransform;
@@ -31,7 +32,15 @@ public class TowerCard : Card
     public override bool Use()
     {
         Debug.Log("heheheha");
-        Targetpos = origin + (new Vector3(0, 100, 0));
+        if (!active)
+        {
+            Targetpos = origin + new Vector3(0, 30, 0);
+        } else
+        {
+            Targetpos = origin;
+        }
+        active = !active;
+
         if (isUsing)
         {
             GameManager.instance.cardManager.placementSystem.disableTowerPlacement(false);
