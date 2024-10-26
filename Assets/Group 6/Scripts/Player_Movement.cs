@@ -30,10 +30,8 @@ public class Player_Movement : MonoBehaviour
 
     private KeyCode runKey = KeyCode.LeftShift;
     private KeyCode failKey = KeyCode.F;
-    private KeyCode interactKey = KeyCode.Mouse0;
-
-    // is null if can't interact, otherwise can interact
-    PushablePullableObject interactableObject = null;
+    private KeyCode pushKey = KeyCode.Mouse0;
+    private KeyCode pullKey = KeyCode.Mouse1;
 
     private void Start()
     {
@@ -50,6 +48,9 @@ public class Player_Movement : MonoBehaviour
         horizontalMovementHelper();
         // move player
         controller.Move(playerVelocity * Time.deltaTime);
+
+        // interact with objects
+        pushPullRaycast();
 
         
         rotationHelper();
@@ -110,11 +111,15 @@ public class Player_Movement : MonoBehaviour
         RaycastHit hit;
         Vector3 origin = Camera.main.transform.position;
         Vector3 dir = Camera.main.transform.forward;
-        interactableObject = null;
         if (Physics.Raycast(origin, dir, out hit, interactDistance)) {
-            interactableObject = hit.collider.gameObject.GetComponent<PushablePullableObject>();
+            PushablePullableObject interactableObject = hit.collider.gameObject.GetComponent<PushablePullableObject>();
             if (interactableObject != null) {
                 // TODO: ADD PUSH/PULL INDICATOR TO HUD!!!!!
+                if (Input.GetKeyDown(pushKey)) {
+                    interactableObject.push(hit.point, playerVelocity, dir);
+                } else if (Input.GetKeyDown(pullKey)) {
+                    interactableObject.pull(hit.point, playerVelocity, dir);
+                }
             }
         }
     }

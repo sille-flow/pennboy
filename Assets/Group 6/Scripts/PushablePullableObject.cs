@@ -1,18 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class PushablePullableObject : MonoBehaviour
+public interface PushablePullableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public void push(Vector3 raycastIntersectionPoint, Vector3 playerVelocity, Vector3 raycastDirection);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void pull(Vector3 raycastIntersectionPoint, Vector3 playerVelocity, Vector3 raycastDirection);
 }
