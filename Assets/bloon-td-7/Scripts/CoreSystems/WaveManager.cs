@@ -32,7 +32,8 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(25f,1,1,30, Color.blue),          //1 - fast enemy
         new EnemyInfo(6f,2,5,100, Color.yellow),        //2 - slow tanky enemy
         new EnemyInfo(16f,2,2,50,Color.magenta),        //3 - basic fast enemy        
-        new EnemyInfo(100f,0,10000,0,Color.black)       //4 - distraction enemy
+        new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
+        new EnemyInfo(3,100,1000,1000,new Color(61, 110, 173)), //5 - boss enemy
     };
     /// <summary>
     /// WaveInfo(       all are in one string
@@ -44,6 +45,18 @@ public class WaveManager : MonoBehaviour
     public WaveInfo[] waves =
     {
         //tutorial wave
+        new WaveInfo(
+                "1,0,1,0,1,0",
+                "10,10,10,10,10,10",
+                "0.4,0.3,0.5,0.2,0.3,0.4",
+                "0,2,1,3,4,5"
+            ),
+        new WaveInfo(
+                "1,0,1,0,1,0",
+                "10,10,10,10,10,10",
+                "0.4,0.3,0.5,0.2,0.3",
+                "0,2,1,3,4"
+            ),
         new WaveInfo(
                 "0",
                 "6",
@@ -61,7 +74,7 @@ public class WaveManager : MonoBehaviour
                 "20,1,4",
                 "0.5,0.1,0.5",
                 "0,5,4"
-            )
+            ),
     };
      
     void Update()
