@@ -43,8 +43,9 @@ public class LuggageCart : MonoBehaviour, PushablePullableObject
 
     public void push(Vector3 raycastIntersectionPoint, Vector3 playerVelocity, Vector3 dir) {
         Vector3 playerVelocityInRespectToDir = Vector3.Dot(playerVelocity, dir) * dir;
-        Vector3 force = playerVelocityInRespectToDir*cartRigidBody.mass + 10000*dir;
-        cartRigidBody.AddForceAtPosition(force, raycastIntersectionPoint, ForceMode.Impulse);
+        float amountOnStill = 0.3f;
+        Vector3 velocityChange = ((0.8f - amountOnStill) * maxSpeed / (Player_Movement.basePlayerSpeed * Player_Movement.speedUp))* playerVelocityInRespectToDir + amountOnStill * maxSpeed * dir;
+        cartRigidBody.AddForceAtPosition(velocityChange, raycastIntersectionPoint, ForceMode.VelocityChange);
     }
 
     public void pull(Vector3 raycastIntersectionPoint, Vector3 playerVelocity, Vector3 dir) {

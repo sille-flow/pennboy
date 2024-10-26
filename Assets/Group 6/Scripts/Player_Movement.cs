@@ -12,9 +12,12 @@ public class Player_Movement : MonoBehaviour
 
     private Vector3 playerVelocity = new Vector3(0,0,0);
     private bool groundedPlayer;
-    private float basePlayerSpeed = 5.0f;
+    public static float basePlayerSpeed = 5.0f;
+
+    public static float speedUp = 2f;
 
     private float playerSpeed = 5.0f;
+
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
 
@@ -24,9 +27,8 @@ public class Player_Movement : MonoBehaviour
 
     private float mouseSensitivity = 1;
 
-    private float speedUp = 2f;
 
-    private float interactDistance = 3f;
+    private float interactDistance = 8f;
 
     private KeyCode runKey = KeyCode.LeftShift;
     private KeyCode failKey = KeyCode.F;
@@ -76,9 +78,9 @@ public class Player_Movement : MonoBehaviour
         playerVelocity.x = 0;
         playerVelocity.z = 0;
         if (Input.GetKey(runKey)) {
-            playerSpeed = basePlayerSpeed * speedUp;
+            playerSpeed = Player_Movement.basePlayerSpeed * Player_Movement.speedUp;
         } else {
-            playerSpeed = basePlayerSpeed;
+            playerSpeed = Player_Movement.basePlayerSpeed;
         }
         if (Input.GetKey(failKey)) {
             Cursor.lockState = CursorLockMode.None;
@@ -115,6 +117,8 @@ public class Player_Movement : MonoBehaviour
             PushablePullableObject interactableObject = hit.collider.gameObject.GetComponent<PushablePullableObject>();
             if (interactableObject != null) {
                 // TODO: ADD PUSH/PULL INDICATOR TO HUD!!!!!
+                dir.y = 0;
+                dir.Normalize();
                 if (Input.GetKeyDown(pushKey)) {
                     interactableObject.push(hit.point, playerVelocity, dir);
                 } else if (Input.GetKeyDown(pullKey)) {
