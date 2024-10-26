@@ -186,12 +186,9 @@ public class PlayerScript : MonoBehaviour
 
     public IEnumerator Dash()
     {
-        dashSpeed = 30f;
         canDash = false;
         isDashing = true;
-        Debug.Log("Dash Triggered");
 
-        dashDuration = 0.15f;
         float dashCounter = 0f;
 
         while (dashCounter < dashDuration)
@@ -213,12 +210,10 @@ public class PlayerScript : MonoBehaviour
 
     public IEnumerator AirDash()
     {
-        dashSpeed = 20f;
         canDash = false;
         isDashing = true;
         Debug.Log("Air Dash Triggered");
 
-        dashDuration = 0.1f;
         float dashCounter = 0f;
 
         while (dashCounter < dashDuration)

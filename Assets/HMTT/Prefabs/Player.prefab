@@ -195,10 +195,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accFactor: 2
-  maxSpeed: 20
+  maxSpeed: 10
   airDrag: 0.3
-  jumpForce: 25
-  doubleJumpForce: 25
+  jumpForce: 15
+  doubleJumpForce: 15
   baseGravity: -10
   wallGravity: -2
   dashSpeed: 30

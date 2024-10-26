@@ -93,7 +93,7 @@ public class MovementScript : MonoBehaviour
             anim.SetBool("Running", (Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded));
             anim.SetFloat("MotionSpeed", Mathf.Pow((rb.velocity.x / maxSpeed), 0.1f));
             anim.SetBool("FreeFall", (rb.velocity.y < 0 && !isGrounded));
-            if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (isGrounded)
                 {
@@ -124,19 +124,15 @@ public class MovementScript : MonoBehaviour
 
     void Move() //2
     {
-        Vector3 force = new Vector3(Input.GetAxis("Horizontal") * accFactor, 0, 0);
-        if (!isGrounded)
+        if (Mathf.Abs(rb.velocity.x) <= maxSpeed)
         {
-            force *= airDrag;
+            Vector3 force = new Vector3(Input.GetAxis("Horizontal") * accFactor, 0, 0);
+            if (!isGrounded)
+            {
+                force *= airDrag;
+            }
+            rb.AddForce(force, ForceMode.Impulse);
         }
-        rb.AddForce(force, ForceMode.Impulse);
-
-        Vector3 clampedVel = rb.velocity;
-        if (Mathf.Abs(rb.velocity.x) > maxSpeed)
-        {
-            clampedVel = new Vector3(Mathf.Sign(clampedVel.x) * maxSpeed, rb.velocity.y, 0);
-        }
-        rb.velocity = clampedVel;
         //move function should move the player using rb.AddForce rather than transform.Translate
         //can use Input.GetAxis("Horizontal")
     }
@@ -226,7 +222,7 @@ public class MovementScript : MonoBehaviour
         //Debug.Log("Dash");
         while (dashTimeElapsed < dashDuration)
         {
-            rb.velocity = new Vector3(dashDirection * dashSpeed, 0f, 0f);
+            rb.velocity = new Vector3(dashDirection * dashSpeed, Mathf.Max(0, rb.velocity.y), 0f);
             dashTimeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -254,7 +250,7 @@ public class MovementScript : MonoBehaviour
         //Debug.Log("Air Dash";
         while (dashTimeElapsed < dashDuration)
         {
-            rb.velocity = new Vector3(dashDirection * (dashSpeed - 2f), 0f, 0f);
+            rb.velocity = new Vector3(dashDirection * (dashSpeed - 2f), Mathf.Max(0, rb.velocity.y), 0f);
             dashTimeElapsed += Time.deltaTime;
             yield return null;
         }
