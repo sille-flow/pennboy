@@ -90,6 +90,9 @@ public class Player_Movement : MonoBehaviour
             playerSpeed = Mathf.Clamp(playerSpeed - maxSpeed * Time.deltaTime / timeToRun, Player_Movement.basePlayerSpeed, maxSpeed);
         }
         if (Input.GetKey(failKey)) {
+            int returnTo = SceneManager.GetActiveScene().buildIndex;
+            Debug.Log(returnTo);
+            PlayerPrefs.SetInt("returnTo", returnTo);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             SceneManager.LoadScene(5);
