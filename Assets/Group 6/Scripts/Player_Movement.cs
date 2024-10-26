@@ -26,6 +26,15 @@ public class Player_Movement : MonoBehaviour
 
     private float speedUp = 2f;
 
+    private float interactDistance = 3f;
+
+    private KeyCode runKey = KeyCode.LeftShift;
+    private KeyCode failKey = KeyCode.F;
+    private KeyCode interactKey = KeyCode.Mouse0;
+
+    // is null if can't interact, otherwise can interact
+    PushablePullableObject interactableObject = null;
+
     private void Start()
     {
         jumpVelocity = Mathf.Sqrt(-2 * gravityValue * jumpHeight);
@@ -36,35 +45,51 @@ public class Player_Movement : MonoBehaviour
 
     void Update()
     {
+        // modify player velocity
+        jumpHelper();
+        horizontalMovementHelper();
+        // move player
+        controller.Move(playerVelocity * Time.deltaTime);
+
+        
+        rotationHelper();
+        
+    }
+
+
+    void jumpHelper() {
         groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
+        if (groundedPlayer && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
         }
 
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
-        {
+        if (Input.GetButtonDown("Jump") && groundedPlayer) {
             playerVelocity.y += jumpVelocity;
         }
         playerVelocity.y += gravityValue * Time.deltaTime;
+    }
+
+
+    void horizontalMovementHelper() {
         playerVelocity.x = 0;
         playerVelocity.z = 0;
-        if (Input.GetKey(KeyCode.LeftShift)) {
+        if (Input.GetKey(runKey)) {
             playerSpeed = basePlayerSpeed * speedUp;
         } else {
             playerSpeed = basePlayerSpeed;
         }
-        if (Input.GetKey(KeyCode.F)) {
+        if (Input.GetKey(failKey)) {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             SceneManager.LoadScene(5);
         }
         playerVelocity += (gameObject.transform.right * Input.GetAxis("Horizontal") + gameObject.transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
-        controller.Move(playerVelocity * Time.deltaTime);
+    }
 
-        
-        // Rotates the camera
+
+    void rotationHelper() {
+        // Rotates the camera and character object
         float rotX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float rotY = -Input.GetAxis("Mouse Y") * mouseSensitivity;
         gameObject.transform.Rotate(0, rotX, 0);
@@ -81,7 +106,21 @@ public class Player_Movement : MonoBehaviour
         gameObject.transform.Rotate(0, rotX, 0);
     }
 
+    void pushPullRaycast() {
+        RaycastHit hit;
+        Vector3 origin = Camera.main.transform.position;
+        Vector3 dir = Camera.main.transform.forward;
+        interactableObject = null;
+        if (Physics.Raycast(origin, dir, out hit, interactDistance)) {
+            interactableObject = hit.collider.gameObject.GetComponent<PushablePullableObject>();
+            if (interactableObject != null) {
+                // TODO: ADD PUSH/PULL INDICATOR TO HUD!!!!!
+            }
+        }
+    }
+
     void OnControllerColliderHit(ControllerColliderHit hit) {
+        // TODO: REWORK THIS SECTION!
         if (hit.rigidbody != null) {
             Vector3 horizontalDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
             Vector3 force = horizontalDir * 100000;
