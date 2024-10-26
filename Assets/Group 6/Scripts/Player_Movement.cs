@@ -142,7 +142,7 @@ public class Player_Movement : MonoBehaviour
         // TODO: REWORK THIS SECTION!
         if (hit.rigidbody != null) {
             Vector3 horizontalDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-            Vector3 force = horizontalDir * 1000;
+            Vector3 force = horizontalDir * 1000 * Time.fixedDeltaTime;
             hit.rigidbody.AddForce(force, ForceMode.Impulse);
 
             // property damage from player
