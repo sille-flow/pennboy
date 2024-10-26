@@ -8,6 +8,15 @@ public class TowerCard : Card
     public GameObject towerPrefab;
     // Temporary until sprites
     [SerializeField] private TextMeshProUGUI text;
+    private RectTransform recttransform;
+    private Vector3 origin;
+    private Vector3 Targetpos;
+
+    private void Start()
+    {
+        origin = transform.position;
+        recttransform = GetComponent<RectTransform>();
+    }
 
     public override void ResetCard (GameObject towerPrefab, int id)
     {
@@ -15,10 +24,13 @@ public class TowerCard : Card
         this.id = id;
         isUsing = false;
         canSacrifice = true;
+        Targetpos = origin;
     }
 
     public override bool Use()
     {
+        Debug.Log("heheheha");
+        Targetpos = origin + (new Vector3(0, 500, 0));
         if (isUsing)
         {
             GameManager.instance.cardManager.placementSystem.disableTowerPlacement(false);
@@ -48,6 +60,12 @@ public class TowerCard : Card
 
     protected override void Update()
     {
+        
+        // moving schenanigains :)))))))))))
+        Vector3 moveamt = Vector3.Lerp(recttransform.position, Targetpos, .1f * Time.deltaTime);
+        recttransform.position = moveamt;
+
+        // veer's actual card stuff
         base.Update();
         if (isUsing)
         {
