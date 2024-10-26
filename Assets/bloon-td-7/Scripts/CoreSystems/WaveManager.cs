@@ -57,20 +57,26 @@ public class WaveManager : MonoBehaviour
     {
         //tutorial wave
 
-        //wave 1 - goblins only
+        //wave 1 - slimes
         new WaveInfo(
                 "0",
                 "20",
                 "0.6",
                 "0"
             ),
-
-        //wave 2 - goblin + skeletons
+        //wave 2 - slime + skeletons
         new WaveInfo(
                 "0,4",
                 "10,6",
                 "0.5,0.4",
                 "0,3"
+            ),
+        //wave 3 - many goblins
+        new WaveInfo(
+                "1",
+                "50",
+                "0.3",
+                "0"
             ),
         new WaveInfo(
                 "1,2,0",

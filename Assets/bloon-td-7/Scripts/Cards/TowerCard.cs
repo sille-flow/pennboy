@@ -58,6 +58,8 @@ public class TowerCard : Card
     /// <param name="didPlace">True if was placed, false if not placed.</param>
     public override void Deactivate(bool didPlace)
     {
+        active = false;
+        Targetpos = origin;
         base.Deactivate(didPlace);
         if (!didPlace)
         {
