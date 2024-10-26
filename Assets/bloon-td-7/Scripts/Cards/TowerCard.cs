@@ -14,8 +14,9 @@ public class TowerCard : Card
 
     private void Start()
     {
-        origin = transform.position;
         recttransform = GetComponent<RectTransform>();
+        origin = recttransform.position;
+        Targetpos = origin;
     }
 
     public override void ResetCard (GameObject towerPrefab, int id)
@@ -30,7 +31,7 @@ public class TowerCard : Card
     public override bool Use()
     {
         Debug.Log("heheheha");
-        Targetpos = origin + (new Vector3(0, 500, 0));
+        Targetpos = origin + (new Vector3(0, 100, 0));
         if (isUsing)
         {
             GameManager.instance.cardManager.placementSystem.disableTowerPlacement(false);
@@ -62,7 +63,7 @@ public class TowerCard : Card
     {
         
         // moving schenanigains :)))))))))))
-        Vector3 moveamt = Vector3.Lerp(recttransform.position, Targetpos, .1f * Time.deltaTime);
+        Vector3 moveamt = Vector3.Lerp(recttransform.position, Targetpos, 10f * Time.deltaTime);
         recttransform.position = moveamt;
 
         // veer's actual card stuff
