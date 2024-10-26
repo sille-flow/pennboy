@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,8 @@ public class Player_Movement : MonoBehaviour
 
     public static float speedUp = 2f;
 
+    private static float timeToRun = 2;
+
     private float playerSpeed = 5.0f;
 
     private float jumpHeight = 1.0f;
@@ -30,6 +33,9 @@ public class Player_Movement : MonoBehaviour
 
     private float interactDistance = 8f;
 
+
+    private float maxSpeed;
+
     private KeyCode runKey = KeyCode.LeftShift;
     private KeyCode failKey = KeyCode.F;
     private KeyCode pushKey = KeyCode.Mouse0;
@@ -41,6 +47,7 @@ public class Player_Movement : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         // set the skin width appropriately according to Unity documentation: https://docs.unity3d.com/Manual/class-CharacterController.html
         controller.skinWidth = 0.1f * controller.radius;
+        maxSpeed = Player_Movement.basePlayerSpeed * Player_Movement.speedUp;
     }
 
     void Update()
@@ -78,9 +85,9 @@ public class Player_Movement : MonoBehaviour
         playerVelocity.x = 0;
         playerVelocity.z = 0;
         if (Input.GetKey(runKey)) {
-            playerSpeed = Player_Movement.basePlayerSpeed * Player_Movement.speedUp;
+            playerSpeed = Mathf.Clamp(playerSpeed + maxSpeed * Time.deltaTime / timeToRun, Player_Movement.basePlayerSpeed, maxSpeed);
         } else {
-            playerSpeed = Player_Movement.basePlayerSpeed;
+            playerSpeed = Mathf.Clamp(playerSpeed - maxSpeed * Time.deltaTime / timeToRun, Player_Movement.basePlayerSpeed, maxSpeed);
         }
         if (Input.GetKey(failKey)) {
             Cursor.lockState = CursorLockMode.None;
@@ -132,8 +139,8 @@ public class Player_Movement : MonoBehaviour
         // TODO: REWORK THIS SECTION!
         if (hit.rigidbody != null) {
             Vector3 horizontalDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-            Vector3 force = horizontalDir * 100000;
-            hit.rigidbody.AddForce(force);
+            Vector3 force = horizontalDir * 1000;
+            hit.rigidbody.AddForce(force, ForceMode.Impulse);
 
             // property damage from player
             PropertyDamageCollider col = hit.gameObject.GetComponent<PropertyDamageCollider>();
