@@ -27,11 +27,11 @@ public class TowerCard : Card
         isUsing = false;
         canSacrifice = true;
         Targetpos = origin;
+        active = false;
     }
 
     public override bool Use()
     {
-        Debug.Log("heheheha");
         if (!active)
         {
             Targetpos = origin + new Vector3(0, 30, 0);
