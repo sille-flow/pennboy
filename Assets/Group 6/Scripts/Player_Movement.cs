@@ -15,7 +15,7 @@ public class Player_Movement : MonoBehaviour
     private bool groundedPlayer;
     public static float basePlayerSpeed = 5.0f;
 
-    public static float speedUp = 2f;
+    public static float speedUp = 2.5f;
 
     private static float timeToRun = 2;
 
