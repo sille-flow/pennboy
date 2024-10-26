@@ -120,6 +120,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 2519180427931064429}
   luggageCart: {fileID: 4470206823010468085}
+--- !u!1 &2900550424847380926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4562054442618511099}
+  - component: {fileID: 7796624508526632855}
+  - component: {fileID: 7438479943344681731}
+  m_Layer: 5
+  m_Name: Cross Hair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4562054442618511099
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2900550424847380926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2405061113149269372}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7796624508526632855
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2900550424847380926}
+  m_CullTransparentMesh: 1
+--- !u!114 &7438479943344681731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2900550424847380926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: b454c15b7eac1445483a2a78d2e2b105, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &3783390290335496100
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,7 +202,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6451571374105377173}
   - component: {fileID: 2519180427931064429}
-  - component: {fileID: 1210472656268927950}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -173,23 +244,6 @@ MonoBehaviour:
   winScene: 3
   loseScene: 5
   hud: {fileID: 7490552872074169388}
---- !u!114 &1210472656268927950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3783390290335496100}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 750e92da7abcf4610b5de24ca47fd25a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageSlope: 0.1
-  damageOffset: 0
-  maxDamage: 50
-  cooldownTime: 0
-  crashSound: {fileID: 0}
 --- !u!1 &6779298456530596657
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +546,7 @@ RectTransform:
   m_Children:
   - {fileID: 7074320868300837505}
   - {fileID: 1173658507494942928}
+  - {fileID: 4562054442618511099}
   m_Father: {fileID: 6451571374105377173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
