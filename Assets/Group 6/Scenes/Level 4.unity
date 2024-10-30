@@ -1961,6 +1961,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33406a9cee39601daac966ad90e6fff7, type: 3}
+--- !u!1 &881957703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3783390290335496100, guid: 33406a9cee39601daac966ad90e6fff7,
+    type: 3}
+  m_PrefabInstance: {fileID: 881957702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &889351593
 GameObject:
   m_ObjectHideFlags: 0
@@ -4971,6 +4977,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 645302095178424667, guid: 9c47fa6e24b55497d95350b0fa96cb0c,
+        type: 3}
+      propertyPath: level
+      value: 
+      objectReference: {fileID: 881957703}
+    - target: {fileID: 645302095178424667, guid: 9c47fa6e24b55497d95350b0fa96cb0c,
+        type: 3}
+      propertyPath: elevatorSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4917265055277199280, guid: 9c47fa6e24b55497d95350b0fa96cb0c,
         type: 3}
       propertyPath: m_LocalPosition.x

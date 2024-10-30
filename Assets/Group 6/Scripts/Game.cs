@@ -29,7 +29,6 @@ public class Game : MonoBehaviour
     {
         if (budget <= 0) {
             int returnTo = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log(returnTo);
             PlayerPrefs.SetInt("returnTo", returnTo);
             SceneManager.LoadScene(loseScene);
             Cursor.lockState = Cursor.lockState = CursorLockMode.None;

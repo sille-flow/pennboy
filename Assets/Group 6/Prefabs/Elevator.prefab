@@ -348,8 +348,9 @@ MonoBehaviour:
   elevatorPlatform: {fileID: 4917265055277199280}
   targetPosition: {fileID: 3422147830414731498}
   startPosition: {fileID: 470445115175702099}
-  elevatorSpeed: 2
+  elevatorSpeed: 1
   delayTime: 3
+  level: {fileID: 0}
 --- !u!1 &5945104622969083224
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +474,7 @@ MonoBehaviour:
   startPosition: {fileID: 470445115175702099}
   elevatorSpeed: 2
   delayTime: 2
+  level: {fileID: 0}
 --- !u!1 &9033322214689510756
 GameObject:
   m_ObjectHideFlags: 0

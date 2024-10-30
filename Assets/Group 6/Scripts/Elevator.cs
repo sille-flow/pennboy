@@ -8,7 +8,9 @@ public class Elevator : MonoBehaviour
     public Transform targetPosition;   // The position where the elevator moves up to
     public Transform startPosition;    // The position where the elevator moves down to (starting position)
     public float elevatorSpeed = 2.0f; // Speed of the elevator movement
-    public float delayTime = 2.0f;     // Delay before the elevator moves back down
+    public float delayTime = 3.0f;     // Delay before the elevator moves back down
+    public GameObject oldParent;
+
 
     
     private bool playerInTrigger = false;  // To track if player is in the trigger area
@@ -24,6 +26,7 @@ public class Elevator : MonoBehaviour
         }
         if (other.gameObject.name == "Luggage_Cart" && !isMoving)
         {
+            oldParent = other.transform.parent.gameObject;
             other.transform.SetParent(elevatorPlatform);
         }
     }
@@ -37,7 +40,7 @@ public class Elevator : MonoBehaviour
         }
         if (other.gameObject.name == "Luggage_Cart" && !isMoving)
         {
-            other.transform.SetParent(null);
+            other.transform.SetParent(oldParent.transform);
         }
     }
 
