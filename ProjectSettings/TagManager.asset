@@ -11,6 +11,8 @@ TagManager:
   - PennSoccerGoalL
   - PennSoccerUI
   - PennSoccerBall
+  - PennSoccerSuperSize
+  - PennSoccerSuperSpeed
   layers:
   - Default
   - TransparentFX

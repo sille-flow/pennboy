@@ -8,7 +8,7 @@ public class player1movement : MonoBehaviour
     public float jumpForce = 5.0f;
     private float horizontalInput;
     private Rigidbody player1Rb;
-    bool facingRight = true;
+    //bool facingRight = true;
     public bool isGrounded = true;
     private SpriteRenderer charRender1;
 
@@ -51,11 +51,11 @@ public class player1movement : MonoBehaviour
     {
         if(horizontalInput > 0)
         {
-            facingRight = false;
+            //facingRight = false;
             charRender1.flipX = false;
         } else if (horizontalInput < 0)
         {
-            facingRight = true;
+            //facingRight = true;
             charRender1.flipX = true;
         }
 
