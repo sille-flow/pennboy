@@ -30,7 +30,7 @@ public class CardManager : MonoBehaviour
     private void generateHand()
     {
         int counter = 0;
-        for (int i = -1000; i <= 1000; i += 2000/(HandSize-1))
+        for (int i = -750; i <= 750; i += 1500/(HandSize-1))
         {
             GameObject newcard = Instantiate(TowerCard, this.transform);
             newcard.name = "Card" + (counter + 1);

@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class MoneyManager : MonoBehaviour
 {
     private int startingMoney = 200; 
     private int currentMoney;
 
-    [SerializeField] public TextMeshProUGUI moneyText; 
+    [SerializeField] public GameObject moneyUI; 
+    private TextMeshProUGUI moneyText;
+    private Vector3 origin;
+    private RectTransform recttransform;
+    private int PreUpdateVal;
 
     void Start()
     {
+        recttransform = moneyUI.GetComponent<RectTransform>();
+        origin = recttransform.position;
+        moneyText = moneyUI.GetComponent<TextMeshProUGUI>();
         currentMoney = startingMoney; 
+        PreUpdateVal = currentMoney;
         UpdateMoneyUI();
     }
 
@@ -41,6 +50,30 @@ public class MoneyManager : MonoBehaviour
 
     void UpdateMoneyUI()
     {
-        moneyText.text = "Money: $" + currentMoney.ToString(); 
+        if (PreUpdateVal < currentMoney)
+        {
+            recttransform.position = origin + new Vector3(0, 20, 0);
+            moneyText.color = new Color(255, 255, 100);
+        } else
+        {
+            recttransform.position = origin - new Vector3(0, 10, 0);
+            moneyText.color = new Color(255, 0, 0);
+        }
+        PreUpdateVal = currentMoney;
+        moneyText.text = currentMoney.ToString(); //"Money: $" + currentMoney.ToString(); 
+    }
+
+    protected void Update()
+    {
+        // moving schenanigains :)))))))))))
+        if ((recttransform.position - origin).magnitude > .1)
+        {
+            Vector3 moveamt = Vector3.Lerp(recttransform.position, origin, 10f * Time.deltaTime);
+            recttransform.position = moveamt;
+
+            float gval = Mathf.Lerp(moneyText.color.g, 217, 5f * Time.deltaTime);
+            float bval = Mathf.Lerp(moneyText.color.b, 0, 5f * Time.deltaTime);
+            moneyText.color = new Color(255, gval, bval);
+        }
     }
 }
