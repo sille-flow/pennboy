@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Diagnostics.Tracing;
+using System.Linq;
+using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
 {
-    [SerializeField] private Card[] hand;
+    [SerializeField] private int HandSize;
+    [SerializeField] private GameObject TowerCard;
+    private Card[] hand;
     [SerializeField] private List<int> deck;
     [SerializeField] private Card[] CardTypes;
     [SerializeField] private GameObject[] towerObjects;
@@ -13,9 +18,32 @@ public class CardManager : MonoBehaviour
 
     private void Start()
     {
+        hand = new Card[5];
+        // generate hand
+        generateHand();
+
         deck = new List<int>();
 
         generateDeck();
+    }
+
+    private void generateHand()
+    {
+        int counter = 0;
+        for (int i = -1000; i <= 1000; i += 2000/(HandSize-1))
+        {
+            GameObject newcard = Instantiate(TowerCard, this.transform);
+            newcard.name = "Card" + (counter + 1);
+            RectTransform trans = newcard.GetComponent<RectTransform>();
+            trans.anchoredPosition = new Vector3(i, 0, 0);
+            Card c = newcard.GetComponent<TowerCard>();
+            hand[counter] = c;
+            int savedcounter = counter;
+            counter++;
+
+            Button button = newcard.GetComponent<Button>();
+            button.onClick.AddListener(delegate { UseCard(savedcounter); });
+        }
     }
 
     private void generateDeck()
@@ -47,7 +75,7 @@ public class CardManager : MonoBehaviour
     /// <param name="card"></param>
     public void removeCardFromHand(Card card)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < HandSize; i++)
         {
             if (hand[i] == card)
             {

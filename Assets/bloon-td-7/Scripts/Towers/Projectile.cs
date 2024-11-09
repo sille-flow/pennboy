@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
         cant_hit = true;
         rb.velocity = Vector3.zero;
         GetComponent<MeshRenderer>().enabled = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.1f);
         Destroy(gameObject);
     }
 
@@ -53,10 +53,10 @@ public class Projectile : MonoBehaviour
         if (pierce_counter >= pierce_cap) StartCoroutine(Remove());
     }
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
+    //private void OnBecameInvisible()
+    //{
+    //    Destroy(gameObject);
+    //}
 
 
 }

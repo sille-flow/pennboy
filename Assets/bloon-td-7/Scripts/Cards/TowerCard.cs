@@ -30,7 +30,7 @@ public class TowerCard : Card
 
     public override bool Use()
     {
-
+        Debug.Log("scafa");
         if (isUsing)
         {
             Targetpos = origin;
@@ -63,11 +63,10 @@ public class TowerCard : Card
 
     protected override void Update()
     {
-        
+
         // moving schenanigains :)))))))))))
         if ((recttransform.position - Targetpos).magnitude > .1)
         {
-            Debug.Log("Ooga");
             Vector3 moveamt = Vector3.Lerp(recttransform.position, Targetpos, 10f * Time.deltaTime);
             recttransform.position = moveamt;
         }
