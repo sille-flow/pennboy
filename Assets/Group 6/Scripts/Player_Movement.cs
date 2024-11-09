@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +19,7 @@ public class Player_Movement : MonoBehaviour
 
     public static float speedUp = 2.5f;
 
+    // time to run from standstill
     private static float timeToRun = 2;
 
     private float playerSpeed = 0;
@@ -36,10 +39,16 @@ public class Player_Movement : MonoBehaviour
 
     private float maxSpeed;
 
+    private float defaultFieldOfView;
+    private float fieldOfViewMultiplier = 1.18f;
+    private float fastFieldOfView;
+
+
     private KeyCode runKey = KeyCode.LeftShift;
     private KeyCode failKey = KeyCode.F;
     private KeyCode pushKey = KeyCode.Mouse0;
     private KeyCode pullKey = KeyCode.Mouse1;
+
 
     private void Start()
     {
@@ -48,6 +57,8 @@ public class Player_Movement : MonoBehaviour
         // set the skin width appropriately according to Unity documentation: https://docs.unity3d.com/Manual/class-CharacterController.html
         controller.skinWidth = 0.1f * controller.radius;
         maxSpeed = Player_Movement.basePlayerSpeed * Player_Movement.speedUp;
+        defaultFieldOfView = Camera.main.fieldOfView;
+        fastFieldOfView = defaultFieldOfView * fieldOfViewMultiplier;
     }
 
     void Update()
@@ -85,10 +96,13 @@ public class Player_Movement : MonoBehaviour
         playerVelocity.x = 0;
         playerVelocity.z = 0;
         
+        float diffFOV = math.abs(fastFieldOfView - defaultFieldOfView);
         if (Input.GetKey(runKey) && Input.GetAxis("Vertical") > 0) {
-            playerSpeed = Mathf.Clamp(playerSpeed + maxSpeed * Time.deltaTime / timeToRun, Player_Movement.basePlayerSpeed, maxSpeed);
+            playerSpeed = Mathf.MoveTowards(playerSpeed, maxSpeed, maxSpeed * Time.deltaTime / timeToRun);
+            Camera.main.fieldOfView = Mathf.MoveTowards(Camera.main.fieldOfView, fastFieldOfView, diffFOV * Time.deltaTime / timeToRun);
         } else {
-            playerSpeed = Mathf.Clamp(playerSpeed - maxSpeed * Time.deltaTime / timeToRun, Player_Movement.basePlayerSpeed, maxSpeed);
+            playerSpeed = Mathf.MoveTowards(playerSpeed, basePlayerSpeed, maxSpeed * Time.deltaTime / timeToRun);
+            Camera.main.fieldOfView = Mathf.MoveTowards(Camera.main.fieldOfView, defaultFieldOfView, diffFOV * Time.deltaTime / timeToRun);
         }
         if (Input.GetKey(failKey)) {
             int returnTo = SceneManager.GetActiveScene().buildIndex;
@@ -98,7 +112,7 @@ public class Player_Movement : MonoBehaviour
             Cursor.visible = true;
             SceneManager.LoadScene(5);
         }
-        playerVelocity += (gameObject.transform.right * Input.GetAxis("Horizontal") + gameObject.transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
+        playerVelocity += Vector3.Normalize(gameObject.transform.right * Input.GetAxis("Horizontal") + gameObject.transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
     }
 
 
