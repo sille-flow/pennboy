@@ -20,12 +20,12 @@ public class Floor_Money : MonoBehaviour
 
     void OnTriggerEnter(Collider collision) {
         PropertyDamageCollider col = collision.gameObject.GetComponent<PropertyDamageCollider>();
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "Player") {
             pickUpSound.Play(0);
-            Debug.Log("Collide with player");
+            //Debug.Log("Collide with player");
             level.reduceBudget(-100);
-            Debug.Log("Attempted to add");
+            //Debug.Log("Attempted to add");
             Destroy(gameObject);
         }
     }
