@@ -34,10 +34,16 @@ public class PlayerController : MonoBehaviour
 
     int score = 0;
     private ParticleSystem chargingEffect;
+    private ParticleSystem perfectJumpEffect;
 
     private void Start()
     {
-        chargingEffect = gameObject.GetComponentInChildren<ParticleSystem>();
+        ParticleSystem[] effects = gameObject.GetComponentsInChildren<ParticleSystem>();
+        for (int i = 0; i < effects.Length; i++)
+        {
+            if (effects[i].gameObject.name == "ChargingEffect") chargingEffect = effects[i];
+            if (effects[i].gameObject.name == "PerfectLanding_Effect") perfectJumpEffect = effects[i];
+        }
     }
 
     void Update()
@@ -87,6 +93,11 @@ public class PlayerController : MonoBehaviour
                     // Generate new platform if jump landed 
                     if(IsPlayerOnPlatform())
                     {
+                        if (platformManager.CheckPerfectLanding(transform.position))
+                        {
+                            perfectJumpEffect.Play();
+                            score += 1;
+                        }
                         platformManager.JumpLanded();
                         score += 1;
                         CanvasScript.instance.UpdateScore(score);

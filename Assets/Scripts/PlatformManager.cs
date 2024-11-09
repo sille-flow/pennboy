@@ -55,6 +55,17 @@ public class PlatformManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Called by after player ends the jump animation, checks if the player landed perfectly 
+    /// </summary>
+    /// <param name="playerPos"></param>
+    /// <returns></returns>
+    public bool CheckPerfectLanding(Vector3 playerPos)
+    {
+        return (Math.Abs(playerPos.x - _nextPlatform.transform.position.x) < 0.15f) &&
+            (Math.Abs(playerPos.z - _nextPlatform.transform.position.z) < 0.15f);
+    }
+
+    /// <summary>
     ///
     /// </summary>
     /// <returns> The world position of the next platform to jump to </returns>
