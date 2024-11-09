@@ -35,9 +35,15 @@ public class PlayerController : MonoBehaviour
     int score = 0;
     private ParticleSystem chargingEffect;
     private ParticleSystem perfectJumpEffect;
+    private AudioSource jumpSoundPlayer;
+    private AudioSource perfectLandSoundPlayer;
 
     private void Start()
     {
+        jumpSoundPlayer =
+            GameObject.Find("IsometricCamera/JumpSoundPlayer").GetComponent<AudioSource>();
+        perfectLandSoundPlayer =
+          GameObject.Find("IsometricCamera/PerfectLandingSoundPlayer").GetComponent<AudioSource>();
         ParticleSystem[] effects = gameObject.GetComponentsInChildren<ParticleSystem>();
         for (int i = 0; i < effects.Length; i++)
         {
@@ -70,6 +76,7 @@ public class PlayerController : MonoBehaviour
                 // Check if player released the jump button
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
+                    jumpSoundPlayer.Play();
                     ShrinkAnimationController.instance.ResetSize();
                     chargingEffect.gameObject.SetActive(false);
                     chargingEffect.Stop();
@@ -95,6 +102,7 @@ public class PlayerController : MonoBehaviour
                     {
                         if (platformManager.CheckPerfectLanding(transform.position))
                         {
+                            perfectLandSoundPlayer.Play();
                             perfectJumpEffect.Play();
                             score += 1;
                         }
