@@ -84,7 +84,8 @@ public class Player_Movement : MonoBehaviour
     void horizontalMovementHelper() {
         playerVelocity.x = 0;
         playerVelocity.z = 0;
-        if (Input.GetKey(runKey)) {
+        Vector3 moveDir = gameObject.transform.right * Input.GetAxis("Horizontal") + gameObject.transform.forward * Input.GetAxis("Vertical");
+        if (Input.GetKey(runKey) && (moveDir.x != 0 || moveDir.y != 0)) {
             playerSpeed = Mathf.Clamp(playerSpeed + maxSpeed * Time.deltaTime / timeToRun, Player_Movement.basePlayerSpeed, maxSpeed);
         } else {
             playerSpeed = Mathf.Clamp(playerSpeed - maxSpeed * Time.deltaTime / timeToRun, Player_Movement.basePlayerSpeed, maxSpeed);
@@ -97,7 +98,7 @@ public class Player_Movement : MonoBehaviour
             Cursor.visible = true;
             SceneManager.LoadScene(5);
         }
-        playerVelocity += (gameObject.transform.right * Input.GetAxis("Horizontal") + gameObject.transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
+        playerVelocity += moveDir * playerSpeed;
     }
 
 
