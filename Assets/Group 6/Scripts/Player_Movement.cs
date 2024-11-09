@@ -19,7 +19,7 @@ public class Player_Movement : MonoBehaviour
 
     private static float timeToRun = 2;
 
-    private float playerSpeed = 5.0f;
+    private float playerSpeed = 0;
 
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
