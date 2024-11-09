@@ -21,7 +21,7 @@ public class Game : MonoBehaviour
         hud.updateBudget(budget);
 
         // set maxbudget
-        maxBudget = budget;
+        maxBudget = 2*budget;
     }
 
     // Update is called once per frame
