@@ -7,7 +7,7 @@ public class Elevator : MonoBehaviour
     public Transform elevatorPlatform; // The elevator object
     public Transform targetPosition;   // The position where the elevator moves up to
     public Transform startPosition;    // The position where the elevator moves down to (starting position)
-    public float elevatorSpeed = 2.0f; // Speed of the elevator movement
+    [SerializeField] public float elevatorSpeed; // Speed of the elevator movement
     public float delayTime = 3.0f;     // Delay before the elevator moves back down
     private Transform luggageCart;
     private Transform oldParent; 
