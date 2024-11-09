@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 603454357228766951}
-  - component: {fileID: 9055203479227950246}
   m_Layer: 0
   m_Name: Money
   m_TagString: Untagged
@@ -33,19 +32,6 @@ Transform:
   - {fileID: 4853586751755040202}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9055203479227950246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2948799924319185127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ae8ace381427440e8998cd549cee95d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: {fileID: 0}
 --- !u!1 &6436896227250821821
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,6 +45,7 @@ GameObject:
   - component: {fileID: 1846567864156159403}
   - component: {fileID: 6238100575140838961}
   - component: {fileID: 5373781171958373043}
+  - component: {fileID: 8631228580263256182}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -146,7 +133,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -179,3 +166,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8631228580263256182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436896227250821821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae8ace381427440e8998cd549cee95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 0}

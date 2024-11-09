@@ -14,7 +14,7 @@ public class Floor_Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 1, 0);
+        transform.Rotate(0, 0.5f, 0);
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -22,7 +22,8 @@ public class Floor_Money : MonoBehaviour
         Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "Player") {
             Debug.Log("Collide with player");
-            level.reduceBudget(-1000);
+            level.reduceBudget(-100);
+            Debug.Log("Attempted to add");
             Destroy(gameObject);
         }
     }
