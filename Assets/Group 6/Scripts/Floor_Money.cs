@@ -5,6 +5,7 @@ using UnityEngine;
 public class Floor_Money : MonoBehaviour
 {
     [SerializeField] Game level;
+    [SerializeField] private AudioSource pickUpSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +18,11 @@ public class Floor_Money : MonoBehaviour
         transform.Rotate(0, 0.5f, 0);
     }
 
-    void OnCollisionEnter(Collision collision) {
+    void OnTriggerEnter(Collider collision) {
         PropertyDamageCollider col = collision.gameObject.GetComponent<PropertyDamageCollider>();
         Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "Player") {
+            pickUpSound.Play(0);
             Debug.Log("Collide with player");
             level.reduceBudget(-100);
             Debug.Log("Attempted to add");
