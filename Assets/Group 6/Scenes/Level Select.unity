@@ -2510,7 +2510,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1853964123}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadLevel4
+        m_MethodName: LoadLevel6
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2936,7 +2936,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2020438980}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadLevel5
+        m_MethodName: LoadLevel7
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
