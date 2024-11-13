@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1846567864156159403}
   - component: {fileID: 6238100575140838961}
   - component: {fileID: 8631228580263256182}
+  - component: {fileID: 2225338957622358388}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -153,6 +154,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 0}
   pickUpSound: {fileID: 7315946422070136511}
+--- !u!114 &2225338957622358388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436896227250821821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5110de66318a64c4f8ecdc1ed4962f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tintImage: {fileID: 0}
+  fadeDuration: 1
 --- !u!1 &7581704119628700271
 GameObject:
   m_ObjectHideFlags: 0
