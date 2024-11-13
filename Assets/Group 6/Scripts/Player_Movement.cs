@@ -31,7 +31,7 @@ public class Player_Movement : MonoBehaviour
 
     //private float playerMass = 120;
 
-    private float mouseSensitivity = 1;
+    public static float mouseSensitivity = 1;
 
 
     private float interactDistance = 8f;
@@ -59,6 +59,7 @@ public class Player_Movement : MonoBehaviour
         maxSpeed = Player_Movement.basePlayerSpeed * Player_Movement.speedUp;
         defaultFieldOfView = Camera.main.fieldOfView;
         fastFieldOfView = defaultFieldOfView * fieldOfViewMultiplier;
+        mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 1.0f);
     }
 
     void Update()
@@ -169,5 +170,10 @@ public class Player_Movement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SetMouseSensitivity(float sensitivity) {
+        mouseSensitivity = sensitivity;
+        PlayerPrefs.SetFloat("MouseSensitivity", sensitivity); // Save to PlayerPrefs
     }
 }
