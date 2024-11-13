@@ -30,6 +30,10 @@ public class PropertyDamageCollider : MonoBehaviour
 
     public int calculateDamage(float impulse) {
         crashSound.Play(0);
+        ScreenTint1 screenTint = FindObjectOfType<ScreenTint1>();
+        if (screenTint != null) {
+            screenTint.TintAndFade();
+        }
         int damage = Mathf.RoundToInt(Mathf.Clamp(damageSlope * impulse + damageOffset, 0, maxDamage));
         if (damage > 0 && currCooldownTime == 0) {
             currCooldownTime = cooldownTime;

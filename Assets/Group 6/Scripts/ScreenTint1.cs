@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScreenTint : MonoBehaviour
+public class ScreenTint1 : MonoBehaviour
 {
     public Image tintImage; // Drag the ScreenTint Image here in the Inspector
     public float fadeDuration = 1.0f; // Duration for fade in and out
