@@ -39,7 +39,7 @@ public class ScreenTint : MonoBehaviour
         // Step 1: Fade In (make the screen green)
         float timer = 0;
         Color color = tintImage.color;
-        color.a = 0.5f;
+        color.a = 0.3f;
         tintImage.color = color;
         // while (timer <= fadeDuration)
         // {
@@ -57,7 +57,7 @@ public class ScreenTint : MonoBehaviour
         while (timer <= fadeDuration)
         {
             timer += Time.deltaTime;
-            color.a = Mathf.Lerp(0.5f, 0, timer / fadeDuration);
+            color.a = Mathf.Lerp(0.3f, 0, timer / fadeDuration);
             tintImage.color = color;
             yield return null;
         }

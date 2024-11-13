@@ -1944,6 +1944,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8500407893332760553, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      propertyPath: tintImage
+      value: 
+      objectReference: {fileID: 881957705}
     - target: {fileID: 8694747365054813913, guid: 33406a9cee39601daac966ad90e6fff7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1995,6 +2000,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2998fa16b69d2bd5ab87441089de2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &881957705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8700552551119580666, guid: 33406a9cee39601daac966ad90e6fff7,
+    type: 3}
+  m_PrefabInstance: {fileID: 881957702}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &889351593
