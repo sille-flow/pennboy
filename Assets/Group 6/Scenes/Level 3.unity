@@ -1934,6 +1934,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8500407893332760553, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      propertyPath: tintImage
+      value: 
+      objectReference: {fileID: 881957703}
     - target: {fileID: 8694747365054813913, guid: 33406a9cee39601daac966ad90e6fff7,
         type: 3}
       propertyPath: m_LocalPosition.y

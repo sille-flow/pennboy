@@ -66,6 +66,11 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(13);
     }
 
+    public void Settings()
+    {
+        SceneManager.LoadScene(14);
+    }
+
     public void restartLevel() {
         int returnTo = PlayerPrefs.GetInt("returnTo");
         //Debug.Log(returnTo);
