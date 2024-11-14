@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    [SerializeField] private int budget = 1000;
-    private int maxBudget;
+    [SerializeField] private int initialBudget = 1000;
+    [SerializeField] private int maxBudget;
     [SerializeField] private int winScene = 3;
     [SerializeField] private int loseScene = 4;
     [SerializeField] private HUD hud;
@@ -18,16 +18,16 @@ public class Game : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        hud.updateBudget(budget);
 
-        // set maxbudget
-        maxBudget = 2*budget;
+        // set budget
+        maxBudget = 2*initialBudget;
+        hud.setBudget(initialBudget, maxBudget);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (budget <= 0) {
+        if (hud.getBudget() <= 0) {
             int returnTo = SceneManager.GetActiveScene().buildIndex;
             PlayerPrefs.SetInt("returnTo", returnTo);
             SceneManager.LoadScene(loseScene);
@@ -37,8 +37,7 @@ public class Game : MonoBehaviour
     }
 
     public void reduceBudget(int damage) {
-        budget = Mathf.Clamp(budget - damage, 0, maxBudget);
-        hud.updateBudget(budget);
+        hud.reduceBudget(damage);
     }
 
     public void win() {
