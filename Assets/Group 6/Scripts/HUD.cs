@@ -62,7 +62,7 @@ public class HUD : MonoBehaviour
     private void updateAddLossBudgetText() {
         String text = "";
         foreach (int num in addLossList) {
-            if (num < 0 || !currentFirstElementInAddLossListIsAPlus) {
+            if (num < 0 || (num == 0 && !currentFirstElementInAddLossListIsAPlus)) {
                 text += "<color=red>-$" + Math.Abs(num) + "\n";
             } else {
                 text += "<color=green>+$" + Math.Abs(num) + "\n";
