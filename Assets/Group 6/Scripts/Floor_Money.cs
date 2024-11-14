@@ -22,10 +22,6 @@ public class Floor_Money : MonoBehaviour
         PropertyDamageCollider col = collision.gameObject.GetComponent<PropertyDamageCollider>();
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "Player") {
-            ScreenTint screenTint = FindObjectOfType<ScreenTint>();
-            if (screenTint != null) {
-                screenTint.TintAndFade();
-            }
             pickUpSound.Play(0);
             //Debug.Log("Collide with player");
             level.reduceBudget(-100);
