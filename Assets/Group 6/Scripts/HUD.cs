@@ -14,25 +14,30 @@ public class HUD : MonoBehaviour
     private int maxBudget;
     private int budget;
     private int displayBudget;
-    private int maxDeltaDisplayBudgetPerFrame = 2;
+    private int maxDeltaDisplayBudgetPerDecrease = 2;
+    private float updateBudgetDisplayTime = 0.05f;
     private bool currentFirstElementInAddLossListIsAPlus = true;
     private float timeStore = 0f;
     // Start is called before the first frame update
     void Start()
     {
         timeStore = Time.time;
+        InvokeRepeating("updateBudgetDisplay", 0, updateBudgetDisplayTime);
     }
 
     // Update is called once per frame
     void Update()
     {
         timeText.text = "Time: " + $"{Mathf.Floor((Time.time - timeStore) * 100) / 100f}";
+    }
+
+    private void updateBudgetDisplay() {
         if (addLossList.Count > 0) {
             if (addLossList[0] == 0) {
                 addLossList.RemoveAt(0);
             } else {
                 int initial = addLossList[0];
-                int final = (int) Mathf.MoveTowards(initial, 0, maxDeltaDisplayBudgetPerFrame);
+                int final = (int) Mathf.MoveTowards(initial, 0, maxDeltaDisplayBudgetPerDecrease);
                 if (final == 0) {
                     currentFirstElementInAddLossListIsAPlus = initial > 0;
                 }
