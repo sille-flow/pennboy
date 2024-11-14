@@ -6,16 +6,20 @@ public class Floor_Money : MonoBehaviour
 {
     [SerializeField] Game level;
     [SerializeField] private AudioSource pickUpSound;
+
+    // rotation speed in rpm (rotations per minute)
+    private float rotateSpeed = 30;
+    private float degreesPerSecond;
     // Start is called before the first frame update
     void Start()
     {
-        
+        degreesPerSecond = 6 * rotateSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0.5f, 0);
+        transform.Rotate(0, degreesPerSecond * Time.deltaTime, 0);
     }
 
     void OnTriggerEnter(Collider collision) {
