@@ -13,7 +13,7 @@ public class powerUpScript: MonoBehaviour
         player1obj = GameObject.Find("player 1");
         player2obj = GameObject.Find("player 2");
     }
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -44,6 +44,10 @@ public class powerUpScript: MonoBehaviour
         {
             StartCoroutine(ApplySizeBoost(player));
         }
+        else if (gameObject.CompareTag("PennSoccerSuperJump"))
+        {
+            StartCoroutine(ApplyJumpBoost(player));
+        }
     }
 
     private IEnumerator ApplySpeedBoost(GameObject player)
@@ -73,6 +77,35 @@ public class powerUpScript: MonoBehaviour
         }
         Destroy(gameObject);
    
+    }
+
+    private IEnumerator ApplyJumpBoost(GameObject player)
+    {
+
+        if (player == player1obj)
+        {
+            player1obj.GetComponent<player1movement>().jumpForce *= 1.5f;
+        }
+        else if (player == player2obj)
+        {
+            player2obj.GetComponent<player2movement>().jumpForce *= 1.5f;
+        }
+
+        gameObject.transform.position = new Vector3(-17.7f, -0.87f, -7.032f);
+        //gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(effectDuration);
+
+        if (player == player1obj)
+        {
+            player1obj.GetComponent<player1movement>().jumpForce /= 1.5f;
+        }
+        else if (player == player2obj)
+        {
+            player2obj.GetComponent<player2movement>().jumpForce /= 1.5f;
+        }
+        Destroy(gameObject);
+
     }
 
     private IEnumerator ApplySizeBoost(GameObject player)
