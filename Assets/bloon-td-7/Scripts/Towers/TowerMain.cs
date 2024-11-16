@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class TowerMain : Tower
 {
+    [SerializeField] protected float projectileSpeed = 240f;
+    protected int projectilePierce = 1;
     protected override void Attack(GameObject target)
     {
         if (target == null) return;

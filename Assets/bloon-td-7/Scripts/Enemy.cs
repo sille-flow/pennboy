@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         this.moveSpeed = moveSpeed;
         this.isCamo = isCamo;
         this.moneyWorth = moneyWorth;
-        this.size = size;
+        this.size = size + Random.Range(-0.5f,0.5f);
         //height given random deviations to prevent ui glitching
         transform.localScale = new Vector3(size, size + Random.Range(-1f,4f), size);
         renderSizeY = size + Random.Range(-1f, 4f);

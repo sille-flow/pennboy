@@ -53,10 +53,10 @@ public class Projectile : MonoBehaviour
         if (pierce_counter >= pierce_cap) StartCoroutine(Remove());
     }
 
-    //private void OnBecameInvisible()
-    //{
-    //    Destroy(gameObject);
-    //}
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 
 
 }
