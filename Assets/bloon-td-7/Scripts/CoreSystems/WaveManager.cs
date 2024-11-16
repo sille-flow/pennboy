@@ -21,6 +21,7 @@ public class WaveManager : MonoBehaviour
         globalTimer = 0;
         waveOccurring = false;
         waveIndex = 14;
+
         spawnersCreated = 0;
         spawners = new List<Spawner>();
     }
