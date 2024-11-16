@@ -20,7 +20,7 @@ public class WaveManager : MonoBehaviour
         waveCooldown = 1f;
         globalTimer = 0;
         waveOccurring = false;
-        waveIndex = 0;
+        waveIndex = 16;
         spawnersCreated = 0;
         spawners = new List<Spawner>();
     }
@@ -43,7 +43,7 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(35f,40,12,25, new Color32(139, 155, 199,255)), //10 light wizard
         new EnemyInfo(35f,40,12,25, new Color32(0, 0, 46,255)), //11 dark wizard
         new EnemyInfo(50f,100,25,50, new Color32(114, 0, 252,255),8), //12 master wizard
-        new EnemyInfo(200f,1000,100,100,new Color32(255,0,0,255),20), //13 dragon
+        new EnemyInfo(10000f,1000,100,100,new Color32(255,0,0,255),20), //13 dragon
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
         //new EnemyInfo(3,100,1000,1000,new Color(61, 110, 173),30), //5 - boss enemy
@@ -169,13 +169,13 @@ public class WaveManager : MonoBehaviour
             "0",
             "0"
             ),
-        //test wave - dragon
-        //new WaveInfo(
-        //    "13",
-        //    "5",
-        //    "1",
-        //    "0"
-        //    ),
+       // test wave - dragon
+        new WaveInfo(
+            "13",
+            "5",
+            "1",
+            "0"
+            ),
     };
      
     void Update()
