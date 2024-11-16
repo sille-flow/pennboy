@@ -53,7 +53,7 @@ public class Tower : MonoBehaviour
             {
                 if (enemyMax == null)
                     enemyMax = enemiesInRange[i];
-                else if (enemyMax.GetComponent<Enemy>().DistanceTravelled > enemiesInRange[i].GetComponent<Enemy>().DistanceTravelled)
+                else if (enemyMax.GetComponent<Enemy>().DistanceTravelled < enemiesInRange[i].GetComponent<Enemy>().DistanceTravelled)
                 {
                     enemyMax = enemiesInRange[i];
                 }
