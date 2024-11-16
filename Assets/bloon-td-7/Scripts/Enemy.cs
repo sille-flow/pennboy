@@ -37,9 +37,9 @@ public class Enemy : MonoBehaviour
         this.moveSpeed = moveSpeed;
         this.isCamo = isCamo;
         this.moneyWorth = moneyWorth;
-        this.size = size;
+        this.size = size + Random.Range(-0.5f,0.5f);
         //height given random deviations to prevent ui glitching
-        transform.localScale = new Vector3(size, size + Random.Range(-1f,10f), size);
+        transform.localScale = new Vector3(size, size + Random.Range(0f, 1f), size);
         waypoints = new List<Vector3>();
         this.gameObject.layer = 2;
 
