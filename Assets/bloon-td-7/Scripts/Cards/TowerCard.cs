@@ -11,6 +11,7 @@ public class TowerCard : Card
     private RectTransform recttransform;
     private Vector3 origin;
     private Vector3 Targetpos;
+    private int cost;
 
     private void Start()
     {
@@ -79,5 +80,10 @@ public class TowerCard : Card
         }
         else
             text.text = id+"";
+    }
+
+    public int GetCost()
+    {
+        return towerPrefab.GetComponent<Tower>().GetCost();
     }
 }

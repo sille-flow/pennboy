@@ -60,10 +60,10 @@ public class PlacementSystem : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     MoneyManager moneyManager = GameManager.instance.moneyManager;
-                    if (moneyManager.GetCurrentMoney() < 100) { return; }
+                    if (moneyManager.GetCurrentMoney() < cardUsing.GetCost()) { return; }
 
                     // deduct money
-                    moneyManager.SpendMoney(100);
+                    moneyManager.SpendMoney(cardUsing.GetCost());
 
                     // this goes hard
                     Tower t = Instantiate(cardUsing.towerPrefab, MousePosition + new Vector3(0, 3.5f, 0), new Quaternion()).GetComponent<Tower>();

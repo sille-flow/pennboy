@@ -340,8 +340,10 @@ MonoBehaviour:
   cooldown: 1
   damage: 1
   range: 7.5
+  cost: 50
   UpgradeCosts: 64000000c80000002c01000090010000
   sacrificeIcon: {fileID: 5023210504082975546}
+  projectileSpeed: 240
 --- !u!135 &8214901739824537978
 SphereCollider:
   m_ObjectHideFlags: 0

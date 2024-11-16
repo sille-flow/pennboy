@@ -8,6 +8,13 @@ public class ShotgunTower : Tower
     protected int projectilePierce = 2;
     protected int numExtraBullets = 1;
     protected float attackSpread = 25f;
+    protected override void Start()
+    {
+        base.Start();
+
+        UpgradeCosts = new int[] { 250, 350, 550, 750, 1000};
+        cost = 150;
+    }
     protected override void Attack(GameObject target)
     {
         if (target == null) return;

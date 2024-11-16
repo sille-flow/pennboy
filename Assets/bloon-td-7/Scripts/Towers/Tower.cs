@@ -33,7 +33,6 @@ public class Tower : MonoBehaviour
         enemiesInRange.Remove(collision.gameObject);
     }
 
-
     /// <summary>
     /// Gets the target from enemies in a towers range.
     /// </summary>
@@ -96,7 +95,7 @@ public class Tower : MonoBehaviour
     public void CalcLevel (int cost)
     {
         int i = 0;
-        while (cost >= UpgradeCosts[i])
+        while (i < 4 && cost >= UpgradeCosts[i])
         {
             level++;
             i++;

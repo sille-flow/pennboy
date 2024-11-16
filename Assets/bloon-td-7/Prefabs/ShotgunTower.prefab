@@ -361,8 +361,6 @@ MonoBehaviour:
   cooldown: 1.5
   damage: 2
   range: 5
-  cost: 120
+  cost: 150
   UpgradeCosts: 64000000c80000002c01000090010000
   sacrificeIcon: {fileID: 464786265221448667}
-  projectileSpeed: 100
-  projectilePierce: 2
