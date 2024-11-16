@@ -6,12 +6,18 @@ public class powerUpScript: MonoBehaviour
     public float effectDuration = 3.0f;
     GameObject player1obj;
     GameObject player2obj;
+    GameObject powerupDisplay;
+
+    public Sprite speedUp;
+    public Sprite jumpUp;
+    public Sprite sizeUp;
 
 
     private void Start()
     {
         player1obj = GameObject.Find("player 1");
         player2obj = GameObject.Find("player 2");
+        powerupDisplay = GameObject.Find("powerUpDisplay");
     }
 
 
@@ -52,8 +58,8 @@ public class powerUpScript: MonoBehaviour
 
     private IEnumerator ApplySpeedBoost(GameObject player)
     {
-
-        if(player == player1obj)
+        
+        if (player == player1obj)
         {
             player1obj.GetComponent<player1movement>().speed *= 2;
         }
@@ -63,6 +69,7 @@ public class powerUpScript: MonoBehaviour
         }
         
         gameObject.transform.position = new Vector3(-17.7f, -0.87f, -7.032f);
+        powerupDisplay.GetComponent<SpriteRenderer>().sprite = speedUp;
         //gameObject.SetActive(false);
 
         yield return new WaitForSeconds(effectDuration);
@@ -92,6 +99,7 @@ public class powerUpScript: MonoBehaviour
         }
 
         gameObject.transform.position = new Vector3(-17.7f, -0.87f, -7.032f);
+        powerupDisplay.GetComponent<SpriteRenderer>().sprite = jumpUp;
         //gameObject.SetActive(false);
 
         yield return new WaitForSeconds(effectDuration);
@@ -117,6 +125,8 @@ public class powerUpScript: MonoBehaviour
             player.transform.localScale = originalSize * 2;
 
             gameObject.transform.position = new Vector3(-17.7f, -0.87f, -7.032f);
+            powerupDisplay.GetComponent<SpriteRenderer>().sprite = sizeUp;
+
             //gameObject.SetActive(false);
 
             yield return new WaitForSeconds(effectDuration);
