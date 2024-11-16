@@ -113,6 +113,11 @@ public class PlacementSystem : MonoBehaviour
         cardUsing = card;
         mouseIndicator.SetActive(true);
         currentMode = PlacementMode.PlacingTower;
+        if (towersToSacrifice != null)
+        {
+            foreach (Tower t in towersToSacrifice)
+                t.ToggleSacrifice();
+        }
         towersToSacrifice = new List<Tower>();
     }
 
