@@ -243,10 +243,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHeight: 2
   distance: 2.5
-  duration: 1
+  minJumpDuration: 1
+  maxJumpDuration: 2
   minimumHeight: 5
-  m_Transform: {fileID: 0}
-  mainCamera: {fileID: 0}
+  platformManager: {fileID: 0}
+  cameraController: {fileID: 0}
 --- !u!1 &1771001453
 GameObject:
   m_ObjectHideFlags: 0
