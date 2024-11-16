@@ -7,11 +7,9 @@ public class Tower : MonoBehaviour
     [SerializeField] protected float cooldown = 1f;
     [SerializeField] protected int damage = 1;
     [SerializeField] protected float range = 7.5f;
-    protected int cost = 100;
+    [SerializeField] protected int cost = 100;
     protected List<GameObject> enemiesInRange = new List<GameObject>();
     protected float remainingCooldown;
-    protected float projectileSpeed = 240f;
-    protected int projectilePierce = 1;
     [SerializeField] protected int[] UpgradeCosts = { 100,200,300,400 };
     protected int level = 0;
     protected bool selectedToSacrifice = false;
