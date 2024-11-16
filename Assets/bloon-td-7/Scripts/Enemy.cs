@@ -86,8 +86,8 @@ public class Enemy : MonoBehaviour
         targetPos = Vector3.MoveTowards(targetPos, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime);
         float sinpos = Mathf.Abs(Mathf.Sin(DistanceTravelled));
         float sinsize = Mathf.Abs(Mathf.Sin(DistanceTravelled - (Mathf.PI / 5)));
-        transform.localScale = new Vector3(size, (renderSizeY * .75f) + (sinsize * renderSizeY * .25f), size);
-        transform.position = targetPos + new Vector3(0, (sinpos * 6f) + (renderSizeY/4), 0);
+        transform.localScale = new Vector3(size, (renderSizeY * .8f) + (sinsize * renderSizeY * .2f), size);
+        transform.position = targetPos + new Vector3(0, (sinpos * 8f) + (renderSizeY/4), 0);
     }
 
     private float CalcDistance(Vector3 pos1, Vector3 pos2)
