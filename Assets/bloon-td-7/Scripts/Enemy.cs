@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private const float WAYPOINT_CHANGE_DISTANCE = 0.01f;
     public bool isCamo { get; protected set; }
     public float size;
+    private float renderSizeY;
     private bool canStart = false;
     private Vector3 targetPos;
 
@@ -40,7 +41,8 @@ public class Enemy : MonoBehaviour
         this.moneyWorth = moneyWorth;
         this.size = size;
         //height given random deviations to prevent ui glitching
-        transform.localScale = new Vector3(size, size + Random.Range(-1f,10f), size);
+        transform.localScale = new Vector3(size, size + Random.Range(-1f,4f), size);
+        renderSizeY = size + Random.Range(-1f, 4f);
         waypoints = new List<Vector3>();
         this.gameObject.layer = 2;
 
@@ -56,6 +58,7 @@ public class Enemy : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
 
+        DistanceTravelled = Mathf.PI * (Random.Range(1, 100) / 100f);
         targetPos = transform.position;
         canStart = true;
     }
@@ -63,7 +66,7 @@ public class Enemy : MonoBehaviour
     protected void Update()
     {
         if (!canStart) return;
-        DistanceTravelled += Time.deltaTime * moveSpeed;
+        DistanceTravelled += Time.deltaTime * Mathf.Sqrt(moveSpeed) * 1.5f;
         if (CalcDistance(targetPos, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
         {
             targetPos = waypoints[waypointIndex + 1];
@@ -81,8 +84,10 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         targetPos = Vector3.MoveTowards(targetPos, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime);
-        float sine = Mathf.Sin(DistanceTravelled);
-        transform.position = targetPos + new Vector3(0, sine * 2.5f, 0);
+        float sinpos = Mathf.Abs(Mathf.Sin(DistanceTravelled));
+        float sinsize = Mathf.Abs(Mathf.Sin(DistanceTravelled - (Mathf.PI / 5)));
+        transform.localScale = new Vector3(size, (renderSizeY * .75f) + (sinsize * renderSizeY * .25f), size);
+        transform.position = targetPos + new Vector3(0, (sinpos * 6f) + (renderSizeY/4), 0);
     }
 
     private float CalcDistance(Vector3 pos1, Vector3 pos2)
