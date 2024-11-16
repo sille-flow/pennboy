@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public bool isCamo { get; protected set; }
     public float size;
     private bool canStart = false;
+    private Vector3 targetPos;
 
     public float DistanceTravelled { get; protected set; }
 
@@ -55,16 +56,17 @@ public class Enemy : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
 
+        targetPos = transform.position;
         canStart = true;
     }
 
     protected void Update()
     {
         if (!canStart) return;
-        DistanceTravelled += rb.velocity.magnitude * Time.deltaTime;
-        if (CalcDistance(transform.position, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
+        DistanceTravelled += Time.deltaTime * moveSpeed;
+        if (CalcDistance(targetPos, waypoints[waypointIndex+1]) <= WAYPOINT_CHANGE_DISTANCE)
         {
-            transform.position = waypoints[waypointIndex + 1];
+            targetPos = waypoints[waypointIndex + 1];
             waypointIndex++;
             if (waypointIndex >= waypoints.Count-1)
             {
@@ -78,7 +80,9 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime);
+        targetPos = Vector3.MoveTowards(targetPos, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime);
+        float sine = Mathf.Sin(DistanceTravelled);
+        transform.position = targetPos + new Vector3(0, sine * 2.5f, 0);
     }
 
     private float CalcDistance(Vector3 pos1, Vector3 pos2)
