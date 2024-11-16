@@ -1151,7 +1151,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tintImage
       value: 
-      objectReference: {fileID: 881957703}
+      objectReference: {fileID: 0}
     - target: {fileID: 2948799924319185127, guid: 98d8d3bc28f0f4cbcba593154f09610c,
         type: 3}
       propertyPath: m_Name
@@ -1938,7 +1938,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tintImage
       value: 
-      objectReference: {fileID: 881957703}
+      objectReference: {fileID: 0}
     - target: {fileID: 8694747365054813913, guid: 33406a9cee39601daac966ad90e6fff7,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -1969,18 +1969,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33406a9cee39601daac966ad90e6fff7, type: 3}
---- !u!114 &881957703 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8700552551119580666, guid: 33406a9cee39601daac966ad90e6fff7,
-    type: 3}
-  m_PrefabInstance: {fileID: 881957702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &889351593
 GameObject:
   m_ObjectHideFlags: 0
@@ -4682,7 +4670,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tintImage
       value: 
-      objectReference: {fileID: 881957703}
+      objectReference: {fileID: 0}
     - target: {fileID: 2948799924319185127, guid: 98d8d3bc28f0f4cbcba593154f09610c,
         type: 3}
       propertyPath: m_Name
@@ -4715,8 +4703,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 1025931b930954d52bfd286f79733fdd,
-        type: 3}
+      objectReference: {fileID: 2100000, guid: 9f657d49205db4876b3f6c29be994ee7, type: 2}
     - target: {fileID: 782479426331738483, guid: 98be9d0785f03419d88a58956141f43a,
         type: 3}
       propertyPath: m_LocalScale.x
