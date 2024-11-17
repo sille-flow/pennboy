@@ -79,6 +79,7 @@ public class MovementScript : MonoBehaviour
         isActive = true;
         baseGravity *= 100;
         accFactor *= 10;
+        wallGravity *= 100;
         gravityForce = baseGravity;
     }
 
