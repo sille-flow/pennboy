@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 44baefef605d14bda83248ca2caed8f4, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731722, g: 0.13414752, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.20861712, g: 0.20861712, b: 0.20861712, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1781,7 +1781,7 @@ PrefabInstance:
     - target: {fileID: 386659133268784242, guid: 33406a9cee39601daac966ad90e6fff7,
         type: 3}
       propertyPath: m_ClearFlags
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 386659133268784242, guid: 33406a9cee39601daac966ad90e6fff7,
         type: 3}
@@ -1933,6 +1933,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7412981068971356449, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      propertyPath: m_CameraType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8500407893332760553, guid: 33406a9cee39601daac966ad90e6fff7,
         type: 3}
       propertyPath: tintImage
@@ -1966,8 +1971,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7001451194204626770, guid: 33406a9cee39601daac966ad90e6fff7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 881957704}
   m_SourcePrefab: {fileID: 100100000, guid: 33406a9cee39601daac966ad90e6fff7, type: 3}
+--- !u!1 &881957703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7001451194204626770, guid: 33406a9cee39601daac966ad90e6fff7,
+    type: 3}
+  m_PrefabInstance: {fileID: 881957702}
+  m_PrefabAsset: {fileID: 0}
+--- !u!45 &881957704
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881957703}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 44baefef605d14bda83248ca2caed8f4, type: 2}
 --- !u!1 &889351593
 GameObject:
   m_ObjectHideFlags: 0
