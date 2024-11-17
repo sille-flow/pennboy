@@ -128,8 +128,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3505142270030908632}
   - component: {fileID: 577832689058716251}
-  - component: {fileID: 6306857404416790878}
   - component: {fileID: 6584195825637565271}
+  - component: {fileID: 6306857404416790878}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -182,35 +182,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!114 &6306857404416790878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3016788626157528641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67dc46c879c16b4a9c71596fbb9aade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  accFactor: 2
-  maxSpeed: 10
-  airDrag: 0.3
-  jumpForce: 15
-  doubleJumpForce: 15
-  baseGravity: -10
-  wallGravity: -2
-  dashSpeed: 30
-  dashCD: 1
-  dashDuration: 0.2
-  wallJumpForce: 30
-  fastFallWall: 4
-  fastFallAir: 20
-  anim: {fileID: 3773102469050450146}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!65 &6584195825637565271
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -230,8 +201,37 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.50828755, y: 1, z: 1}
-  m_Center: {x: -0.003638938, y: 0, z: 0}
+  m_Size: {x: 0.51, y: 1.01, z: 0.51}
+  m_Center: {x: 0.01, y: 0.83, z: 0}
+--- !u!114 &6306857404416790878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3016788626157528641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67dc46c879c16b4a9c71596fbb9aade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accFactor: 2.5
+  maxSpeed: 10
+  airDrag: 1
+  jumpForce: 15
+  doubleJumpForce: 15
+  baseGravity: -14
+  wallGravity: -2
+  dashSpeed: 30
+  dashCD: 1
+  dashDuration: 0.2
+  wallJumpForce: 11
+  fastFallWall: 4
+  fastFallAir: 20
+  anim: {fileID: 3773102469050450146}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &4535497137844666681
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +260,7 @@ Transform:
   m_GameObject: {fileID: 4535497137844666681}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.01, y: 0.83, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
