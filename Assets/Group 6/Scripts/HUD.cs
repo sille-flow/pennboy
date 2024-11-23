@@ -55,7 +55,7 @@ public class HUD : MonoBehaviour
     }
 
     private void updateDisplayedBudget() {
-        budgetText.text = "Budget: $" + $"{displayBudget}";
+        budgetText.text = $"<align=left><color=black>Total:<line-height=0>\n<align=right>${displayBudget}<line-height=1em>";
     }
 
     // TODO: Optimize later (only process non first elements once....)
@@ -65,7 +65,7 @@ public class HUD : MonoBehaviour
             if (num < 0 || (num == 0 && !currentFirstElementInAddLossListIsAPlus)) {
                 text += "<color=red>-$" + Math.Abs(num) + "\n";
             } else {
-                text += "<color=green>+$" + Math.Abs(num) + "\n";
+                text += "<color=#029322>+$" + Math.Abs(num) + "\n";
             }
         }
         addLossBudgetText.text = text;
