@@ -85,7 +85,7 @@ public class HUD : MonoBehaviour
     }
 
     public void addCoin() {
-        Debug.Log("Adding coin in HUD");
+        //Debug.Log("Adding coin in HUD");
         this.secretCoins++;
         updateDisplayedCoins();
     }

@@ -42,7 +42,7 @@ public class Game : MonoBehaviour
     }
 
     public void addCoin() {
-        Debug.Log("Adding coin in game");
+        //Debug.Log("Adding coin in game");
         hud.addCoin();
     }
 
