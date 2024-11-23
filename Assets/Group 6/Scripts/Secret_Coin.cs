@@ -6,6 +6,7 @@ public class Secret_Coin : MonoBehaviour
 {
     [SerializeField] Game level;
     [SerializeField] private AudioSource pickUpSound;
+    [SerializeField] private AudioSource pickUpSound2;
 
     // rotation speed in rpm (rotations per minute)
     private float rotateSpeed = 30;
@@ -27,10 +28,16 @@ public class Secret_Coin : MonoBehaviour
         Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "Luggage_Cart") {
             pickUpSound.Play(0);
-            Debug.Log("Should have played sound.");
-            level.reduceBudget(-100);
+            //level.reduceBudget(-100);
             //Debug.Log("Attempted to add");
             Destroy(gameObject);
+        }
+        if (collision.gameObject.name == "Player") {
+            pickUpSound2.Play(0);
+            //Debug.Log("Collide with player");
+            //level.reduceBudget(-100);
+            //Debug.Log("Attempted to add");
+            //Destroy(gameObject);
         }
     }
 }
