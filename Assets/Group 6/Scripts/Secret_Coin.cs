@@ -28,7 +28,7 @@ public class Secret_Coin : MonoBehaviour
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "Luggage_Cart") {
             pickUpSound.Play(0);
-            level.secretCoins++;
+            level.addCoin();
             //level.reduceBudget(-100);
             //Debug.Log("Attempted to add");
             Destroy(gameObject);

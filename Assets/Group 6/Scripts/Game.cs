@@ -41,6 +41,10 @@ public class Game : MonoBehaviour
         hud.reduceBudget(damage);
     }
 
+    public void addCoin() {
+        secretCoins++;
+    }
+
     public void win() {
         SceneManager.LoadScene(winScene);
     }
