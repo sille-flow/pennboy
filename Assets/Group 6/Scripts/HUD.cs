@@ -10,6 +10,7 @@ public class HUD : MonoBehaviour
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private TMP_Text budgetText;
     [SerializeField] private TMP_Text addLossBudgetText;
+    [SerializeField] private TMP_Text coinText;
     private List<int> addLossList = new();
     private int maxBudget;
     private int budget;
@@ -18,6 +19,7 @@ public class HUD : MonoBehaviour
     private float updateBudgetDisplayTime = 0.05f;
     private bool currentFirstElementInAddLossListIsAPlus = true;
     private float timeStore = 0f;
+    private int secretCoins;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,10 @@ public class HUD : MonoBehaviour
         budgetText.text = $"<align=left><color=black>Total:<line-height=0>\n<align=right>${displayBudget}<line-height=1em>";
     }
 
+    private void updateDisplayedCoins() {
+        coinText.text = "Secret Coins: " + $"{secretCoins}";
+    }
+
     // TODO: Optimize later (only process non first elements once....)
     private void updateAddLossBudgetText() {
         String text = "";
@@ -76,6 +82,12 @@ public class HUD : MonoBehaviour
         this.displayBudget = initialBudget;
         this.maxBudget = maxBudget;
         updateDisplayedBudget();
+    }
+
+    public void addCoin() {
+        Debug.Log("Adding coin in HUD");
+        this.secretCoins++;
+        updateDisplayedCoins();
     }
 
     public int getBudget() {

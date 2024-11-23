@@ -982,6 +982,7 @@ MonoBehaviour:
   timeText: {fileID: 1979212544188574439}
   budgetText: {fileID: 8771920136077919761}
   addLossBudgetText: {fileID: 5629609995009021628}
+  coinText: {fileID: 1678587385945451316}
 --- !u!1 &8732238531630143881
 GameObject:
   m_ObjectHideFlags: 0

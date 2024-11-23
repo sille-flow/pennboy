@@ -42,7 +42,8 @@ public class Game : MonoBehaviour
     }
 
     public void addCoin() {
-        secretCoins++;
+        Debug.Log("Adding coin in game");
+        hud.addCoin();
     }
 
     public void win() {
