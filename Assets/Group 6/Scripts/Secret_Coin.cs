@@ -25,9 +25,10 @@ public class Secret_Coin : MonoBehaviour
 
     void OnTriggerEnter(Collider collision) {
         PropertyDamageCollider col = collision.gameObject.GetComponent<PropertyDamageCollider>();
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == "Luggage_Cart") {
             pickUpSound.Play(0);
+            level.secretCoins++;
             //level.reduceBudget(-100);
             //Debug.Log("Attempted to add");
             Destroy(gameObject);

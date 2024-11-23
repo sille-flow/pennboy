@@ -12,6 +12,7 @@ public class Game : MonoBehaviour
     [SerializeField] private int winScene = 3;
     [SerializeField] private int loseScene = 4;
     [SerializeField] private HUD hud;
+    [SerializeField] public int secretCoins = 0;
 
     // Start is called before the first frame update
     void Start()
