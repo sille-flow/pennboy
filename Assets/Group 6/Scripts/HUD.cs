@@ -28,9 +28,20 @@ public class HUD : MonoBehaviour
     }
 
     // Update is called once per frame
+    // void Update()
+    // {
+    //     timeText.text = "Time: " + $"{Mathf.Floor((Time.time - timeStore) * 100) / 100f}";
+    // }
+
     void Update()
     {
-        timeText.text = "Time: " + $"{Mathf.Floor((Time.time - timeStore) * 100) / 100f}";
+        float elapsedTime = Time.time - timeStore;
+
+        int minutes = Mathf.FloorToInt(elapsedTime / 60); // Calculate the minutes
+        int seconds = Mathf.FloorToInt(elapsedTime % 60); // Calculate the remaining seconds
+        int centiseconds = Mathf.FloorToInt(((elapsedTime * 100) % 100) % 100);
+
+        timeText.text = $"Time: {minutes:00}:{seconds:00}.{centiseconds:00}"; // Format as MM:SS
     }
 
     private void updateBudgetDisplay() {
