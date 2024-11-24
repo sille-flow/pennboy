@@ -39,7 +39,7 @@ public class HUD : MonoBehaviour
 
         int minutes = Mathf.FloorToInt(elapsedTime / 60); // Calculate the minutes
         int seconds = Mathf.FloorToInt(elapsedTime % 60); // Calculate the remaining seconds
-        int centiseconds = Mathf.FloorToInt(((elapsedTime * 100) % 100) % 100);
+        int centiseconds = Mathf.FloorToInt((elapsedTime * 100) % 100);
 
         timeText.text = $"Time: {minutes:00}:{seconds:00}.{centiseconds:00}"; // Format as MM:SS
     }
@@ -103,5 +103,13 @@ public class HUD : MonoBehaviour
 
     public int getBudget() {
         return budget;
+    }
+
+    public int getCoins() {
+        return secretCoins;
+    }
+
+    public float getTime() {
+        return Time.time - timeStore;
     }
 }

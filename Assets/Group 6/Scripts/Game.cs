@@ -47,6 +47,11 @@ public class Game : MonoBehaviour
     }
 
     public void win() {
+        PlayerPrefs.SetInt("Scene " + SceneManager.GetActiveScene().buildIndex + " Score", hud.getBudget());
+        PlayerPrefs.SetFloat("Scene " + SceneManager.GetActiveScene().buildIndex + " Time", hud.getTime());
+        PlayerPrefs.SetInt("Scene " + SceneManager.GetActiveScene().buildIndex + " Coins", hud.getCoins());
+        int returnTo = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("returnTo", returnTo);
         SceneManager.LoadScene(winScene);
     }
 }
