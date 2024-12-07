@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
         float randomMovement = 0;
 
 
-        if (teleportColorChangeTimer < teleportColorChangeInterval)
+        if (teleportColorChangeTimer < teleportColorChangeInterval && isTeleporting)
         {
             teleportColorChangeTimer += Time.deltaTime;
         } else
