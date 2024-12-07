@@ -89,7 +89,7 @@ public class Tower : MonoBehaviour
 
         // attack
         Attack(SelectedTarget);
-       // MakeSound();
+        MakeSound();
     }
 
     protected virtual void MakeSound()
