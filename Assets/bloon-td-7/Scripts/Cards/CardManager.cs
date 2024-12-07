@@ -16,6 +16,8 @@ public class CardManager : MonoBehaviour
     [SerializeField] private GameObject[] towerObjects;
     public PlacementSystem placementSystem;
 
+    public static int test = 0;
+
     private void Start()
     {
         hand = new Card[5];

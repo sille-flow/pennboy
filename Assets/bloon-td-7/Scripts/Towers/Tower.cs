@@ -17,7 +17,7 @@ public class Tower : MonoBehaviour
 
 
     private AudioSource audioSource;
-    private AudioClip laserShootSound = GameManager.instance.laserShootSound;
+    private AudioClip laserShootSound;
     /// <summary>
     /// range collision detection
     /// </summary>
@@ -34,7 +34,6 @@ public class Tower : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         enemiesInRange.Remove(collision.gameObject);
-        audioSource = GameManager.instance.waveManager.GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -68,7 +67,8 @@ public class Tower : MonoBehaviour
     protected virtual void Start()
     {
         remainingCooldown = cooldown;
-
+        audioSource = GameManager.instance.waveManager.GetComponent<AudioSource>();
+        laserShootSound = GameManager.instance.laserShootSound;
     }
 
     // Update is called once per frame
@@ -89,7 +89,7 @@ public class Tower : MonoBehaviour
 
         // attack
         Attack(SelectedTarget);
-        MakeSound();
+       // MakeSound();
     }
 
     protected virtual void MakeSound()

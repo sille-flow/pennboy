@@ -32,14 +32,16 @@ public class Enemy : MonoBehaviour
     private bool isTeleporting = false;
 
     private AudioSource audioSource;
-    private AudioClip teleportSound = GameManager.instance.teleportSound;
-    private AudioClip explosionSound = GameManager.instance.explosionSound;
+    private AudioClip teleportSound;
+    private AudioClip explosionSound;
 
     private void Start()
     {
         //Initialize(15f, 1, 3, 0, 1, false, 5);
         Initialize(moveSpeed, dmg, health, id, moneyWorth, originalColor, isCamo, size, canTeleport);
         audioSource = GameManager.instance.waveManager.GetComponent<AudioSource>();
+        teleportSound = GameManager.instance.teleportSound;
+        explosionSound = GameManager.instance.explosionSound;
     }
 
     /// <summary>
