@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     
     public GameObject projectile;
 
+    public AudioClip teleportSound;
+    public AudioClip explosionSound;
+
     private void Awake()
     {
         instance = this;
