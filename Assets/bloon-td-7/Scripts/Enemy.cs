@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
         {
             if (randomNum >= 950 && !isTeleporting)
             {
-                randomMovement = moveSpeed * Random.Range(0.5f,1.5f);
+                randomMovement = moveSpeed * Random.Range(0.5f,1.5f) + 2;
                 GetComponent<Renderer>().material.color = teleportColor;
                 isTeleporting = true;
             }
