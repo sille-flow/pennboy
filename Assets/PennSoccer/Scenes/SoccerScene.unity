@@ -637,6 +637,8 @@ MonoBehaviour:
     type: 3}
   sizePrefab: {fileID: 2228269499946040009, guid: 9311b2c82e6cf4cdc8dfe64ab454e2c5,
     type: 3}
+  jumpPrefab: {fileID: 2228269499946040009, guid: 33859426173744a89a37ec4529c7a766,
+    type: 3}
 --- !u!4 &602538484
 Transform:
   m_ObjectHideFlags: 0
