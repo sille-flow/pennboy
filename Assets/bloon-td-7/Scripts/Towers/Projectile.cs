@@ -37,8 +37,10 @@ public class Projectile : MonoBehaviour
     {
         cant_hit = true;
         rb.velocity = Vector3.zero;
-        GetComponent<MeshRenderer>().enabled = false;
-        yield return new WaitForSeconds(1.1f);
+        //GetComponent<MeshRenderer>().enabled = false;
+        var emission = GetComponent<ParticleSystem>().emission;
+        emission.rateOverTime = 0;
+        yield return new WaitForSeconds(2.5f);
         Destroy(gameObject);
     }
 
