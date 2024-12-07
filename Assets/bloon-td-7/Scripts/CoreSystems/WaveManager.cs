@@ -20,17 +20,17 @@ public class WaveManager : MonoBehaviour
         waveCooldown = 1f;
         globalTimer = 0;
         waveOccurring = false;
-        waveIndex = 14;
+        waveIndex = 17;
         spawnersCreated = 0;
         spawners = new List<Spawner>();
     }
     // Update is called once per frame
     /// <summary>
-    /// EnemyInfo(float moveSpeed, int dmg, int health, int moneyWorth, Color color, float size = 5, bool isCamo = false)
+    /// EnemyInfo(float moveSpeed, int dmg, int health, int moneyWorth, Color color, float size = 5, bool isCamo = false, bool canTeleport)
     /// </summary>
     public EnemyInfo[] enemyList =
     {
-        new EnemyInfo(10f,1,1,5, new Color32(0,255,0,255)),                      //0 - slime
+        new EnemyInfo(10f,1,1,5, new Color32(0,255,0,255)),               //0 - slime
         new EnemyInfo(25f,1,1,10, new Color32(125,209,123, 255)),        //1 - goblin
         new EnemyInfo(8f,4,5,20, new Color32(21, 92, 20, 255),8),         //2 - orcs
         new EnemyInfo(6f,10,15,30,new Color32(70, 89, 70, 255),12),        //3 - ogres
@@ -44,7 +44,8 @@ public class WaveManager : MonoBehaviour
         new EnemyInfo(35f,40,12,25, new Color32(0, 0, 46,255)), //11 dark wizard
         new EnemyInfo(50f,100,25,50, new Color32(114, 0, 252,255),8), //12 master wizard
         new EnemyInfo(100f,1000,100,100,new Color32(255,0,0,255),20), //13 dragon
-        new EnemyInfo(1f, 1000, 500, 1000000, new Color32(255,255,255,255), 40)
+        new EnemyInfo(10f,10,1,20, new Color32(0,0,0,255),4, false, true),
+        new EnemyInfo(5f, 1000, 5000, 1000000, new Color32(255,255,255,255), 30) //14 god
         //new EnemyInfo(30f,10,10,100,Color.cyan),        // fast assassain enemy
         //new EnemyInfo(100f,0,10000,0,Color.black),       //4 - distraction enemy
         //new EnemyInfo(3,100,1000,1000,new Color(61, 110, 173),30), //5 - boss enemy
@@ -170,13 +171,17 @@ public class WaveManager : MonoBehaviour
             "0",
             "0"
             ),
-        //new WaveInfo(
-
-        //    )
+        //wave 16 - EVERYTHING
+        new WaveInfo(
+            "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14",
+            "100,100,10,10,100,50,25,25,100,50,25,25,10,5,1",
+            "0.3,0.4,2,2,0.6,1,2,2,0.8,0.6,2,2,4,15,1",
+            "0,0,2,2,0,2,2,4,0,3,6,6,7,15,30"
+            ),
         //test wave - dragon
         new WaveInfo(
             "14",
-            "5",
+            "10",
             "1",
             "0"
             ),
@@ -231,6 +236,7 @@ public class WaveManager : MonoBehaviour
         public int moneyWorth;
         public bool isCamo;
         public float size;
+        public bool canTeleport;
         public Color32 color;
 
         /// <summary>
@@ -243,7 +249,7 @@ public class WaveManager : MonoBehaviour
         /// <param name="color">The color of the enemy</param>
         /// <param name="size">The size of the enemy</param>
         /// <param name="isCamo">Whether enemies are camoflauged or not</param>
-        public EnemyInfo(float moveSpeed, int dmg, int health, int moneyWorth, Color32 color, float size = 5, bool isCamo = false)
+        public EnemyInfo(float moveSpeed, int dmg, int health, int moneyWorth, Color32 color, float size = 5, bool isCamo = false, bool canTeleport = false)
         {
             this.moveSpeed = moveSpeed;
             this.dmg = dmg;
@@ -252,6 +258,7 @@ public class WaveManager : MonoBehaviour
             this.isCamo = isCamo;
             this.size = size;
             this.color = color;
+            this.canTeleport = canTeleport;
         }
     }
 
@@ -312,9 +319,13 @@ public class WaveManager : MonoBehaviour
                     enemyInfo.health,
                     enemyId,
                     enemyInfo.moneyWorth,
+                    enemyInfo.color,
                     enemyInfo.isCamo,
-                    enemyInfo.size + Random.Range(-0.3f,0.3f));
-                newEnemy.GetComponent<Renderer>().material.color = enemyInfo.color;
+                    enemyInfo.size + Random.Range(-0.3f, 0.3f),
+                    enemyInfo.canTeleport
+                    );
+                
+                //newEnemy.GetComponent<Renderer>().material.color = enemyInfo.color;
                 enemies.Add(newEnemy);
                 enemySpawned++;
                 timer = start_time;
@@ -323,7 +334,7 @@ public class WaveManager : MonoBehaviour
                 timer += Time.deltaTime;
             } 
             //Debug.Log(checkAllNull(enemies));
-            if (checkAllNull(enemies) && enemies.Count == enemyCount)
+            if (checkAllNull(enemies) && enemies.Count >= enemyCount)
             {
                 Debug.Log("killed cluster");
                 GameManager.instance.waveManager.spawners.Remove(this);

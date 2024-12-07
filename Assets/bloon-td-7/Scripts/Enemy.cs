@@ -14,32 +14,46 @@ public class Enemy : MonoBehaviour
     public int moneyWorth;
     public string modifiers;
     private const float WAYPOINT_CHANGE_DISTANCE = 0.01f;
+    private Color32 originalColor;
     public bool isCamo { get; protected set; }
     public float size;
+    private bool canTeleport;
+    private Color32 teleportColor = new Color32(255,255,0,255);
+
     private float renderSizeY;
     private bool canStart = false;
     private Vector3 targetPos;
 
     public float DistanceTravelled { get; protected set; }
 
+
+    private float teleportColorChangeTimer = 0;
+    private float teleportColorChangeInterval = 0.25f;
+    private bool isTeleporting = false;
+
     private void Start()
     {
         //Initialize(15f, 1, 3, 0, 1, false, 5);
-        Initialize(moveSpeed, dmg, health, id, moneyWorth, isCamo, size);
+        Initialize(moveSpeed, dmg, health, id, moneyWorth, originalColor, isCamo, size, canTeleport);
     }
 
     /// <summary>
     /// Initializes a new enemy with the given parameters. To be called when instatiating new enemies.
     /// </summary>
-    public void Initialize(float moveSpeed, int dmg, int health, int id, int moneyWorth, bool isCamo, float size)
+    public void Initialize(float moveSpeed, int dmg, int health, int id, int moneyWorth, Color32 color, bool isCamo, float size, bool canTeleport)
     {
         this.health = health;
         this.id = id;
         this.dmg = dmg;
         this.moveSpeed = moveSpeed;
+        this.originalColor = color;
         this.isCamo = isCamo;
         this.moneyWorth = moneyWorth;
-        this.size = size + Random.Range(-0.5f,0.5f);
+        this.size = size + Random.Range(-0.3f,0.3f);
+        this.canTeleport = canTeleport;
+
+        this.GetComponent<Renderer>().material.color = originalColor;
+
         //height given random deviations to prevent ui glitching
         transform.localScale = new Vector3(size, size + Random.Range(-1f,4f), size);
         renderSizeY = size + Random.Range(-1f, 4f);
@@ -83,7 +97,30 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targetPos = Vector3.MoveTowards(targetPos, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime);
+        float randomNum = Random.Range(0, 1000);
+        float randomMovement = 0;
+
+
+        if (teleportColorChangeTimer < teleportColorChangeInterval)
+        {
+            teleportColorChangeTimer += Time.deltaTime;
+        } else
+        {
+            isTeleporting = false;
+            GetComponent<Renderer>().material.color = originalColor;
+            teleportColorChangeTimer = 0;
+        }
+
+        if (canTeleport)
+        {
+            if (randomNum >= 950 && !isTeleporting)
+            {
+                randomMovement = moveSpeed * Random.Range(0.5f,1.5f);
+                GetComponent<Renderer>().material.color = teleportColor;
+                isTeleporting = true;
+            }
+        }
+        targetPos = Vector3.MoveTowards(targetPos, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime + randomMovement);
         float sinpos = Mathf.Abs(Mathf.Sin(DistanceTravelled));
         float sinsize = Mathf.Abs(Mathf.Sin(DistanceTravelled - (Mathf.PI / 5)));
         transform.localScale = new Vector3(size, (renderSizeY * .8f) + (sinsize * renderSizeY * .2f), size);
