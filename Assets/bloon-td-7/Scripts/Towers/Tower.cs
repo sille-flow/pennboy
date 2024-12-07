@@ -94,13 +94,21 @@ public class Tower : MonoBehaviour
     /// <param name="cost">Money sacrificed</param>
     public void CalcLevel (int cost)
     {
+        int level = GetLevel(cost);
+        for (int i = 0; i <= level; i++)
+        {
+            Upgrade(level);
+        }
+    }
+
+    public int GetLevel(int cost)
+    {
         int i = 0;
         while (i < 4 && cost >= UpgradeCosts[i])
         {
-            level++;
             i++;
-            Upgrade(level);
         }
+        return i;
     }
 
     protected virtual void Upgrade(int level)

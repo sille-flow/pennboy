@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
+using TMPro;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -13,9 +14,12 @@ public class PlacementSystem : MonoBehaviour
     private TowerCard cardUsing;
     private PlacementMode currentMode;
     private List<Tower> towersToSacrifice;
+    [SerializeField] private TextMeshProUGUI costSacrificing;
+    private int totalCost;
 
     private void Start()
     {
+        totalCost = 0;
         mouseIndicator.SetActive(false);
         currentMode = PlacementMode.Selection;
     }
@@ -44,13 +48,22 @@ public class PlacementSystem : MonoBehaviour
                         Debug.Log("Tower Clicked");
                         bool addTower = towerClicked.ToggleSacrifice();
                         if (addTower)
+                        {
                             towersToSacrifice.Add(towerClicked);
+                            totalCost += towerClicked.GetCost();
+                        }
                         else
+                        {
                             towersToSacrifice.Remove(towerClicked);
+                            totalCost -= towerClicked.GetCost();
+                        }
+                        
                     }
+                    costSacrificing.text = "Total: " + totalCost;
                 }
                 return;
             case PlacementMode.PlacingTower:
+                costSacrificing.text = "Total: " + totalCost;
                 // Logic for tower placement
                 (Vector3 MousePosition, bool validplacement) = inputManager.GetPlacementPosition();
 
@@ -77,6 +90,7 @@ public class PlacementSystem : MonoBehaviour
                 }
                 return;
             case PlacementMode.Selection:
+                costSacrificing.text = "";
                 // Do logic for selecting towers to open a UI menu here
                 return;
         }
@@ -106,6 +120,7 @@ public class PlacementSystem : MonoBehaviour
     /// <param name="card">reference to card calling this function</param>
     public void enableTowerPlacement(TowerCard card)
     {
+        totalCost = 0;
         if (currentMode != PlacementMode.Selection)
         {
             cardUsing.Deactivate(false);
