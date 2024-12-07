@@ -99,6 +99,9 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   fixedYPosition: 4.78
   spawnDelay: 0
+  scoreText: {fileID: 0}
+  player1score: 0
+  player2score: 0
 --- !u!212 &4464783436697136763
 SpriteRenderer:
   m_ObjectHideFlags: 0
