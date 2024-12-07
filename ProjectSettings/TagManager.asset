@@ -6,6 +6,16 @@ TagManager:
   tags:
   - GameManager
   - Tree
+  - Ground
+  - PennSoccerGround
+  - PennSoccerPlayer
+  - PennSoccerGoalR
+  - PennSoccerGoalL
+  - PennSoccerUI
+  - PennSoccerBall
+  - PennSoccerSuperSize
+  - PennSoccerSuperSpeed
+  - PennSoccerSuperJump
   layers:
   - Default
   - TransparentFX
