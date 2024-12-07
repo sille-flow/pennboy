@@ -20,12 +20,7 @@ public class WaveManager : MonoBehaviour
         waveCooldown = 1f;
         globalTimer = 0;
         waveOccurring = false;
-<<<<<<< Updated upstream
         waveIndex = 14;
-
-=======
-        waveIndex = 16;
->>>>>>> Stashed changes
         spawnersCreated = 0;
         spawners = new List<Spawner>();
     }

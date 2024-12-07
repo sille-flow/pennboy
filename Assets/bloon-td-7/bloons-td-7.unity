@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17288329, g: 0.21605149, b: 0.29801154, a: 1}
+  m_IndirectSpecularColor: {r: 0.17288378, g: 0.2160521, b: 0.29801264, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3066,7 +3066,7 @@ MonoBehaviour:
   CardTypes: []
   towerObjects:
   - {fileID: 4498412664026393109, guid: 7e1a1294c851df54fa2b926b8043eab6, type: 3}
-  - {fileID: 9054721832674411252, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
+  - {fileID: 9054721832674411252, guid: c7415603473637246aefc68c14ca83a6, type: 3}
   - {fileID: 9054721832674411252, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
   - {fileID: 9054721832674411252, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
   - {fileID: 9054721832674411252, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
