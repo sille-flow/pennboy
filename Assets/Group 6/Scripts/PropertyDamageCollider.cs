@@ -32,12 +32,6 @@ public class PropertyDamageCollider : MonoBehaviour
         crashSound.Play(0);
         int damage = Mathf.RoundToInt(Mathf.Clamp(damageSlope * impulse + damageOffset, 0, maxDamage));
         if (damage > 0 && currCooldownTime == 0) {
-            print("IMPULSE: " + impulse);
-            print("DAmage:" + damage);
-            print("MAX DAMAGE:" + maxDamage);
-
-
-
             currCooldownTime = cooldownTime;
             return damage;
         }
