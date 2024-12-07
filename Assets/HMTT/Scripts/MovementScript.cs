@@ -124,7 +124,7 @@ public class MovementScript : MonoBehaviour
 
     void Move() //2
     {
-        if (Mathf.Abs(rb.velocity.x) <= maxSpeed)
+        if (Mathf.Abs(rb.velocity.x) <= maxSpeed || Mathf.Sign(Input.GetAxis("Horizontal")) != Mathf.Sign(rb.velocity.x))
         {
             Vector3 force = new Vector3(Input.GetAxis("Horizontal") * accFactor, 0, 0);
             if (!isGrounded)
@@ -216,13 +216,12 @@ public class MovementScript : MonoBehaviour
         {
             dashDirection = Mathf.Sign(rb.velocity.x); // If no input is detected, maintain the current movement direction
         }
-        float originalvelocity = rb.velocity.x;
 
         float dashTimeElapsed = 0f;
         //Debug.Log("Dash");
         while (dashTimeElapsed < dashDuration)
         {
-            rb.velocity = new Vector3(dashDirection * dashSpeed, Mathf.Max(0, rb.velocity.y), 0f);
+            rb.velocity = new Vector3(dashDirection * dashSpeed, rb.velocity.y, 0f);
             dashTimeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -244,10 +243,8 @@ public class MovementScript : MonoBehaviour
             dashDirection = Mathf.Sign(rb.velocity.x);
         }
 
-        float originalvelocity = rb.velocity.x;
-
         float dashTimeElapsed = 0f;
-        //Debug.Log("Air Dash";
+        //Debug.Log("Air Dash");
         while (dashTimeElapsed < dashDuration)
         {
             rb.velocity = new Vector3(dashDirection * (dashSpeed - 2f), Mathf.Max(0, rb.velocity.y), 0f);
