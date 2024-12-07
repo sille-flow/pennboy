@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -96,7 +95,7 @@ public class Player_Movement : MonoBehaviour
     void horizontalMovementHelper() {
         playerVelocity.x = 0;
         playerVelocity.z = 0;
-        
+
         float diffFOV = math.abs(fastFieldOfView - defaultFieldOfView);
         if (Input.GetKey(runKey) && Input.GetAxis("Vertical") > 0) {
             playerSpeed = Mathf.MoveTowards(playerSpeed, maxSpeed, maxSpeed * Time.deltaTime / timeToRun);
@@ -158,7 +157,7 @@ public class Player_Movement : MonoBehaviour
         // TODO: REWORK THIS SECTION!
         if (hit.rigidbody != null) {
             Vector3 horizontalDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-            Vector3 force = horizontalDir * 30000 * Time.fixedDeltaTime;
+            Vector3 force = horizontalDir * playerVelocity.magnitude * 3000 * Time.fixedDeltaTime;
             hit.rigidbody.AddForce(force, ForceMode.Impulse);
 
             // property damage from player
