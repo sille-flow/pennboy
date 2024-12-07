@@ -77,9 +77,6 @@ public class MovementScript : MonoBehaviour
         gravityDir = 1;
         canDash = true;
         isActive = true;
-        baseGravity *= 100;
-        accFactor *= 10;
-        wallGravity *= 100;
         gravityForce = baseGravity;
     }
 
@@ -122,14 +119,14 @@ public class MovementScript : MonoBehaviour
 
     void applyGravity() //1
     {
-        rb.AddForce(transform.up*gravityForce*gravityDir*Time.deltaTime, ForceMode.Acceleration); //apply force in the direction of gravity
+        rb.AddForce(transform.up*gravityForce*gravityDir, ForceMode.Acceleration); //apply force in the direction of gravity
     }
 
     void Move() //2
     {
         if (Mathf.Abs(rb.velocity.x) <= maxSpeed || Mathf.Sign(Input.GetAxis("Horizontal")) != Mathf.Sign(rb.velocity.x))
         {
-            Vector3 force = new Vector3(Input.GetAxis("Horizontal") * accFactor * Time.deltaTime, 0, 0);
+            Vector3 force = new Vector3(Input.GetAxis("Horizontal") * accFactor, 0, 0);
             if (!isGrounded)
             {
                 force *= airDrag;

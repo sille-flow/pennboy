@@ -14,7 +14,7 @@ public class BoosterScript : MonoBehaviour
     void Start()
     {
         //The start function is called when the object is created, initialize variables here
-        launchForce = launchForce;
+        launchForce = 10.0f;
     }
 
     // Update is called once per frame
