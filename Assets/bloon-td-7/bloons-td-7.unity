@@ -3069,8 +3069,6 @@ MonoBehaviour:
   - {fileID: 4498412664026393109, guid: 7e1a1294c851df54fa2b926b8043eab6, type: 3}
   - {fileID: 9054721832674411252, guid: c7415603473637246aefc68c14ca83a6, type: 3}
   - {fileID: 9054721832674411252, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
-  - {fileID: 9054721832674411252, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
-  - {fileID: 9054721832674411252, guid: c72a129b6cff47241af9a7c2d166ccfb, type: 3}
   placementSystem: {fileID: 80570208}
 --- !u!1 &1352544879
 GameObject:
