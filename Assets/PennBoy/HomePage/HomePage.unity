@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cd76eae5cdca24a9d845003d5d0d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameID: 2
+  gameID: 3
   targetTransform: {fileID: 130447486}
 --- !u!114 &1033957339
 MonoBehaviour:
@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cd76eae5cdca24a9d845003d5d0d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameID: 2
+  gameID: 4
   targetTransform: {fileID: 130447486}
 --- !u!114 &1332166028
 MonoBehaviour:
