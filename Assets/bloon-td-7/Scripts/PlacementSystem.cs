@@ -14,7 +14,6 @@ public class PlacementSystem : MonoBehaviour
     private TowerCard cardUsing;
     private PlacementMode currentMode;
     private List<Tower> towersToSacrifice;
-    [SerializeField] private TextMeshProUGUI costSacrificing;
     private int totalCost;
 
     private void Start()
@@ -59,11 +58,9 @@ public class PlacementSystem : MonoBehaviour
                         }
                         
                     }
-                    costSacrificing.text = "Total: " + totalCost;
                 }
                 return;
             case PlacementMode.PlacingTower:
-                costSacrificing.text = "Total: " + totalCost;
                 // Logic for tower placement
                 (Vector3 MousePosition, bool validplacement) = inputManager.GetPlacementPosition();
 
@@ -90,7 +87,6 @@ public class PlacementSystem : MonoBehaviour
                 }
                 return;
             case PlacementMode.Selection:
-                costSacrificing.text = "";
                 // Do logic for selecting towers to open a UI menu here
                 return;
         }

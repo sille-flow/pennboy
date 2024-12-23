@@ -20,7 +20,7 @@ public class WaveManager : MonoBehaviour
         waveCooldown = 1f;
         globalTimer = 0;
         waveOccurring = false;
-        waveIndex = 14;
+        waveIndex = 0;
         spawnersCreated = 0;
         spawners = new List<Spawner>();
     }
