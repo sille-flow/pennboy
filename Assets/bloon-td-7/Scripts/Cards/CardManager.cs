@@ -8,13 +8,17 @@ using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
 {
+    public PlacementSystem placementSystem;
+
+     //unity can not even serialize int here, but it can serialize GameObject
+    public int test;
+
     [SerializeField] private int HandSize;
     [SerializeField] private GameObject TowerCard;
     private Card[] hand;
     [SerializeField] private List<int> deck;
     [SerializeField] private Card[] CardTypes;
     [SerializeField] private GameObject[] towerObjects;
-    public PlacementSystem placementSystem;
 
     private void Start()
     {
@@ -25,6 +29,12 @@ public class CardManager : MonoBehaviour
         deck = new List<int>();
 
         generateDeck();
+    }
+
+    private void Awake()
+    {
+        test = 5;
+        Debug.Log(test);
     }
 
     private void generateHand()

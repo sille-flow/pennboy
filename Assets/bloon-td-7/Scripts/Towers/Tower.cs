@@ -15,6 +15,9 @@ public class Tower : MonoBehaviour
     protected bool selectedToSacrifice = false;
     [SerializeField] private GameObject sacrificeIcon;
 
+
+    private AudioSource audioSource;
+    private AudioClip laserShootSound;
     /// <summary>
     /// range collision detection
     /// </summary>
@@ -64,6 +67,8 @@ public class Tower : MonoBehaviour
     protected virtual void Start()
     {
         remainingCooldown = cooldown;
+        audioSource = GameManager.instance.waveManager.GetComponent<AudioSource>();
+        laserShootSound = GameManager.instance.laserShootSound;
     }
 
     // Update is called once per frame
@@ -84,9 +89,18 @@ public class Tower : MonoBehaviour
 
         // attack
         Attack(SelectedTarget);
+        MakeSound();
     }
 
-    protected virtual void Attack(GameObject target) { }
+    protected virtual void MakeSound()
+    {
+        audioSource.clip = laserShootSound;
+        audioSource?.Play();
+    }
+
+    protected virtual void Attack(GameObject target) {
+
+    }
 
     /// <summary>
     /// Upgrades the tower level when given a money amount spent. Upgrade funcitonality to be implemented in children classes.

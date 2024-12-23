@@ -28,13 +28,20 @@ public class Enemy : MonoBehaviour
 
 
     private float teleportColorChangeTimer = 0;
-    private float teleportColorChangeInterval = 0.25f;
+    private float teleportColorChangeInterval = 0.05f;
     private bool isTeleporting = false;
+
+    private AudioSource audioSource;
+    private AudioClip teleportSound;
+    private AudioClip explosionSound;
 
     private void Start()
     {
         //Initialize(15f, 1, 3, 0, 1, false, 5);
         Initialize(moveSpeed, dmg, health, id, moneyWorth, originalColor, isCamo, size, canTeleport);
+        audioSource = GameManager.instance.waveManager.GetComponent<AudioSource>();
+        teleportSound = GameManager.instance.teleportSound;
+        explosionSound = GameManager.instance.explosionSound;
     }
 
     /// <summary>
@@ -113,11 +120,13 @@ public class Enemy : MonoBehaviour
 
         if (canTeleport)
         {
-            if (randomNum >= 950 && !isTeleporting)
+            if (randomNum >= 970 && !isTeleporting)
             {
                 randomMovement = moveSpeed * Random.Range(0.5f,1.5f) + 2;
                 GetComponent<Renderer>().material.color = teleportColor;
                 isTeleporting = true;
+                audioSource.clip = teleportSound;
+                audioSource?.Play();
             }
         }
         targetPos = Vector3.MoveTowards(targetPos, waypoints[waypointIndex + 1], moveSpeed * Time.deltaTime + randomMovement);
@@ -148,6 +157,8 @@ public class Enemy : MonoBehaviour
     public void Damage(int dmg)
     {
         health -= dmg;
+        audioSource.clip = explosionSound;
+        audioSource?.Play();
         if (health <= 0)
         {
             // Add money count to game manager
