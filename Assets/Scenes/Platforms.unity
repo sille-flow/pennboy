@@ -1105,6 +1105,21 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7599476974093140966, guid: 528144e75a1264e3d9b58d050f3c5e65,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.9292453
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599476974093140966, guid: 528144e75a1264e3d9b58d050f3c5e65,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.99176866
+      objectReference: {fileID: 0}
+    - target: {fileID: 7599476974093140966, guid: 528144e75a1264e3d9b58d050f3c5e65,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8238713465237893068, guid: 528144e75a1264e3d9b58d050f3c5e65,
         type: 3}
       propertyPath: m_Name

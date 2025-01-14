@@ -130,6 +130,8 @@ public class PlatformManager : MonoBehaviour
 
         GameObject newPlatform = GameObject.Instantiate(_platformPrefabs[0], newPlatformPosition, Quaternion.identity);
 
+        newPlatform.GetComponent<MeshRenderer>().material.color =
+             new Color(UnityEngine.Random.Range(0F, 1F), UnityEngine.Random.Range(0, 1F), UnityEngine.Random.Range(0, 1F));
         // Randomize the size of the platform by adjusting its radius.
         // The platform's default scale assumes a radius of 1, which is then scaled to a random value between minPlatformRadius and maxPlatformRadius.
         float platformSize = UnityEngine.Random.Range(minPlatformSize, maxPlatformSize);
