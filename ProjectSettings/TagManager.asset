@@ -3,15 +3,28 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - GameManager
+  - Tree
+  - Ground
+  - PennSoccerGround
+  - PennSoccerPlayer
+  - PennSoccerGoalR
+  - PennSoccerGoalL
+  - PennSoccerUI
+  - PennSoccerBall
+  - PennSoccerSuperSize
+  - PennSoccerSuperSpeed
+  - PennSoccerSuperJump
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
