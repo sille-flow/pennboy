@@ -8,15 +8,30 @@ TagManager:
   - BTD7Enemy
   - BTD7PlacementBlocker
   - BTD7Tower
+  - Enemy
+  - GameManager
+  - Tree
+  - Ground
+  - PennSoccerGround
+  - PennSoccerPlayer
+  - PennSoccerGoalR
+  - PennSoccerGoalL
+  - PennSoccerUI
+  - PennSoccerBall
+  - PennSoccerSuperSize
+  - PennSoccerSuperSpeed
+  - PennSoccerSuperJump
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - BTD7Projectile
   - BTD7Tower
+  - Ground
+  - 
   - 
   - 
   - 
