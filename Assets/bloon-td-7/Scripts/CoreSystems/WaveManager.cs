@@ -316,10 +316,10 @@ public class WaveManager : MonoBehaviour
         {
             if (timer >= start_time + spacing || enemySpawned == 0 && timer == start_time)
             {
-                EnemyInfo enemyInfo = GameManager.instance.waveManager.enemyList[enemyId];
-                GameObject newEnemy = Instantiate(GameManager.instance.enemy,
-                    GameManager.instance.waveManager.gameObject.transform.position,
-                    GameManager.instance.waveManager.gameObject.transform.rotation);
+                EnemyInfo enemyInfo = BTD7.GameManager.instance.waveManager.enemyList[enemyId];
+                GameObject newEnemy = Instantiate(BTD7.GameManager.instance.enemy,
+                    BTD7.GameManager.instance.waveManager.gameObject.transform.position,
+                    BTD7.GameManager.instance.waveManager.gameObject.transform.rotation);
                 newEnemy.GetComponent<Enemy>().Initialize(
                     enemyInfo.moveSpeed,
                     enemyInfo.dmg,
@@ -344,19 +344,19 @@ public class WaveManager : MonoBehaviour
             if (checkAllNull(enemies) && enemies.Count >= enemyCount)
             {
                 Debug.Log("killed cluster");
-                GameManager.instance.waveManager.spawners.Remove(this);
+                BTD7.GameManager.instance.waveManager.spawners.Remove(this);
             }
 
         }
         public Spawner (int enemyId, int enemyCount, float spacing, float time) 
         {
             // 0 <= enemyId <= enemyList.Count()
-            this.enemyId = System.Math.Min(GameManager.instance.waveManager.enemyList.Count() - 1, System.Math.Max(0, enemyId));
+            this.enemyId = System.Math.Min(BTD7.GameManager.instance.waveManager.enemyList.Count() - 1, System.Math.Max(0, enemyId));
             this.enemyCount = System.Math.Max(0, enemyCount);
             this.spacing = System.Math.Max(0.1f, spacing);
             this.start_time = System.Math.Max(0, time);
-            GameManager.instance.waveManager.spawners.Add(this);
-            GameManager.instance.waveManager.spawnersCreated++;
+            BTD7.GameManager.instance.waveManager.spawners.Add(this);
+            BTD7.GameManager.instance.waveManager.spawnersCreated++;
         }
 
 

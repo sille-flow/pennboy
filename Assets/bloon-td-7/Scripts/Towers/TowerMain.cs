@@ -17,7 +17,7 @@ public class TowerMain : Tower
     protected override void Attack(GameObject target)
     {
         if (target == null) return;
-        Projectile projectile = Instantiate(GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
+        Projectile projectile = Instantiate(BTD7.GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
         projectile.Initialize(damage, projectileSpeed, projectilePierce, target.transform.position);
     }
 

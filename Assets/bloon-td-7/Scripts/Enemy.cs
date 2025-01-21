@@ -39,9 +39,9 @@ public class Enemy : MonoBehaviour
     {
         //Initialize(15f, 1, 3, 0, 1, false, 5);
         Initialize(moveSpeed, dmg, health, id, moneyWorth, originalColor, isCamo, size, canTeleport);
-        audioSource = GameManager.instance.waveManager.GetComponent<AudioSource>();
-        teleportSound = GameManager.instance.teleportSound;
-        explosionSound = GameManager.instance.explosionSound;
+        audioSource = BTD7.GameManager.instance.waveManager.GetComponent<AudioSource>();
+        teleportSound = BTD7.GameManager.instance.teleportSound;
+        explosionSound = BTD7.GameManager.instance.explosionSound;
     }
 
     /// <summary>
@@ -95,9 +95,9 @@ public class Enemy : MonoBehaviour
             if (waypointIndex >= waypoints.Count-1)
             {
                 // Deal dmg damage to player health
-                GameManager.instance.healthManager.TakeDamage(dmg);
+                BTD7.GameManager.instance.healthManager.TakeDamage(dmg);
                 Die();
-                GameManager.instance.moneyManager.SpendMoney(moneyWorth);
+                BTD7.GameManager.instance.moneyManager.SpendMoney(moneyWorth);
             }
         }
     }
@@ -150,7 +150,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        GameManager.instance.moneyManager.EarnMoney(moneyWorth);
+        BTD7.GameManager.instance.moneyManager.EarnMoney(moneyWorth);
         Destroy(gameObject);
     }
 

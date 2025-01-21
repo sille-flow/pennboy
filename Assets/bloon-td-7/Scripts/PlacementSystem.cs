@@ -69,7 +69,7 @@ public class PlacementSystem : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    MoneyManager moneyManager = GameManager.instance.moneyManager;
+                    MoneyManager moneyManager = BTD7.GameManager.instance.moneyManager;
                     if (moneyManager.GetCurrentMoney() < cardUsing.GetCost()) { return; }
 
                     // deduct money

@@ -19,7 +19,7 @@ public class ShotgunTower : Tower
     {
         if (target == null) return;
         Vector3 targetPos = target.transform.position;
-        Projectile projectile = Instantiate(GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
+        Projectile projectile = Instantiate(BTD7.GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
         projectile.Initialize(damage, projectileSpeed, projectilePierce, targetPos);
         float angle = Mathf.Atan2(targetPos.z-transform.position.z, targetPos.x-transform.position.x);
         float magnitude = (targetPos-new Vector3(0, targetPos.y, 0)).magnitude;
@@ -27,9 +27,9 @@ public class ShotgunTower : Tower
         for (int i = 1; i <= numExtraBullets; ++i)
         {
             Debug.Log("Angle: " + (Mathf.Rad2Deg * angle) + " : A1: " + (Mathf.Rad2Deg*(angle + radAttackSpread * i)) + " : A2: " + (Mathf.Rad2Deg * (angle - radAttackSpread * i)));
-            Projectile projectile2 = Instantiate(GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
+            Projectile projectile2 = Instantiate(BTD7.GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
             projectile2.Initialize(damage, projectileSpeed, projectilePierce, new Vector3(transform.position.x+Mathf.Cos(angle+radAttackSpread*i), 0, transform.position.z+Mathf.Sin(angle+radAttackSpread*i)));
-            Projectile projectile3 = Instantiate(GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
+            Projectile projectile3 = Instantiate(BTD7.GameManager.instance.projectile, transform.position, transform.rotation).GetComponent<Projectile>();
             projectile3.Initialize(damage, projectileSpeed, projectilePierce, new Vector3(transform.position.x+Mathf.Cos(angle-radAttackSpread*i), 0, transform.position.z+Mathf.Sin(angle-radAttackSpread*i)));
         }
     }

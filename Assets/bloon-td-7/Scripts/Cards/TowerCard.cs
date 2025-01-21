@@ -35,13 +35,13 @@ public class TowerCard : Card
         if (isUsing)
         {
             Targetpos = origin;
-            GameManager.instance.cardManager.placementSystem.disableTowerPlacement(false);
+            BTD7.GameManager.instance.cardManager.placementSystem.disableTowerPlacement(false);
             isUsing = false;
             return false;
         }
 
         Targetpos = origin + new Vector3(0, 30, 0);
-        GameManager.instance.cardManager.placementSystem.enableTowerPlacement(this);
+        BTD7.GameManager.instance.cardManager.placementSystem.enableTowerPlacement(this);
         return true;
     }
 
@@ -59,7 +59,7 @@ public class TowerCard : Card
             isUsing = false;
             return;
         }
-        GameManager.instance.cardManager.removeCardFromHand(this);
+        BTD7.GameManager.instance.cardManager.removeCardFromHand(this);
     }
 
     protected override void Update()

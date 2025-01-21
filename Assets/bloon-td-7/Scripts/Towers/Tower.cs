@@ -67,8 +67,8 @@ public class Tower : MonoBehaviour
     protected virtual void Start()
     {
         remainingCooldown = cooldown;
-        audioSource = GameManager.instance.waveManager.GetComponent<AudioSource>();
-        laserShootSound = GameManager.instance.laserShootSound;
+        audioSource = BTD7.GameManager.instance.waveManager.GetComponent<AudioSource>();
+        laserShootSound = BTD7.GameManager.instance.laserShootSound;
     }
 
     // Update is called once per frame
