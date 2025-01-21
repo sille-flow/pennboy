@@ -97,7 +97,28 @@ public class Player_Movement : MonoBehaviour
         playerVelocity.z = 0;
 
         float diffFOV = math.abs(fastFieldOfView - defaultFieldOfView);
-        if (Input.GetKey(runKey) && Input.GetAxis("Vertical") > 0) {
+
+        float hSpeed = 0.0f;
+        float vSpeed = 0.0f;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            vSpeed += 1.0f;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            vSpeed -= 1.0f;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            hSpeed -= 1.0f;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            hSpeed += 1.0f;
+        }
+
+        if (Input.GetKey(runKey) && vSpeed > 0) {
             playerSpeed = Mathf.MoveTowards(playerSpeed, maxSpeed, maxSpeed * Time.deltaTime / timeToRun);
             Camera.main.fieldOfView = Mathf.MoveTowards(Camera.main.fieldOfView, fastFieldOfView, diffFOV * Time.deltaTime / timeToRun);
         } else {
@@ -112,7 +133,7 @@ public class Player_Movement : MonoBehaviour
             Cursor.visible = true;
             SceneManager.LoadScene(5);
         }
-        playerVelocity += Vector3.Normalize(gameObject.transform.right * Input.GetAxis("Horizontal") + gameObject.transform.forward * Input.GetAxis("Vertical")) * playerSpeed;
+        playerVelocity += Vector3.Normalize(gameObject.transform.right * hSpeed + gameObject.transform.forward * vSpeed) * playerSpeed;
     }
 
 
