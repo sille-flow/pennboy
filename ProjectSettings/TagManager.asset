@@ -21,6 +21,7 @@ TagManager:
   - PennSoccerSuperSize
   - PennSoccerSuperSpeed
   - PennSoccerSuperJump
+  - Bomb
   layers:
   - Default
   - TransparentFX
