@@ -4,6 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - BTD7Projectile
+  - BTD7Enemy
+  - BTD7PlacementBlocker
+  - BTD7Tower
   - Enemy
   - GameManager
   - Tree
@@ -24,6 +28,8 @@ TagManager:
   - Player
   - Water
   - UI
+  - BTD7Projectile
+  - BTD7Tower
   - Ground
   - 
   - 
