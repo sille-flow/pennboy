@@ -70,11 +70,11 @@ public class SpawnSurface : MonoBehaviour
             Debug.Log("spawning" + objectToSpawn.name);
             if (initialVelocity != -1)
             {
-                enemy.GetComponent<Enemy>().initialClimbHeight = initialVelocity;
+                enemy.GetComponent<BombGame.Enemy>().initialClimbHeight = initialVelocity;
             }
             if (initalVariation != -1)
             {
-                enemy.GetComponent<Enemy>().initalVariation = initalVariation;
+                enemy.GetComponent<BombGame.Enemy>().initalVariation = initalVariation;
             }
             //Debug.Log(position);
         }

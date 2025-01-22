@@ -133,7 +133,7 @@ public class Bomb : MonoBehaviour
                 {
 
                     Debug.Log("enemy touched with level" + level);
-                    hitCollider.GetComponent<Enemy>().TouchedByBomb(level);
+                    hitCollider.GetComponent<BombGame.Enemy>().TouchedByBomb(level);
                 }
                 Destroy(gameObject);
             }

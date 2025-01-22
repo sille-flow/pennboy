@@ -38,7 +38,7 @@ public class EnemyReachingPlane : MonoBehaviour
         {
             if (other.gameObject.tag == "Enemy")
             {
-                other.gameObject.GetComponent<Enemy>().RushToCenter();
+                other.gameObject.GetComponent<BombGame.Enemy>().RushToCenter();
                 TriggerGameOver();
                 Debug.Log("Enemy Reached Surface: Game Over");
             }
