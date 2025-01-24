@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class OpenGame : MonoBehaviour
 {
-    public int gameID;
+    //public int gameID; // temp fixes
+    public string gameID;
     public RectTransform targetTransform;
     // public RectTransform game_img;
 
