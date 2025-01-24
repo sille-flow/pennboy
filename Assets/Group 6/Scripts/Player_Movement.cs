@@ -85,7 +85,7 @@ public class Player_Movement : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer) {
+        if (Input.GetKeyDown(KeyCode.Space) && groundedPlayer) {
             playerVelocity.y += jumpVelocity;
         }
         playerVelocity.y += gravityValue * Time.deltaTime;

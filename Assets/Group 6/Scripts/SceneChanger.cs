@@ -8,67 +8,67 @@ public class SceneChanger : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MoveInMenu");
     }
     
     public void LoadTutorialScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level 0");
     }
 
     public void LoadLevel1()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Level 1");
     }
 
     public void LoadLevel2()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("Level 2");
     }
 
     public void LoadLevelSelect()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene("Level Select");
     }
 
     public void LoadCredits()
     {
-        SceneManager.LoadScene(7);
+        SceneManager.LoadScene("MoveInCredits");
     }
 
     public void LoadHowToPlay()
     {
-        SceneManager.LoadScene(8);
+        SceneManager.LoadScene("MoveInHowToPlay");
     }
 
     public void LoadLevel3()
     {
-        SceneManager.LoadScene(9);
+        SceneManager.LoadScene("Level 3");
     }
 
     public void LoadLevel4()
     {
-        SceneManager.LoadScene(10);
+        SceneManager.LoadScene("Level 4");
     }
 
     public void LoadLevel5()
     {
-        SceneManager.LoadScene(11);
+        SceneManager.LoadScene("Level 5");
     }
 
     public void LoadLevel7()
     {
-        SceneManager.LoadScene(12);
+        SceneManager.LoadScene("Level 7");
     }
 
     public void LoadLevel6()
     {
-        SceneManager.LoadScene(13);
+        SceneManager.LoadScene("Level 6");
     }
 
     public void Settings()
     {
-        SceneManager.LoadScene(14);
+        SceneManager.LoadScene("MoveInSettings");
     }
 
     public void restartLevel() {
