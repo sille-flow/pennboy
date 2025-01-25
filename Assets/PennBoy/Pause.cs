@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +15,11 @@ public class Pause : MonoBehaviour
     public void TogglePauseGame()
     {
         // not paused
-        timeScale = (timeScale != 0f) ? Time.timeScale : timeScale;
+        timeScale = (Time.timeScale != 0f) ? Time.timeScale : timeScale;
         isPaused = !isPaused;
         pauseUI.SetActive(isPaused);
         Time.timeScale = isPaused ? 0f : timeScale; // true means is paused now
+        Debug.Log("Timescale is now " + Time.timeScale);
     }
 
     public void ResumeGame()
@@ -29,8 +31,8 @@ public class Pause : MonoBehaviour
 
     public void ReturnHome()
     {
-        SceneManager.LoadScene("HomePage");
         ResumeGame();
+        SceneManager.LoadScene("HomePage");
     }
 
     bool CheckIfBad()
