@@ -14,6 +14,7 @@ public class Pause : MonoBehaviour
     public void TogglePauseGame()
     {
         // not paused
+        timeScale = (timeScale != 0f) ? Time.timeScale : timeScale;
         isPaused = !isPaused;
         pauseUI.SetActive(isPaused);
         Time.timeScale = isPaused ? 0f : timeScale; // true means is paused now

@@ -8,7 +8,8 @@ public class HealthManager : MonoBehaviour
 {
     private int maxHealth = 100; 
     private int currentHealth; 
-    [SerializeField] private TextMeshProUGUI healthText; 
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private GameObject deadUI; 
 
     void Start()
     {
@@ -35,5 +36,6 @@ public class HealthManager : MonoBehaviour
     void GameOver()
     {
         Debug.Log("You LOST");
+        deadUI.SetActive(true);
     }
 }
