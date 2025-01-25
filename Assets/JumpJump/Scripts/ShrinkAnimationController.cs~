@@ -1,0 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ShrinkAnimationController : MonoBehaviour
+{
+    public void Shrink(float deltaTime)
+    {
+        gameObject.transform.localScale =
+            Vector3.Lerp(gameObject.transform.localScale, gameObject.transform.localScale
+            + new Vector3(0, -0.1f, 0), deltaTime);
+    }
+}

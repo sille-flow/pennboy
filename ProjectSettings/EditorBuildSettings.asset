@@ -74,4 +74,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PennSoccer/Scenes/SoccerScene.unity
     guid: b626218fd0536b94b958db2aeb7ce5fe
+  - enabled: 1
+    path: Assets/group8/Scenes/Main/Main Scene v7.unity
+    guid: ad8ffc8d5a93041119f0ce6f0e179abf
   m_configObjects: {}

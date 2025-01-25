@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace BTD7
 {
@@ -19,6 +20,10 @@ namespace BTD7
         public AudioClip explosionSound;
         public AudioClip laserShootSound;
 
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
         private void Awake()
         {

@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Cacti.010
-    second: {fileID: 2100000, guid: ee659223843585f419b040b1739be3d8, type: 2}
+      name: Material
+    second: {fileID: 2100000, guid: 7487aad2aa5813d4eb1cb3908feda7b3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
