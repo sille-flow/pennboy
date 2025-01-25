@@ -42,6 +42,16 @@ public class OpenGame : MonoBehaviour
 
         var imgTargetTransform = targetTransform.position + new Vector3(0.0f, 60.0f, 0.0f);
 
+        AudioSource audio = GameObject.Find("Cookies").GetComponent<AudioSource>();
+        Debug.Log("Audio: " + audio);
+
+        // audio.volume = 0;
+
+        StartCoroutine(Anim.Animate(1.5f, t =>
+        {
+            GameObject.Find("Cookies").GetComponent<AudioSource>().volume = (1 - t);
+        }));
+
         yield return Anim.Animate(1.0f, t => {
             rectTransform.position = t * targetTransform.position + (1-t) * initRectTransform.position;
             rectTransform.sizeDelta = t * targetTransform.sizeDelta + (1-t) * initRectTransform.sizeDelta;

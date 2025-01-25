@@ -23,6 +23,8 @@ public class IntroManager : MonoBehaviour
     public GameObject upgradeLogo;
     public List<GameObject> letters;
     public List<Image> stars;
+    public AudioSource jingle;
+    public AudioSource bing;
 
     private bool polling;
     private (RectTransform rectTransform, Image image) bgAttrs;
@@ -147,6 +149,7 @@ public class IntroManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+        bing.Play();
         foreach (var star in stars) {
             StartCoroutine(ScaleStars(star));
             StartCoroutine(RotateStars(star));
@@ -218,6 +221,8 @@ public class IntroManager : MonoBehaviour
     }
 
     private IEnumerator RevealPennBoyLetters(List<(RectTransform, CanvasGroup, Image)> attrs) {
+        jingle.PlayDelayed(0.25f);
+
         foreach (var (rectTrans, canvasGroup, image) in attrs) {
             var initPos = rectTrans.anchoredPosition;
             var finalPos = new Vector2(rectTrans.anchoredPosition.x, 78);
@@ -232,7 +237,7 @@ public class IntroManager : MonoBehaviour
 
             StartCoroutine(AnimatePennBoyLetterColor(image));
 
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.20f);
         }
     }
 

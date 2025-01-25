@@ -86,4 +86,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/HMTT/Scenes/VerticalSlice.unity
     guid: 4c2cde0885b75f24faa36fe6f7ce4b73
+  - enabled: 1
+    path: Assets/HMTT/Scenes/Level1Test.unity
+    guid: 4879cce1d997ef44ebe63bee80d21f37
   m_configObjects: {}
