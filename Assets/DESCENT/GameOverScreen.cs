@@ -10,13 +10,21 @@ public class GameOverScreen : MonoBehaviour
 {
     public TextMeshProUGUI pointsText;
     public String mainGameSceneName;
+    public String sandGameSceneName;
     public void SetUp(int score) {
         gameObject.SetActive(true);
         pointsText.text = score.ToString();
     }
 
     public void Restart() {
-        SceneManager.LoadScene(mainGameSceneName);
+        float scene = UnityEngine.Random.value;
+
+        if (scene > 0.5) {
+            SceneManager.LoadScene(mainGameSceneName);
+        } else {
+            SceneManager.LoadScene(sandGameSceneName);
+        }
+        
     }
 
 }
