@@ -10,6 +10,8 @@ public class OpenGame : MonoBehaviour
     //public int gameID; // temp fixes
     public string gameID;
     public RectTransform targetTransform;
+
+    public ButtonController parent;
     // public RectTransform game_img;
 
     private RectTransform rectTransform;
@@ -29,6 +31,9 @@ public class OpenGame : MonoBehaviour
         Debug.Log("Opening Game " + gameID);
 
         StartCoroutine(GameTransition());
+        GetComponent<Button>().enabled = false;
+
+        parent.disableGameButtons(gameID);
     }
 
     private IEnumerator GameTransition() {
