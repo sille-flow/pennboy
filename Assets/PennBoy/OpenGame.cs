@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using PennBoy;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -41,6 +42,9 @@ public class OpenGame : MonoBehaviour
             rectTransform.position = t * targetTransform.position + (1-t) * initRectTransform.position;
             rectTransform.sizeDelta = t * targetTransform.sizeDelta + (1-t) * initRectTransform.sizeDelta;
             // game_img.sizeDelta = t * targetTransform.sizeDelta + (1-t) * initRectTransform.sizeDelta;
+            var color = ((1-t) * Color.white);
+            color.a = 1;
+            GetComponent<Image>().color = color;
         });
 
         yield return new WaitForSeconds(2.0f);
