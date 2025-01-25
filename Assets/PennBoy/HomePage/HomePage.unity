@@ -294,7 +294,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.0010071}
-  m_SizeDelta: {x: 800, y: 449.77}
+  m_SizeDelta: {x: 850, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &130447488
 CanvasRenderer:
@@ -515,8 +515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cd76eae5cdca24a9d845003d5d0d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameID: 
+  gameID: temp1
   targetTransform: {fileID: 130447486}
+  parent: {fileID: 1060947565}
 --- !u!114 &407038276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1240,6 +1241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameID: bloons-td-7
   targetTransform: {fileID: 130447486}
+  parent: {fileID: 1060947565}
 --- !u!114 &1033957339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1346,6 +1348,7 @@ GameObject:
   - component: {fileID: 1060947563}
   - component: {fileID: 1060947562}
   - component: {fileID: 1060947561}
+  - component: {fileID: 1060947565}
   m_Layer: 5
   m_Name: Games
   m_TagString: Untagged
@@ -1442,6 +1445,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1060947565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060947560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492da84366add5445a5db2424fe59f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameButtons:
+  - {fileID: 2135839422}
+  - {fileID: 1033957336}
+  - {fileID: 1332166025}
+  - {fileID: 1910474668}
+  - {fileID: 407038273}
+  - {fileID: 1126379253}
 --- !u!1 &1126379253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,8 +1516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1cd76eae5cdca24a9d845003d5d0d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameID: 
+  gameID: temp2
   targetTransform: {fileID: 130447486}
+  parent: {fileID: 1060947565}
 --- !u!114 &1126379256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,6 +1742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameID: SoccerScene
   targetTransform: {fileID: 130447486}
+  parent: {fileID: 1060947565}
 --- !u!114 &1332166028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1969,6 +1993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameID: MoveInMenu
   targetTransform: {fileID: 130447486}
+  parent: {fileID: 1060947565}
 --- !u!114 &1910474671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2211,6 +2236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameID: Bryan 2
   targetTransform: {fileID: 130447486}
+  parent: {fileID: 1060947565}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
