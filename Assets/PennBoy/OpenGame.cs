@@ -38,11 +38,16 @@ public class OpenGame : MonoBehaviour
     }
 
     private IEnumerator GameTransition() {
+        RectTransform childTransform = GetComponentsInChildren<RectTransform>()[1];
+
+        var imgTargetTransform = targetTransform.position + new Vector3(0.0f, 60.0f, 0.0f);
+
         yield return Anim.Animate(1.0f, t => {
             rectTransform.position = t * targetTransform.position + (1-t) * initRectTransform.position;
             rectTransform.sizeDelta = t * targetTransform.sizeDelta + (1-t) * initRectTransform.sizeDelta;
+            childTransform.position = t * (imgTargetTransform) + (1-t) * initRectTransform.position;
             // game_img.sizeDelta = t * targetTransform.sizeDelta + (1-t) * initRectTransform.sizeDelta;
-            var color = ((1-t) * Color.white);
+            var color = (1-t) * Color.white;
             color.a = 1;
             GetComponent<Image>().color = color;
         });
