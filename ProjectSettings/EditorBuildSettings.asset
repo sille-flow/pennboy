@@ -80,4 +80,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DESCENT/Scenes/Sand Dunes.unity
     guid: 8eac6134014855c40a86bf138a1ff8b8
+  - enabled: 1
+    path: Assets/JumpJump/Scenes/Platforms.unity
+    guid: 7e35cb04104a64a47bed50ab604f5c76
+  - enabled: 1
+    path: Assets/HMTT/Scenes/VerticalSlice.unity
+    guid: 4c2cde0885b75f24faa36fe6f7ce4b73
   m_configObjects: {}
