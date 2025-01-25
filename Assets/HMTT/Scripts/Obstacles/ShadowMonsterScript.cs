@@ -34,12 +34,10 @@ public class ShadowMonsterScript : MonoBehaviour
     [SerializeField] float onScreenPos;
 
     private MovementScript player;
-    private GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
-        gm = FindObjectOfType<GameManager>();
         player = FindObjectOfType<MovementScript>();
         state = 1;
         currDownTime = 0;
