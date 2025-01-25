@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShadowPitScript : MonoBehaviour
 {
@@ -18,9 +19,11 @@ public class ShadowPitScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            Destroy(other.gameObject);
+        if (other.gameObject.tag == "Player") {
+            var player = other.gameObject;
+            var mesh = player.transform.Find("Mesh");
+            Destroy(mesh.gameObject);
+            SceneManager.LoadScene("Level1Test");
         }
     }
 }

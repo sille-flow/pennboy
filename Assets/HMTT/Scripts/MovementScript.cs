@@ -89,9 +89,6 @@ public class MovementScript : MonoBehaviour
         applyGravity();
         if (isActive)
         {
-            anim.SetBool("Running", (Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded));
-            anim.SetFloat("MotionSpeed", Mathf.Pow((rb.velocity.x / maxSpeed), 0.1f));
-            anim.SetBool("FreeFall", (rb.velocity.y < 0 && !isGrounded));
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (isGrounded)
@@ -106,10 +103,6 @@ public class MovementScript : MonoBehaviour
                 {
                     WallJump();
                 }
-                anim.SetBool("Jump", true);
-            } else
-            {
-                anim.SetBool("Jump", false);
             }
             Move();
         }
@@ -288,6 +281,5 @@ public class MovementScript : MonoBehaviour
         {
             canDoubleJump = true;
         }
-        anim.SetBool("Grounded", isGrounded);
     }
 }
