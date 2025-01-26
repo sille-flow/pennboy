@@ -8,6 +8,7 @@ public class Pause : MonoBehaviour
 {
     [SerializeField] GameObject pauseUI;
     private float timeScale;
+    private CursorLockMode prevLockState;
     private bool isPaused;
     private static Pause instance = null;
     public string[] lockedScenes;
@@ -16,10 +17,17 @@ public class Pause : MonoBehaviour
     {
         // not paused
         timeScale = (Time.timeScale != 0f) ? Time.timeScale : timeScale;
+        prevLockState = (Cursor.lockState == CursorLockMode.None) ? prevLockState : Cursor.lockState;
+
         isPaused = !isPaused;
         pauseUI.SetActive(isPaused);
+
+        Cursor.lockState = isPaused ? CursorLockMode.None : prevLockState;
+        Cursor.visible = (Cursor.lockState == CursorLockMode.None);
+
         Time.timeScale = isPaused ? 0f : timeScale; // true means is paused now
         Debug.Log("Timescale is now " + Time.timeScale);
+        Debug.Log("LockState: " + Cursor.lockState);
     }
 
     public void ResumeGame()
@@ -31,6 +39,8 @@ public class Pause : MonoBehaviour
 
     public void ReturnHome()
     {
+        Cursor.lockState = CursorLockMode.None;
+        prevLockState = CursorLockMode.None;
         ResumeGame();
         SceneManager.LoadScene("HomePage");
     }
