@@ -59,7 +59,7 @@ public class IntroManager : MonoBehaviour
         pressAnyKey.paused = true;
         bgAttrs.image.color = Color.black;
         textAttrs.ForEach((attrs) => attrs.canvasGroup.alpha = 0f);
-        logoAttrs.rectTransform.anchoredPosition = new Vector2(logoAttrs.rectTransform.anchoredPosition.x, -600);
+        logoAttrs.rectTransform.anchoredPosition = new Vector2(logoAttrs.rectTransform.anchoredPosition.x, -1000);
         logoAttrs.canvasGroup.alpha = 1f;
 
         foreach (var (rectTrans, canvasGroup, image) in letterAttrs) {
