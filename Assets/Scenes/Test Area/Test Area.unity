@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: c02150d4523a2454b8a61b4c8de2ca3c,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -326,7 +327,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: book (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3347972435449114640, guid: cd9486293b68fc5408ec21ddde021c7d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -433,7 +435,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: book (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3347972435449114640, guid: cd9486293b68fc5408ec21ddde021c7d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -540,7 +543,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: book (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3347972435449114640, guid: cd9486293b68fc5408ec21ddde021c7d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1339,7 +1343,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: book (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3347972435449114640, guid: cd9486293b68fc5408ec21ddde021c7d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1581,7 +1586,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: book (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3347972435449114640, guid: cd9486293b68fc5408ec21ddde021c7d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2171,7 +2177,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: book (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3347972435449114640, guid: cd9486293b68fc5408ec21ddde021c7d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2997,7 +3004,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: book
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7431560304493276185, guid: cd9486293b68fc5408ec21ddde021c7d, type: 3}
+    - {fileID: -3347972435449114640, guid: cd9486293b68fc5408ec21ddde021c7d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -3012,8 +3021,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1385654640}
   - {fileID: 2045304917}
-  - {fileID: 495372884}
   - {fileID: 2005329635}
+  - {fileID: 495372884}
   - {fileID: 680383909}
   - {fileID: 2074994607}
   - {fileID: 451485116}
