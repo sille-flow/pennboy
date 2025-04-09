@@ -37,9 +37,13 @@ public class Patrol : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
 
         {
-            //Debug.Log("Stop");
-            agent.speed = 0;
+            Stop();
         }
+    }
+
+    public void Stop()
+    {
+        agent.speed = 0;
     }
 
     void GotoNextPoint()
@@ -81,8 +85,11 @@ public class Patrol : MonoBehaviour
 
         if (!blocked)
         {
-            UnityEngine.AI.NavMesh.CalculatePath(transform.position, target.position, UnityEngine.AI.NavMesh.AllAreas, path);
-            agent.SetPath(path);
+            if (Vector3.Distance(agent.destination, transform.position) > 0.1f)
+            {
+                UnityEngine.AI.NavMesh.CalculatePath(transform.position, target.position, UnityEngine.AI.NavMesh.AllAreas, path);
+                agent.SetPath(path);
+            }
         }
         else
         {

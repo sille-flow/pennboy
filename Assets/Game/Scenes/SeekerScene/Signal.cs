@@ -15,6 +15,8 @@ public class Signal : MonoBehaviour
     public float crouchHeight = 1f;
     public float crouchSpeed = 3f;
     public GameObject gameOverPanel;
+    public GameObject restartButton;
+    public GameObject winPanel;
     public Patrol seeker;
 
     // Speed of the smooth transition for character height
@@ -32,18 +34,30 @@ public class Signal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("Seeker")) 
-            {
-                gameOverPanel.gameObject.SetActive(true);
-                canMove = false;
-            }
+        {
+            gameOverPanel.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+            canMove = false;
+        }
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            winPanel.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);
+            canMove = false;
+            seeker.Stop();
+        }
 
     }
 
     void Start()
     {
         gameOverPanel.gameObject.SetActive(false);
+        winPanel.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
         characterController = GetComponent<CharacterController>();
+        canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         targetHeight = defaultHeight;
