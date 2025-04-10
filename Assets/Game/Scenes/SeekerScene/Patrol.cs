@@ -80,7 +80,7 @@ public class Patrol : MonoBehaviour
     void Update()
     {
         blocked = UnityEngine.AI.NavMesh.Raycast(transform.position, target.position, out hit, UnityEngine.AI.NavMesh.AllAreas);
-        //Debug.Log(blocked);
+        Debug.Log(blocked);
         //Debug.Log(transform.position);
 
         if (!blocked)
