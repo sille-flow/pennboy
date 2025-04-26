@@ -39,18 +39,22 @@ public class CombinedMovement : MonoBehaviour
 
         if (other.gameObject.CompareTag("Seeker"))
         {
-            gameOverPanel.gameObject.SetActive(true);
-            restartButton.gameObject.SetActive(true);
-            canMove = false;
+            EndGame(gameOverPanel);
+            
         }
         if (other.gameObject.CompareTag("Finish"))
         {
-            winPanel.gameObject.SetActive(true);
-            restartButton.gameObject.SetActive(true);
-            canMove = false;
             seeker.Stop();
+            EndGame(winPanel);
         }
 
+    }
+
+    private void EndGame(GameObject panel)
+    {
+        restartButton.gameObject.SetActive(true);
+        panel.SetActive(true);
+        canMove = false;
     }
 
     void Start()
@@ -77,7 +81,10 @@ public class CombinedMovement : MonoBehaviour
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
-
+        if (transform.position.y < -10)
+        {
+            EndGame(gameOverPanel);
+        }
         // Jumping
         if (Input.GetButton("Jump") && canMove && canJump && jumpCount < 2)
         {
@@ -90,13 +97,13 @@ public class CombinedMovement : MonoBehaviour
         }
 
         // Apply gravity when not grounded.
-        if (!characterController.isGrounded)
+        if (!characterController.isGrounded && canMove)
         {
             moveDirection.y -= gravity * Time.deltaTime;
 
             if (!canJump && moveDirection.y < 0 && Input.GetButton("Jump"))
             {
-                Debug.Log(jumpCount);
+                //Debug.Log(jumpCount);
                 jumpCount++;
                 canJump = true;
             }

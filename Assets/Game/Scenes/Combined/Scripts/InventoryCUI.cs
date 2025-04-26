@@ -7,6 +7,7 @@ public class InventoryCUI : MonoBehaviour
 {
     private TextMeshProUGUI bookText;
     private int counter;
+    public int total;
     public GameObject goal;
 
     // Start is called before the first frame update
@@ -20,7 +21,7 @@ public class InventoryCUI : MonoBehaviour
     {
         bookText.text = playerInventory.NumberOfCollectibles.ToString();
         counter++;
-        if (counter == 4)
+        if (counter == total)
         {
             goal.SetActive(true);
         }
