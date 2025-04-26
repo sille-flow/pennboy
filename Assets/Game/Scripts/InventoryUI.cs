@@ -5,16 +5,26 @@ using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
+    [Tooltip("Drag your Player (with Inventory) here in the Inspector)")]
+    [SerializeField] private Inventory playerInventory;
+
     private TextMeshProUGUI bookText;
 
-    // Start is called before the first frame update
     void Start()
     {
         bookText = GetComponent<TextMeshProUGUI>();
+
+        if (playerInventory != null)
+        {
+            // Subscribe so UI updates on every collect
+            playerInventory.OnCollectiblesCollected.AddListener(UpdateDiamondText);
+            // Initialize display
+            UpdateDiamondText(playerInventory);
+        }
     }
 
-    public void UpdateDiamondText(Inventory playerInventory)
+    private void UpdateDiamondText(Inventory inv)
     {
-        bookText.text = playerInventory.NumberOfCollectibles.ToString();
+        bookText.text = inv.NumberOfCollectibles.ToString();
     }
 }
